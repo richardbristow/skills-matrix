@@ -1,0 +1,469 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should render the login form without throwing an error 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Login />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <ForwardRef(Bootstrap(FormGroup))
+          controlId="email"
+        >
+          <ForwardRef(ContextTransform)>
+            Email Address
+          </ForwardRef(ContextTransform)>
+          <ForwardRef(ContextTransform)
+            autoFocus={true}
+            onChange={[Function]}
+            placeholder="Email address..."
+            type="email"
+            value=""
+          />
+        </ForwardRef(Bootstrap(FormGroup))>,
+        <ForwardRef(Bootstrap(FormGroup))
+          controlId="password"
+        >
+          <ForwardRef(ContextTransform)>
+            Password
+          </ForwardRef(ContextTransform)>
+          <ForwardRef(ContextTransform)
+            onChange={[Function]}
+            placeholder="Password..."
+            type="password"
+            value=""
+          />
+        </ForwardRef(Bootstrap(FormGroup))>,
+        <ForwardRef(Bootstrap(Button))
+          type="submit"
+          variant="primary"
+        >
+          Login
+        </ForwardRef(Bootstrap(Button))>,
+      ],
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <ForwardRef(ContextTransform)>
+              Email Address
+            </ForwardRef(ContextTransform)>,
+            <ForwardRef(ContextTransform)
+              autoFocus={true}
+              onChange={[Function]}
+              placeholder="Email address..."
+              type="email"
+              value=""
+            />,
+          ],
+          "controlId": "email",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Email Address",
+            },
+            "ref": null,
+            "rendered": "Email Address",
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "autoFocus": true,
+              "onChange": [Function],
+              "placeholder": "Email address...",
+              "type": "email",
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "Feedback": [Function],
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+          },
+        ],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <ForwardRef(ContextTransform)>
+              Password
+            </ForwardRef(ContextTransform)>,
+            <ForwardRef(ContextTransform)
+              onChange={[Function]}
+              placeholder="Password..."
+              type="password"
+              value=""
+            />,
+          ],
+          "controlId": "password",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Password",
+            },
+            "ref": null,
+            "rendered": "Password",
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "onChange": [Function],
+              "placeholder": "Password...",
+              "type": "password",
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "Feedback": [Function],
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+          },
+        ],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "Login",
+          "type": "submit",
+          "variant": "primary",
+        },
+        "ref": null,
+        "rendered": "Login",
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+      },
+    ],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": true,
+        "rules": Array [
+          "max-width: 400px",
+        ],
+      },
+      "displayName": "styled.form",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "form",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <ForwardRef(Bootstrap(FormGroup))
+            controlId="email"
+          >
+            <ForwardRef(ContextTransform)>
+              Email Address
+            </ForwardRef(ContextTransform)>
+            <ForwardRef(ContextTransform)
+              autoFocus={true}
+              onChange={[Function]}
+              placeholder="Email address..."
+              type="email"
+              value=""
+            />
+          </ForwardRef(Bootstrap(FormGroup))>,
+          <ForwardRef(Bootstrap(FormGroup))
+            controlId="password"
+          >
+            <ForwardRef(ContextTransform)>
+              Password
+            </ForwardRef(ContextTransform)>
+            <ForwardRef(ContextTransform)
+              onChange={[Function]}
+              placeholder="Password..."
+              type="password"
+              value=""
+            />
+          </ForwardRef(Bootstrap(FormGroup))>,
+          <ForwardRef(Bootstrap(Button))
+            type="submit"
+            variant="primary"
+          >
+            Login
+          </ForwardRef(Bootstrap(Button))>,
+        ],
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <ForwardRef(ContextTransform)>
+                Email Address
+              </ForwardRef(ContextTransform)>,
+              <ForwardRef(ContextTransform)
+                autoFocus={true}
+                onChange={[Function]}
+                placeholder="Email address..."
+                type="email"
+                value=""
+              />,
+            ],
+            "controlId": "email",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Email Address",
+              },
+              "ref": null,
+              "rendered": "Email Address",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "autoFocus": true,
+                "onChange": [Function],
+                "placeholder": "Email address...",
+                "type": "email",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Feedback": [Function],
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+            },
+          ],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <ForwardRef(ContextTransform)>
+                Password
+              </ForwardRef(ContextTransform)>,
+              <ForwardRef(ContextTransform)
+                onChange={[Function]}
+                placeholder="Password..."
+                type="password"
+                value=""
+              />,
+            ],
+            "controlId": "password",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Password",
+              },
+              "ref": null,
+              "rendered": "Password",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "onChange": [Function],
+                "placeholder": "Password...",
+                "type": "password",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "Feedback": [Function],
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+            },
+          ],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "Login",
+            "type": "submit",
+            "variant": "primary",
+          },
+          "ref": null,
+          "rendered": "Login",
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+        },
+      ],
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-bdVaJa",
+          "isStatic": true,
+          "rules": Array [
+            "max-width: 400px",
+          ],
+        },
+        "displayName": "styled.form",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-bdVaJa",
+        "target": "form",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

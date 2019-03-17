@@ -6,7 +6,7 @@ import {
   Button, FormGroup, FormLabel, FormControl,
 } from 'react-bootstrap';
 
-class LogIn extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { email: '', password: '' };
@@ -44,4 +44,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default Login;
