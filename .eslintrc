@@ -1,6 +1,10 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   },
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+  }
 }
