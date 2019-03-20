@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-// eslint-disable-next-line no-unused-vars
-import styled from 'styled-components/macro';
-
-import {
-  Button, FormGroup, FormLabel, FormControl,
-} from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '' };
+    this.state = { email: '', password: '', validated: false };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkForEmptyForm = this.checkForEmptyForm.bind(this);
   }
 
   handleInputChange({ target }) {
@@ -20,26 +16,43 @@ class Login extends Component {
     this.setState({ [id]: value });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
     const { email, password } = this.state;
-    // eslint-disable-next-line no-alert
-    alert(`Form has been submitted by ${email} with password ${password}`);
+    const form = e.currentTarget;
+
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(`Form has been submitted by ${email} with password ${password}`);
+    }
+    this.setState({ validated: true });
+  }
+
+  checkForEmptyForm() {
+    const { email, password } = this.state;
+    return !(email.length > 0 && password.length > 0);
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, validated } = this.state;
     return (
-      <form onSubmit={this.handleSubmit} css="max-width: 400px">
-        <FormGroup controlId="email">
-          <FormLabel>Email Address</FormLabel>
-          <FormControl value={email} autoFocus onChange={this.handleInputChange} type="email" placeholder="Email address..." />
-        </FormGroup>
-        <FormGroup controlId="password">
-          <FormLabel>Password</FormLabel>
-          <FormControl value={password} onChange={this.handleInputChange} type="password" placeholder="Password..." />
-        </FormGroup>
-        <Button variant="primary" type="submit">Login</Button>
-      </form>
+      <Form validated={validated} noValidate onSubmit={this.handleSubmit}>
+        <Form.Group controlId="email">
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control value={email} autoFocus onChange={this.handleInputChange} type="email" placeholder="Email address..." required />
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid email address.
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control value={password} onChange={this.handleInputChange} type="password" placeholder="Password..." required />
+          <Form.Control.Feedback type="invalid">Please provide a password.</Form.Control.Feedback>
+        </Form.Group>
+        <Button disabled={this.checkForEmptyForm()} type="submit">Login</Button>
+      </Form>
     );
   }
 }

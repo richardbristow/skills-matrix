@@ -1,9 +1,10 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 const SkillsMatrix = () => (
-  <div>
+  <Container>
     <h1>Skills Matrix</h1>
-  </div>
+  </Container>
 );
 
 export default SkillsMatrix;

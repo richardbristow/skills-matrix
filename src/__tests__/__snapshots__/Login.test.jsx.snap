@@ -29,9 +29,16 @@ ShallowWrapper {
             autoFocus={true}
             onChange={[Function]}
             placeholder="Email address..."
+            required={true}
             type="email"
             value=""
           />
+          <Feedback
+            as="div"
+            type="invalid"
+          >
+            Please provide a valid email address.
+          </Feedback>
         </ForwardRef(Bootstrap(FormGroup))>,
         <ForwardRef(Bootstrap(FormGroup))
           controlId="password"
@@ -42,18 +49,27 @@ ShallowWrapper {
           <ForwardRef(ContextTransform)
             onChange={[Function]}
             placeholder="Password..."
+            required={true}
             type="password"
             value=""
           />
+          <Feedback
+            as="div"
+            type="invalid"
+          >
+            Please provide a password.
+          </Feedback>
         </ForwardRef(Bootstrap(FormGroup))>,
         <ForwardRef(Bootstrap(Button))
+          disabled={true}
           type="submit"
-          variant="primary"
         >
           Login
         </ForwardRef(Bootstrap(Button))>,
       ],
+      "noValidate": true,
       "onSubmit": [Function],
+      "validated": false,
     },
     "ref": null,
     "rendered": Array [
@@ -70,9 +86,16 @@ ShallowWrapper {
               autoFocus={true}
               onChange={[Function]}
               placeholder="Email address..."
+              required={true}
               type="email"
               value=""
             />,
+            <Feedback
+              as="div"
+              type="invalid"
+            >
+              Please provide a valid email address.
+            </Feedback>,
           ],
           "controlId": "email",
         },
@@ -102,6 +125,7 @@ ShallowWrapper {
               "autoFocus": true,
               "onChange": [Function],
               "placeholder": "Email address...",
+              "required": true,
               "type": "email",
               "value": "",
             },
@@ -114,6 +138,19 @@ ShallowWrapper {
               "propTypes": undefined,
               "render": [Function],
             },
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "as": "div",
+              "children": "Please provide a valid email address.",
+              "type": "invalid",
+            },
+            "ref": null,
+            "rendered": "Please provide a valid email address.",
+            "type": [Function],
           },
         ],
         "type": Object {
@@ -135,9 +172,16 @@ ShallowWrapper {
             <ForwardRef(ContextTransform)
               onChange={[Function]}
               placeholder="Password..."
+              required={true}
               type="password"
               value=""
             />,
+            <Feedback
+              as="div"
+              type="invalid"
+            >
+              Please provide a password.
+            </Feedback>,
           ],
           "controlId": "password",
         },
@@ -166,6 +210,7 @@ ShallowWrapper {
             "props": Object {
               "onChange": [Function],
               "placeholder": "Password...",
+              "required": true,
               "type": "password",
               "value": "",
             },
@@ -178,6 +223,19 @@ ShallowWrapper {
               "propTypes": undefined,
               "render": [Function],
             },
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "as": "div",
+              "children": "Please provide a password.",
+              "type": "invalid",
+            },
+            "ref": null,
+            "rendered": "Please provide a password.",
+            "type": [Function],
           },
         ],
         "type": Object {
@@ -193,8 +251,8 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": "Login",
+          "disabled": true,
           "type": "submit",
-          "variant": "primary",
         },
         "ref": null,
         "rendered": "Login",
@@ -208,22 +266,58 @@ ShallowWrapper {
     ],
     "type": Object {
       "$$typeof": Symbol(react.forward_ref),
-      "attrs": Array [],
-      "componentStyle": ComponentStyle {
-        "componentId": "sc-bdVaJa",
-        "isStatic": true,
-        "rules": Array [
-          "max-width: 400px",
-        ],
+      "Check": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "Input": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Label": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
       },
-      "displayName": "styled.form",
-      "foldedComponentIds": Array [],
+      "Control": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "Feedback": [Function],
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Group": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Label": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Row": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Text": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "defaultProps": undefined,
+      "propTypes": undefined,
       "render": [Function],
-      "styledComponentId": "sc-bdVaJa",
-      "target": "form",
-      "toString": [Function],
-      "warnTooManyClasses": [Function],
-      "withComponent": [Function],
     },
   },
   Symbol(enzyme.__nodes__): Array [
@@ -243,9 +337,16 @@ ShallowWrapper {
               autoFocus={true}
               onChange={[Function]}
               placeholder="Email address..."
+              required={true}
               type="email"
               value=""
             />
+            <Feedback
+              as="div"
+              type="invalid"
+            >
+              Please provide a valid email address.
+            </Feedback>
           </ForwardRef(Bootstrap(FormGroup))>,
           <ForwardRef(Bootstrap(FormGroup))
             controlId="password"
@@ -256,18 +357,27 @@ ShallowWrapper {
             <ForwardRef(ContextTransform)
               onChange={[Function]}
               placeholder="Password..."
+              required={true}
               type="password"
               value=""
             />
+            <Feedback
+              as="div"
+              type="invalid"
+            >
+              Please provide a password.
+            </Feedback>
           </ForwardRef(Bootstrap(FormGroup))>,
           <ForwardRef(Bootstrap(Button))
+            disabled={true}
             type="submit"
-            variant="primary"
           >
             Login
           </ForwardRef(Bootstrap(Button))>,
         ],
+        "noValidate": true,
         "onSubmit": [Function],
+        "validated": false,
       },
       "ref": null,
       "rendered": Array [
@@ -284,9 +394,16 @@ ShallowWrapper {
                 autoFocus={true}
                 onChange={[Function]}
                 placeholder="Email address..."
+                required={true}
                 type="email"
                 value=""
               />,
+              <Feedback
+                as="div"
+                type="invalid"
+              >
+                Please provide a valid email address.
+              </Feedback>,
             ],
             "controlId": "email",
           },
@@ -316,6 +433,7 @@ ShallowWrapper {
                 "autoFocus": true,
                 "onChange": [Function],
                 "placeholder": "Email address...",
+                "required": true,
                 "type": "email",
                 "value": "",
               },
@@ -328,6 +446,19 @@ ShallowWrapper {
                 "propTypes": undefined,
                 "render": [Function],
               },
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "as": "div",
+                "children": "Please provide a valid email address.",
+                "type": "invalid",
+              },
+              "ref": null,
+              "rendered": "Please provide a valid email address.",
+              "type": [Function],
             },
           ],
           "type": Object {
@@ -349,9 +480,16 @@ ShallowWrapper {
               <ForwardRef(ContextTransform)
                 onChange={[Function]}
                 placeholder="Password..."
+                required={true}
                 type="password"
                 value=""
               />,
+              <Feedback
+                as="div"
+                type="invalid"
+              >
+                Please provide a password.
+              </Feedback>,
             ],
             "controlId": "password",
           },
@@ -380,6 +518,7 @@ ShallowWrapper {
               "props": Object {
                 "onChange": [Function],
                 "placeholder": "Password...",
+                "required": true,
                 "type": "password",
                 "value": "",
               },
@@ -392,6 +531,19 @@ ShallowWrapper {
                 "propTypes": undefined,
                 "render": [Function],
               },
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "as": "div",
+                "children": "Please provide a password.",
+                "type": "invalid",
+              },
+              "ref": null,
+              "rendered": "Please provide a password.",
+              "type": [Function],
             },
           ],
           "type": Object {
@@ -407,8 +559,8 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": "Login",
+            "disabled": true,
             "type": "submit",
-            "variant": "primary",
           },
           "ref": null,
           "rendered": "Login",
@@ -422,22 +574,58 @@ ShallowWrapper {
       ],
       "type": Object {
         "$$typeof": Symbol(react.forward_ref),
-        "attrs": Array [],
-        "componentStyle": ComponentStyle {
-          "componentId": "sc-bdVaJa",
-          "isStatic": true,
-          "rules": Array [
-            "max-width: 400px",
-          ],
+        "Check": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "Input": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+          "Label": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
         },
-        "displayName": "styled.form",
-        "foldedComponentIds": Array [],
+        "Control": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "Feedback": [Function],
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Group": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Label": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Row": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Text": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "defaultProps": undefined,
+        "propTypes": undefined,
         "render": [Function],
-        "styledComponentId": "sc-bdVaJa",
-        "target": "form",
-        "toString": [Function],
-        "warnTooManyClasses": [Function],
-        "withComponent": [Function],
       },
     },
   ],

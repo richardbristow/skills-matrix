@@ -16,7 +16,7 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": <h1>
         Skills Matrix
@@ -34,13 +34,18 @@ ShallowWrapper {
       "rendered": "Skills Matrix",
       "type": "h1",
     },
-    "type": "div",
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "defaultProps": undefined,
+      "propTypes": undefined,
+      "render": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": <h1>
           Skills Matrix
@@ -58,7 +63,12 @@ ShallowWrapper {
         "rendered": "Skills Matrix",
         "type": "h1",
       },
-      "type": "div",
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
