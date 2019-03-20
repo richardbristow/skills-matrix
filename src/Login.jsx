@@ -41,17 +41,34 @@ class Login extends Component {
       <Form validated={validated} noValidate onSubmit={this.handleSubmit}>
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
-          <Form.Control value={email} autoFocus onChange={this.handleInputChange} type="email" placeholder="Email address..." required />
+          <Form.Control
+            value={email}
+            autoFocus
+            onChange={this.handleInputChange}
+            type="email"
+            placeholder="Email address..."
+            required
+          />
           <Form.Control.Feedback type="invalid">
             Please provide a valid email address.
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control value={password} onChange={this.handleInputChange} type="password" placeholder="Password..." required />
-          <Form.Control.Feedback type="invalid">Please provide a password.</Form.Control.Feedback>
+          <Form.Control
+            value={password}
+            onChange={this.handleInputChange}
+            type="password"
+            placeholder="Password..."
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Please provide a password.
+          </Form.Control.Feedback>
         </Form.Group>
-        <Button disabled={this.checkForEmptyForm()} type="submit">Login</Button>
+        <Button disabled={this.checkForEmptyForm()} type="submit">
+          Login
+        </Button>
       </Form>
     );
   }
