@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SkillsMatrix from '../SkillsMatrix';
+import App from '../App';
 
-describe('SkillsMatrix', () => {
+describe('App', () => {
   it('renders without throwing errors', () => {
-    const wrapper = shallow(<SkillsMatrix />);
+    const wrapper = shallow(<App />);
     expect(wrapper.exists()).toBe(true);
     expect(wrapper).toMatchSnapshot();
   });
