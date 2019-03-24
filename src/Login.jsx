@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import styled from 'styled-components/macro';
+
+const StyledLogin = styled.div`
+  @media all and (min-width: 480px) {
+    max-width: 350px;
+    padding-top: 80px;
+    margin: 0 auto;
+  }
+`;
 
 class Login extends Component {
   constructor(props) {
@@ -38,38 +47,49 @@ class Login extends Component {
   render() {
     const { email, password, validated } = this.state;
     return (
-      <Form validated={validated} noValidate onSubmit={this.handleSubmit}>
-        <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            value={email}
-            autoFocus
-            onChange={this.handleInputChange}
-            type="email"
-            placeholder="Email address..."
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid email address.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            value={password}
-            onChange={this.handleInputChange}
-            type="password"
-            placeholder="Password..."
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Please provide a password.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Button disabled={this.checkForEmptyForm()} type="submit">
-          Login
-        </Button>
-      </Form>
+      <StyledLogin>
+        <h2>Login</h2>
+        <Form
+          className="justify-content-center"
+          validated={validated}
+          noValidate
+          onSubmit={this.handleSubmit}
+        >
+          <Form.Group controlId="email">
+            <Form.Control
+              value={email}
+              autoFocus
+              onChange={this.handleInputChange}
+              type="email"
+              placeholder="Email"
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Please provide a valid email address.
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="password">
+            <Form.Control
+              value={password}
+              onChange={this.handleInputChange}
+              type="password"
+              placeholder="Password"
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Please provide a password.
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Button
+            variant="outline-primary"
+            disabled={this.checkForEmptyForm()}
+            type="submit"
+            block
+          >
+            Login
+          </Button>
+        </Form>
+      </StyledLogin>
     );
   }
 }

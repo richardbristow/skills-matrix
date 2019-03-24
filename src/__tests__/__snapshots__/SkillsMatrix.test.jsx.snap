@@ -17,58 +17,20 @@ ShallowWrapper {
     "instance": null,
     "key": undefined,
     "nodeType": "function",
-    "props": Object {
-      "children": <h1>
-        Skills Matrix
-      </h1>,
-    },
+    "props": Object {},
     "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": "Skills Matrix",
-      },
-      "ref": null,
-      "rendered": "Skills Matrix",
-      "type": "h1",
-    },
-    "type": Object {
-      "$$typeof": Symbol(react.forward_ref),
-      "defaultProps": undefined,
-      "propTypes": undefined,
-      "render": [Function],
-    },
+    "rendered": null,
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
       "nodeType": "function",
-      "props": Object {
-        "children": <h1>
-          Skills Matrix
-        </h1>,
-      },
+      "props": Object {},
       "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "Skills Matrix",
-        },
-        "ref": null,
-        "rendered": "Skills Matrix",
-        "type": "h1",
-      },
-      "type": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": undefined,
-        "propTypes": undefined,
-        "render": [Function],
-      },
+      "rendered": null,
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {

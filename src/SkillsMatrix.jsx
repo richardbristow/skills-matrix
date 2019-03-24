@@ -1,10 +1,6 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import TopNavBar from './TopNavBar';
 
-const SkillsMatrix = () => (
-  <Container>
-    <h1>Skills Matrix</h1>
-  </Container>
-);
+const SkillsMatrix = () => <TopNavBar />;
 
 export default SkillsMatrix;

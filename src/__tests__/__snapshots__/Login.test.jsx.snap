@@ -19,564 +19,314 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <ForwardRef(Bootstrap(FormGroup))
-          controlId="email"
-        >
-          <ForwardRef(ContextTransform)>
-            Email Address
-          </ForwardRef(ContextTransform)>
-          <ForwardRef(ContextTransform)
-            autoFocus={true}
-            onChange={[Function]}
-            placeholder="Email address..."
-            required={true}
-            type="email"
-            value=""
-          />
-          <Feedback
-            as="div"
-            type="invalid"
-          >
-            Please provide a valid email address.
-          </Feedback>
-        </ForwardRef(Bootstrap(FormGroup))>,
-        <ForwardRef(Bootstrap(FormGroup))
-          controlId="password"
-        >
-          <ForwardRef(ContextTransform)>
-            Password
-          </ForwardRef(ContextTransform)>
-          <ForwardRef(ContextTransform)
-            onChange={[Function]}
-            placeholder="Password..."
-            required={true}
-            type="password"
-            value=""
-          />
-          <Feedback
-            as="div"
-            type="invalid"
-          >
-            Please provide a password.
-          </Feedback>
-        </ForwardRef(Bootstrap(FormGroup))>,
-        <ForwardRef(Bootstrap(Button))
-          disabled={true}
-          type="submit"
-        >
+        <h2>
           Login
-        </ForwardRef(Bootstrap(Button))>,
+        </h2>,
+        <ForwardRef(Bootstrap(Form))
+          className="justify-content-center"
+          noValidate={true}
+          onSubmit={[Function]}
+          validated={false}
+        >
+          <ForwardRef(Bootstrap(FormGroup))
+            controlId="email"
+          >
+            <ForwardRef(ContextTransform)
+              autoFocus={true}
+              onChange={[Function]}
+              placeholder="Email"
+              required={true}
+              type="email"
+              value=""
+            />
+            <Feedback
+              as="div"
+              type="invalid"
+            >
+              Please provide a valid email address.
+            </Feedback>
+          </ForwardRef(Bootstrap(FormGroup))>
+          <ForwardRef(Bootstrap(FormGroup))
+            controlId="password"
+          >
+            <ForwardRef(ContextTransform)
+              onChange={[Function]}
+              placeholder="Password"
+              required={true}
+              type="password"
+              value=""
+            />
+            <Feedback
+              as="div"
+              type="invalid"
+            >
+              Please provide a password.
+            </Feedback>
+          </ForwardRef(Bootstrap(FormGroup))>
+          <ForwardRef(Bootstrap(Button))
+            block={true}
+            disabled={true}
+            type="submit"
+            variant="outline-primary"
+          >
+            Login
+          </ForwardRef(Bootstrap(Button))>
+        </ForwardRef(Bootstrap(Form))>,
       ],
-      "noValidate": true,
-      "onSubmit": [Function],
-      "validated": false,
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": Array [
-            <ForwardRef(ContextTransform)>
-              Email Address
-            </ForwardRef(ContextTransform)>,
-            <ForwardRef(ContextTransform)
-              autoFocus={true}
-              onChange={[Function]}
-              placeholder="Email address..."
-              required={true}
-              type="email"
-              value=""
-            />,
-            <Feedback
-              as="div"
-              type="invalid"
-            >
-              Please provide a valid email address.
-            </Feedback>,
-          ],
-          "controlId": "email",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "Email Address",
-            },
-            "ref": null,
-            "rendered": "Email Address",
-            "type": Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "defaultProps": undefined,
-              "propTypes": undefined,
-              "render": [Function],
-            },
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "autoFocus": true,
-              "onChange": [Function],
-              "placeholder": "Email address...",
-              "required": true,
-              "type": "email",
-              "value": "",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "Feedback": [Function],
-              "defaultProps": undefined,
-              "propTypes": undefined,
-              "render": [Function],
-            },
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "as": "div",
-              "children": "Please provide a valid email address.",
-              "type": "invalid",
-            },
-            "ref": null,
-            "rendered": "Please provide a valid email address.",
-            "type": [Function],
-          },
-        ],
-        "type": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
-        },
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": Array [
-            <ForwardRef(ContextTransform)>
-              Password
-            </ForwardRef(ContextTransform)>,
-            <ForwardRef(ContextTransform)
-              onChange={[Function]}
-              placeholder="Password..."
-              required={true}
-              type="password"
-              value=""
-            />,
-            <Feedback
-              as="div"
-              type="invalid"
-            >
-              Please provide a password.
-            </Feedback>,
-          ],
-          "controlId": "password",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": "Password",
-            },
-            "ref": null,
-            "rendered": "Password",
-            "type": Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "defaultProps": undefined,
-              "propTypes": undefined,
-              "render": [Function],
-            },
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "onChange": [Function],
-              "placeholder": "Password...",
-              "required": true,
-              "type": "password",
-              "value": "",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "Feedback": [Function],
-              "defaultProps": undefined,
-              "propTypes": undefined,
-              "render": [Function],
-            },
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "as": "div",
-              "children": "Please provide a password.",
-              "type": "invalid",
-            },
-            "ref": null,
-            "rendered": "Please provide a password.",
-            "type": [Function],
-          },
-        ],
-        "type": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
-        },
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
+        "nodeType": "host",
         "props": Object {
           "children": "Login",
-          "disabled": true,
-          "type": "submit",
         },
         "ref": null,
         "rendered": "Login",
-        "type": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
-        },
+        "type": "h2",
       },
-    ],
-    "type": Object {
-      "$$typeof": Symbol(react.forward_ref),
-      "Check": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "Input": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
-        },
-        "Label": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
-        },
-        "defaultProps": undefined,
-        "propTypes": undefined,
-        "render": [Function],
-      },
-      "Control": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "Feedback": [Function],
-        "defaultProps": undefined,
-        "propTypes": undefined,
-        "render": [Function],
-      },
-      "Group": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": undefined,
-        "propTypes": undefined,
-        "render": [Function],
-      },
-      "Label": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": undefined,
-        "propTypes": undefined,
-        "render": [Function],
-      },
-      "Row": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": undefined,
-        "propTypes": undefined,
-        "render": [Function],
-      },
-      "Text": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": undefined,
-        "propTypes": undefined,
-        "render": [Function],
-      },
-      "defaultProps": undefined,
-      "propTypes": undefined,
-      "render": [Function],
-    },
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          <ForwardRef(Bootstrap(FormGroup))
-            controlId="email"
-          >
-            <ForwardRef(ContextTransform)>
-              Email Address
-            </ForwardRef(ContextTransform)>
-            <ForwardRef(ContextTransform)
-              autoFocus={true}
-              onChange={[Function]}
-              placeholder="Email address..."
-              required={true}
-              type="email"
-              value=""
-            />
-            <Feedback
-              as="div"
-              type="invalid"
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <ForwardRef(Bootstrap(FormGroup))
+              controlId="email"
             >
-              Please provide a valid email address.
-            </Feedback>
-          </ForwardRef(Bootstrap(FormGroup))>,
-          <ForwardRef(Bootstrap(FormGroup))
-            controlId="password"
-          >
-            <ForwardRef(ContextTransform)>
-              Password
-            </ForwardRef(ContextTransform)>
-            <ForwardRef(ContextTransform)
-              onChange={[Function]}
-              placeholder="Password..."
-              required={true}
-              type="password"
-              value=""
-            />
-            <Feedback
-              as="div"
-              type="invalid"
-            >
-              Please provide a password.
-            </Feedback>
-          </ForwardRef(Bootstrap(FormGroup))>,
-          <ForwardRef(Bootstrap(Button))
-            disabled={true}
-            type="submit"
-          >
-            Login
-          </ForwardRef(Bootstrap(Button))>,
-        ],
-        "noValidate": true,
-        "onSubmit": [Function],
-        "validated": false,
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": Array [
-              <ForwardRef(ContextTransform)>
-                Email Address
-              </ForwardRef(ContextTransform)>,
               <ForwardRef(ContextTransform)
                 autoFocus={true}
                 onChange={[Function]}
-                placeholder="Email address..."
+                placeholder="Email"
                 required={true}
                 type="email"
                 value=""
-              />,
+              />
               <Feedback
                 as="div"
                 type="invalid"
               >
                 Please provide a valid email address.
-              </Feedback>,
-            ],
-            "controlId": "email",
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "Email Address",
-              },
-              "ref": null,
-              "rendered": "Email Address",
-              "type": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "defaultProps": undefined,
-                "propTypes": undefined,
-                "render": [Function],
-              },
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "autoFocus": true,
-                "onChange": [Function],
-                "placeholder": "Email address...",
-                "required": true,
-                "type": "email",
-                "value": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "Feedback": [Function],
-                "defaultProps": undefined,
-                "propTypes": undefined,
-                "render": [Function],
-              },
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "as": "div",
-                "children": "Please provide a valid email address.",
-                "type": "invalid",
-              },
-              "ref": null,
-              "rendered": "Please provide a valid email address.",
-              "type": [Function],
-            },
-          ],
-          "type": Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "defaultProps": undefined,
-            "propTypes": undefined,
-            "render": [Function],
-          },
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": Array [
-              <ForwardRef(ContextTransform)>
-                Password
-              </ForwardRef(ContextTransform)>,
+              </Feedback>
+            </ForwardRef(Bootstrap(FormGroup))>,
+            <ForwardRef(Bootstrap(FormGroup))
+              controlId="password"
+            >
               <ForwardRef(ContextTransform)
                 onChange={[Function]}
-                placeholder="Password..."
+                placeholder="Password"
                 required={true}
                 type="password"
                 value=""
-              />,
+              />
               <Feedback
                 as="div"
                 type="invalid"
               >
                 Please provide a password.
-              </Feedback>,
-            ],
-            "controlId": "password",
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "children": "Password",
-              },
-              "ref": null,
-              "rendered": "Password",
-              "type": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "defaultProps": undefined,
-                "propTypes": undefined,
-                "render": [Function],
-              },
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "onChange": [Function],
-                "placeholder": "Password...",
-                "required": true,
-                "type": "password",
-                "value": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "Feedback": [Function],
-                "defaultProps": undefined,
-                "propTypes": undefined,
-                "render": [Function],
-              },
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "as": "div",
-                "children": "Please provide a password.",
-                "type": "invalid",
-              },
-              "ref": null,
-              "rendered": "Please provide a password.",
-              "type": [Function],
-            },
+              </Feedback>
+            </ForwardRef(Bootstrap(FormGroup))>,
+            <ForwardRef(Bootstrap(Button))
+              block={true}
+              disabled={true}
+              type="submit"
+              variant="outline-primary"
+            >
+              Login
+            </ForwardRef(Bootstrap(Button))>,
           ],
-          "type": Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "defaultProps": undefined,
-            "propTypes": undefined,
-            "render": [Function],
-          },
+          "className": "justify-content-center",
+          "noValidate": true,
+          "onSubmit": [Function],
+          "validated": false,
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "Login",
-            "disabled": true,
-            "type": "submit",
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <ForwardRef(ContextTransform)
+                  autoFocus={true}
+                  onChange={[Function]}
+                  placeholder="Email"
+                  required={true}
+                  type="email"
+                  value=""
+                />,
+                <Feedback
+                  as="div"
+                  type="invalid"
+                >
+                  Please provide a valid email address.
+                </Feedback>,
+              ],
+              "controlId": "email",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "autoFocus": true,
+                  "onChange": [Function],
+                  "placeholder": "Email",
+                  "required": true,
+                  "type": "email",
+                  "value": "",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "Feedback": [Function],
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "as": "div",
+                  "children": "Please provide a valid email address.",
+                  "type": "invalid",
+                },
+                "ref": null,
+                "rendered": "Please provide a valid email address.",
+                "type": [Function],
+              },
+            ],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
           },
-          "ref": null,
-          "rendered": "Login",
-          "type": Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "defaultProps": undefined,
-            "propTypes": undefined,
-            "render": [Function],
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <ForwardRef(ContextTransform)
+                  onChange={[Function]}
+                  placeholder="Password"
+                  required={true}
+                  type="password"
+                  value=""
+                />,
+                <Feedback
+                  as="div"
+                  type="invalid"
+                >
+                  Please provide a password.
+                </Feedback>,
+              ],
+              "controlId": "password",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "onChange": [Function],
+                  "placeholder": "Password",
+                  "required": true,
+                  "type": "password",
+                  "value": "",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "Feedback": [Function],
+                  "defaultProps": undefined,
+                  "propTypes": undefined,
+                  "render": [Function],
+                },
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "as": "div",
+                  "children": "Please provide a password.",
+                  "type": "invalid",
+                },
+                "ref": null,
+                "rendered": "Please provide a password.",
+                "type": [Function],
+              },
+            ],
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
           },
-        },
-      ],
-      "type": Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "Check": Object {
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "block": true,
+              "children": "Login",
+              "disabled": true,
+              "type": "submit",
+              "variant": "outline-primary",
+            },
+            "ref": null,
+            "rendered": "Login",
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+          },
+        ],
+        "type": Object {
           "$$typeof": Symbol(react.forward_ref),
-          "Input": Object {
+          "Check": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "Input": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+            "Label": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+          "Control": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "Feedback": [Function],
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+          "Group": Object {
             "$$typeof": Symbol(react.forward_ref),
             "defaultProps": undefined,
             "propTypes": undefined,
@@ -588,44 +338,406 @@ ShallowWrapper {
             "propTypes": undefined,
             "render": [Function],
           },
+          "Row": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+          "Text": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
           "defaultProps": undefined,
           "propTypes": undefined,
           "render": [Function],
         },
-        "Control": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "Feedback": [Function],
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
+      },
+    ],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "Login__StyledLogin-sc-1a695u3-0",
+        "isStatic": true,
+        "rules": Array [
+          "@media all and (min-width:480px){max-width:350px;padding-top:80px;margin:0 auto;}",
+        ],
+      },
+      "displayName": "Login__StyledLogin",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "Login__StyledLogin-sc-1a695u3-0",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <h2>
+            Login
+          </h2>,
+          <ForwardRef(Bootstrap(Form))
+            className="justify-content-center"
+            noValidate={true}
+            onSubmit={[Function]}
+            validated={false}
+          >
+            <ForwardRef(Bootstrap(FormGroup))
+              controlId="email"
+            >
+              <ForwardRef(ContextTransform)
+                autoFocus={true}
+                onChange={[Function]}
+                placeholder="Email"
+                required={true}
+                type="email"
+                value=""
+              />
+              <Feedback
+                as="div"
+                type="invalid"
+              >
+                Please provide a valid email address.
+              </Feedback>
+            </ForwardRef(Bootstrap(FormGroup))>
+            <ForwardRef(Bootstrap(FormGroup))
+              controlId="password"
+            >
+              <ForwardRef(ContextTransform)
+                onChange={[Function]}
+                placeholder="Password"
+                required={true}
+                type="password"
+                value=""
+              />
+              <Feedback
+                as="div"
+                type="invalid"
+              >
+                Please provide a password.
+              </Feedback>
+            </ForwardRef(Bootstrap(FormGroup))>
+            <ForwardRef(Bootstrap(Button))
+              block={true}
+              disabled={true}
+              type="submit"
+              variant="outline-primary"
+            >
+              Login
+            </ForwardRef(Bootstrap(Button))>
+          </ForwardRef(Bootstrap(Form))>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Login",
+          },
+          "ref": null,
+          "rendered": "Login",
+          "type": "h2",
         },
-        "Group": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <ForwardRef(Bootstrap(FormGroup))
+                controlId="email"
+              >
+                <ForwardRef(ContextTransform)
+                  autoFocus={true}
+                  onChange={[Function]}
+                  placeholder="Email"
+                  required={true}
+                  type="email"
+                  value=""
+                />
+                <Feedback
+                  as="div"
+                  type="invalid"
+                >
+                  Please provide a valid email address.
+                </Feedback>
+              </ForwardRef(Bootstrap(FormGroup))>,
+              <ForwardRef(Bootstrap(FormGroup))
+                controlId="password"
+              >
+                <ForwardRef(ContextTransform)
+                  onChange={[Function]}
+                  placeholder="Password"
+                  required={true}
+                  type="password"
+                  value=""
+                />
+                <Feedback
+                  as="div"
+                  type="invalid"
+                >
+                  Please provide a password.
+                </Feedback>
+              </ForwardRef(Bootstrap(FormGroup))>,
+              <ForwardRef(Bootstrap(Button))
+                block={true}
+                disabled={true}
+                type="submit"
+                variant="outline-primary"
+              >
+                Login
+              </ForwardRef(Bootstrap(Button))>,
+            ],
+            "className": "justify-content-center",
+            "noValidate": true,
+            "onSubmit": [Function],
+            "validated": false,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <ForwardRef(ContextTransform)
+                    autoFocus={true}
+                    onChange={[Function]}
+                    placeholder="Email"
+                    required={true}
+                    type="email"
+                    value=""
+                  />,
+                  <Feedback
+                    as="div"
+                    type="invalid"
+                  >
+                    Please provide a valid email address.
+                  </Feedback>,
+                ],
+                "controlId": "email",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "autoFocus": true,
+                    "onChange": [Function],
+                    "placeholder": "Email",
+                    "required": true,
+                    "type": "email",
+                    "value": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "Feedback": [Function],
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "as": "div",
+                    "children": "Please provide a valid email address.",
+                    "type": "invalid",
+                  },
+                  "ref": null,
+                  "rendered": "Please provide a valid email address.",
+                  "type": [Function],
+                },
+              ],
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <ForwardRef(ContextTransform)
+                    onChange={[Function]}
+                    placeholder="Password"
+                    required={true}
+                    type="password"
+                    value=""
+                  />,
+                  <Feedback
+                    as="div"
+                    type="invalid"
+                  >
+                    Please provide a password.
+                  </Feedback>,
+                ],
+                "controlId": "password",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "onChange": [Function],
+                    "placeholder": "Password",
+                    "required": true,
+                    "type": "password",
+                    "value": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "Feedback": [Function],
+                    "defaultProps": undefined,
+                    "propTypes": undefined,
+                    "render": [Function],
+                  },
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "as": "div",
+                    "children": "Please provide a password.",
+                    "type": "invalid",
+                  },
+                  "ref": null,
+                  "rendered": "Please provide a password.",
+                  "type": [Function],
+                },
+              ],
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "block": true,
+                "children": "Login",
+                "disabled": true,
+                "type": "submit",
+                "variant": "outline-primary",
+              },
+              "ref": null,
+              "rendered": "Login",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+            },
+          ],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "Check": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "Input": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+              "Label": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "propTypes": undefined,
+                "render": [Function],
+              },
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+            "Control": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "Feedback": [Function],
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+            "Group": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+            "Label": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+            "Row": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+            "Text": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": undefined,
+              "propTypes": undefined,
+              "render": [Function],
+            },
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
         },
-        "Label": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
+      ],
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "Login__StyledLogin-sc-1a695u3-0",
+          "isStatic": true,
+          "rules": Array [
+            "@media all and (min-width:480px){max-width:350px;padding-top:80px;margin:0 auto;}",
+          ],
         },
-        "Row": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
-        },
-        "Text": Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": undefined,
-          "propTypes": undefined,
-          "render": [Function],
-        },
-        "defaultProps": undefined,
-        "propTypes": undefined,
+        "displayName": "Login__StyledLogin",
+        "foldedComponentIds": Array [],
         "render": [Function],
+        "styledComponentId": "Login__StyledLogin-sc-1a695u3-0",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
       },
     },
   ],
