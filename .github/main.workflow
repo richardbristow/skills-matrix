@@ -1,6 +1,9 @@
 workflow "install, lint, test, build" {
   on = "push"
-  resolves = ["test", "build"]
+  resolves = [
+    "lint",
+    "PROD: deploy to netlify",
+  ]
 }
 
 action "install dependencies" {
@@ -26,15 +29,22 @@ action "test" {
   }
 }
 
+action "build" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  needs = ["test", "lint"]
+  runs = "yarn"
+  args = "build"
+}
+
 action "check for master branch" {
   uses = "actions/bin/filter@d820d56839906464fb7a57d1b4e1741cf5183efa"
-  needs = ["lint", "test"]
+  needs = ["build"]
   args = "branch master"
 }
 
-action "build" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+action "PROD: deploy to netlify" {
+  uses = "netlify/actions/cli@master"
   needs = ["check for master branch"]
-  runs = "yarn"
-  args = "build"
+  args = "deploy --prod"
+  secrets = ["NETLIFY_SITE_ID", "NETLIFY_AUTH_TOKEN"]
 }
