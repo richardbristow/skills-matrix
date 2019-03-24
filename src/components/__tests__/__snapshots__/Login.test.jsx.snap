@@ -360,7 +360,7 @@ ShallowWrapper {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [],
       "componentStyle": ComponentStyle {
-        "componentId": "Login__StyledLogin-sc-1a695u3-0",
+        "componentId": "Login__StyledLogin-sc-4kj774-0",
         "isStatic": true,
         "rules": Array [
           "@media all and (min-width:480px){max-width:350px;padding-top:80px;margin:0 auto;}",
@@ -369,7 +369,7 @@ ShallowWrapper {
       "displayName": "Login__StyledLogin",
       "foldedComponentIds": Array [],
       "render": [Function],
-      "styledComponentId": "Login__StyledLogin-sc-1a695u3-0",
+      "styledComponentId": "Login__StyledLogin-sc-4kj774-0",
       "target": "div",
       "toString": [Function],
       "warnTooManyClasses": [Function],
@@ -724,7 +724,7 @@ ShallowWrapper {
         "$$typeof": Symbol(react.forward_ref),
         "attrs": Array [],
         "componentStyle": ComponentStyle {
-          "componentId": "Login__StyledLogin-sc-1a695u3-0",
+          "componentId": "Login__StyledLogin-sc-4kj774-0",
           "isStatic": true,
           "rules": Array [
             "@media all and (min-width:480px){max-width:350px;padding-top:80px;margin:0 auto;}",
@@ -733,7 +733,7 @@ ShallowWrapper {
         "displayName": "Login__StyledLogin",
         "foldedComponentIds": Array [],
         "render": [Function],
-        "styledComponentId": "Login__StyledLogin-sc-1a695u3-0",
+        "styledComponentId": "Login__StyledLogin-sc-4kj774-0",
         "target": "div",
         "toString": [Function],
         "warnTooManyClasses": [Function],

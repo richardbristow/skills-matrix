@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-import SkillsMatrix from './SkillsMatrix';
+import SkillsMatrix from './components/SkillsMatrix';
 
 ReactDOM.render(
   <Router>
