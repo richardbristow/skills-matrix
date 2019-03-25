@@ -20,7 +20,8 @@
       "src/**/*.{js,jsx}",
       "!<rootDir>/node_modules/",
       "!src/serviceWorker.js",
-      "!src/setupTests.js"
+      "!src/setupTests.js",
+      "!src/index.jsx"
     ]
   },
   "dependencies": {

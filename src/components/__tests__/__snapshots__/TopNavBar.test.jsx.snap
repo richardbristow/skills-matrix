@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopNavBar should render TopNavBar without any errors 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TopNavBar />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "bg": "dark",
+      "children": <ForwardRef(Bootstrap(Container))>
+        <ForwardRef(Bootstrap(NavbarBrand))>
+          <ForwardRef
+            to="/"
+          >
+            Skills Matrix
+          </ForwardRef>
+        </ForwardRef(Bootstrap(NavbarBrand))>
+      </ForwardRef(Bootstrap(Container))>,
+      "variant": "dark",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <ForwardRef(Bootstrap(NavbarBrand))>
+          <ForwardRef
+            to="/"
+          >
+            Skills Matrix
+          </ForwardRef>
+        </ForwardRef(Bootstrap(NavbarBrand))>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <ForwardRef
+            to="/"
+          >
+            Skills Matrix
+          </ForwardRef>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "Skills Matrix",
+            "to": "/",
+          },
+          "ref": null,
+          "rendered": "Skills Matrix",
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": Array [],
+            "componentStyle": ComponentStyle {
+              "componentId": "TopNavBar__StyledBrandLink-ewy0t6-0",
+              "isStatic": true,
+              "rules": Array [
+                "text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;color:#fff;}color:#fff;",
+              ],
+            },
+            "displayName": "TopNavBar__StyledBrandLink",
+            "foldedComponentIds": Array [],
+            "render": [Function],
+            "styledComponentId": "TopNavBar__StyledBrandLink-ewy0t6-0",
+            "target": [Function],
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+            Symbol(Symbol.hasInstance): [Function],
+          },
+        },
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+      },
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+    },
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "Brand": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Collapse": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Text": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "Toggle": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+      "defaultProps": undefined,
+      "propTypes": undefined,
+      "render": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "bg": "dark",
+        "children": <ForwardRef(Bootstrap(Container))>
+          <ForwardRef(Bootstrap(NavbarBrand))>
+            <ForwardRef
+              to="/"
+            >
+              Skills Matrix
+            </ForwardRef>
+          </ForwardRef(Bootstrap(NavbarBrand))>
+        </ForwardRef(Bootstrap(Container))>,
+        "variant": "dark",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <ForwardRef(Bootstrap(NavbarBrand))>
+            <ForwardRef
+              to="/"
+            >
+              Skills Matrix
+            </ForwardRef>
+          </ForwardRef(Bootstrap(NavbarBrand))>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": <ForwardRef
+              to="/"
+            >
+              Skills Matrix
+            </ForwardRef>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Skills Matrix",
+              "to": "/",
+            },
+            "ref": null,
+            "rendered": "Skills Matrix",
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "TopNavBar__StyledBrandLink-ewy0t6-0",
+                "isStatic": true,
+                "rules": Array [
+                  "text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;color:#fff;}color:#fff;",
+                ],
+              },
+              "displayName": "TopNavBar__StyledBrandLink",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "TopNavBar__StyledBrandLink-ewy0t6-0",
+              "target": [Function],
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+              Symbol(Symbol.hasInstance): [Function],
+            },
+          },
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": undefined,
+            "propTypes": undefined,
+            "render": [Function],
+          },
+        },
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+      },
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "Brand": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Collapse": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Text": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "Toggle": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "propTypes": undefined,
+          "render": [Function],
+        },
+        "defaultProps": undefined,
+        "propTypes": undefined,
+        "render": [Function],
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
