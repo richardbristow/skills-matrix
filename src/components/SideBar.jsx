@@ -6,7 +6,7 @@ const StyledSideBar = styled.aside`
   grid-area: sidebar;
   display: flex;
   flex-direction: column;
-  background-color: #394263;
+  background-color: ${({ theme }) => theme.sidebarBackground};
 
   ul {
     padding: 0;
@@ -14,10 +14,13 @@ const StyledSideBar = styled.aside`
     list-style-type: none;
 
     li {
-      color: #ddd;
+      color: ${({ theme }) => theme.sidebarText};
       &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: ${({ theme }) => theme.sidebarHover};
         cursor: pointer;
+      }
+      .active {
+        background-color: ${({ theme }) => theme.sidebarActiveLink};
       }
     }
   }
@@ -31,7 +34,7 @@ const StyledSidebarLink = styled(NavLink)`
   &:link,
   &:active {
     text-decoration: none;
-    color: #ddd;
+    color: ${({ theme }) => theme.sidebarText};
   }
   padding: 20px 20px 20px 40px;
   display: block;

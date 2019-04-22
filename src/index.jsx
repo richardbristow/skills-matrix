@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components/macro';
 import * as serviceWorker from './serviceWorker';
 
+import globalTheme from './globalStyle';
 import App from './App';
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <ThemeProvider theme={globalTheme}>
+    <Router>
+      <App />
+    </Router>
+  </ThemeProvider>,
   document.getElementById('root'),
 );
 
