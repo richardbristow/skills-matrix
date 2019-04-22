@@ -3,16 +3,23 @@ import { Link } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
 import styled from 'styled-components/macro';
 
+const StyledNoRoute = styled.div`
+  grid-area: main;
+  margin: 20px;
+  padding: 60px 20px 20px 20px;
+  text-align: center;
+`;
+
 const NoRoute = () => {
   return (
-    <div css="text-align: center; padding-top: 60px;">
+    <StyledNoRoute>
       <h1>404</h1>
       <p>Page does not exist.</p>
       <p>
         Do you want to go back&nbsp;
         <Link to="/">home</Link>
       </p>
-    </div>
+    </StyledNoRoute>
   );
 };
 

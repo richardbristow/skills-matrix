@@ -1,0 +1,406 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideBar should render SideBar without any errors 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SideBar />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <ul>
+        <li>
+          <ForwardRef
+            as={[Function]}
+            to="/"
+          >
+            <h3>
+              Skills Test
+            </h3>
+          </ForwardRef>
+        </li>
+        <li>
+          <ForwardRef
+            to="/login"
+          >
+            Login
+          </ForwardRef>
+        </li>
+      </ul>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <li>
+            <ForwardRef
+              as={[Function]}
+              to="/"
+            >
+              <h3>
+                Skills Test
+              </h3>
+            </ForwardRef>
+          </li>,
+          <li>
+            <ForwardRef
+              to="/login"
+            >
+              Login
+            </ForwardRef>
+          </li>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <ForwardRef
+              as={[Function]}
+              to="/"
+            >
+              <h3>
+                Skills Test
+              </h3>
+            </ForwardRef>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "as": [Function],
+              "children": <h3>
+                Skills Test
+              </h3>,
+              "to": "/",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Skills Test",
+              },
+              "ref": null,
+              "rendered": "Skills Test",
+              "type": "h3",
+            },
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "SideBar__StyledSidebarLink-sc-1l67eb2-1",
+                "isStatic": true,
+                "rules": Array [
+                  "text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;color:#ddd;}padding:20px 20px 20px 40px;display:block;",
+                ],
+              },
+              "displayName": "SideBar__StyledSidebarLink",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "SideBar__StyledSidebarLink-sc-1l67eb2-1",
+              "target": [Function],
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+              Symbol(Symbol.hasInstance): [Function],
+            },
+          },
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <ForwardRef
+              to="/login"
+            >
+              Login
+            </ForwardRef>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": "Login",
+              "to": "/login",
+            },
+            "ref": null,
+            "rendered": "Login",
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "attrs": Array [],
+              "componentStyle": ComponentStyle {
+                "componentId": "SideBar__StyledSidebarLink-sc-1l67eb2-1",
+                "isStatic": true,
+                "rules": Array [
+                  "text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;color:#ddd;}padding:20px 20px 20px 40px;display:block;",
+                ],
+              },
+              "displayName": "SideBar__StyledSidebarLink",
+              "foldedComponentIds": Array [],
+              "render": [Function],
+              "styledComponentId": "SideBar__StyledSidebarLink-sc-1l67eb2-1",
+              "target": [Function],
+              "toString": [Function],
+              "warnTooManyClasses": [Function],
+              "withComponent": [Function],
+              Symbol(Symbol.hasInstance): [Function],
+            },
+          },
+          "type": "li",
+        },
+      ],
+      "type": "ul",
+    },
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "SideBar__StyledSideBar-sc-1l67eb2-0",
+        "isStatic": true,
+        "rules": Array [
+          "grid-area:sidebar;display:flex;flex-direction:column;background-color:#394263;ul{padding:0;margin-top:20px;list-style-type:none;li{color:#ddd;&:hover{background-color:rgba(255,255,255,0.2);cursor:pointer;}}}",
+        ],
+      },
+      "displayName": "SideBar__StyledSideBar",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "SideBar__StyledSideBar-sc-1l67eb2-0",
+      "target": "aside",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <ul>
+          <li>
+            <ForwardRef
+              as={[Function]}
+              to="/"
+            >
+              <h3>
+                Skills Test
+              </h3>
+            </ForwardRef>
+          </li>
+          <li>
+            <ForwardRef
+              to="/login"
+            >
+              Login
+            </ForwardRef>
+          </li>
+        </ul>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <li>
+              <ForwardRef
+                as={[Function]}
+                to="/"
+              >
+                <h3>
+                  Skills Test
+                </h3>
+              </ForwardRef>
+            </li>,
+            <li>
+              <ForwardRef
+                to="/login"
+              >
+                Login
+              </ForwardRef>
+            </li>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <ForwardRef
+                as={[Function]}
+                to="/"
+              >
+                <h3>
+                  Skills Test
+                </h3>
+              </ForwardRef>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "as": [Function],
+                "children": <h3>
+                  Skills Test
+                </h3>,
+                "to": "/",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Skills Test",
+                },
+                "ref": null,
+                "rendered": "Skills Test",
+                "type": "h3",
+              },
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "SideBar__StyledSidebarLink-sc-1l67eb2-1",
+                  "isStatic": true,
+                  "rules": Array [
+                    "text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;color:#ddd;}padding:20px 20px 20px 40px;display:block;",
+                  ],
+                },
+                "displayName": "SideBar__StyledSidebarLink",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "SideBar__StyledSidebarLink-sc-1l67eb2-1",
+                "target": [Function],
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+                Symbol(Symbol.hasInstance): [Function],
+              },
+            },
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <ForwardRef
+                to="/login"
+              >
+                Login
+              </ForwardRef>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": "Login",
+                "to": "/login",
+              },
+              "ref": null,
+              "rendered": "Login",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "SideBar__StyledSidebarLink-sc-1l67eb2-1",
+                  "isStatic": true,
+                  "rules": Array [
+                    "text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;color:#ddd;}padding:20px 20px 20px 40px;display:block;",
+                  ],
+                },
+                "displayName": "SideBar__StyledSidebarLink",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "SideBar__StyledSidebarLink-sc-1l67eb2-1",
+                "target": [Function],
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+                Symbol(Symbol.hasInstance): [Function],
+              },
+            },
+            "type": "li",
+          },
+        ],
+        "type": "ul",
+      },
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "SideBar__StyledSideBar-sc-1l67eb2-0",
+          "isStatic": true,
+          "rules": Array [
+            "grid-area:sidebar;display:flex;flex-direction:column;background-color:#394263;ul{padding:0;margin-top:20px;list-style-type:none;li{color:#ddd;&:hover{background-color:rgba(255,255,255,0.2);cursor:pointer;}}}",
+          ],
+        },
+        "displayName": "SideBar__StyledSideBar",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "SideBar__StyledSideBar-sc-1l67eb2-0",
+        "target": "aside",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

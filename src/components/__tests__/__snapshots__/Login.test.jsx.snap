@@ -23,7 +23,6 @@ ShallowWrapper {
           Login
         </h2>,
         <ForwardRef(Bootstrap(Form))
-          className="justify-content-center"
           noValidate={true}
           onSubmit={[Function]}
           validated={false}
@@ -137,7 +136,6 @@ ShallowWrapper {
               Login
             </ForwardRef(Bootstrap(Button))>,
           ],
-          "className": "justify-content-center",
           "noValidate": true,
           "onSubmit": [Function],
           "validated": false,
@@ -363,7 +361,7 @@ ShallowWrapper {
         "componentId": "Login__StyledLogin-sc-4kj774-0",
         "isStatic": true,
         "rules": Array [
-          "@media all and (min-width:480px){max-width:350px;padding-top:80px;margin:0 auto;}",
+          "@media all and (min-width:480px){max-width:400px;padding-top:80px;margin:0 auto;}grid-area:main;padding:20px;",
         ],
       },
       "displayName": "Login__StyledLogin",
@@ -387,7 +385,6 @@ ShallowWrapper {
             Login
           </h2>,
           <ForwardRef(Bootstrap(Form))
-            className="justify-content-center"
             noValidate={true}
             onSubmit={[Function]}
             validated={false}
@@ -501,7 +498,6 @@ ShallowWrapper {
                 Login
               </ForwardRef(Bootstrap(Button))>,
             ],
-            "className": "justify-content-center",
             "noValidate": true,
             "onSubmit": [Function],
             "validated": false,
@@ -727,7 +723,7 @@ ShallowWrapper {
           "componentId": "Login__StyledLogin-sc-4kj774-0",
           "isStatic": true,
           "rules": Array [
-            "@media all and (min-width:480px){max-width:350px;padding-top:80px;margin:0 auto;}",
+            "@media all and (min-width:480px){max-width:400px;padding-top:80px;margin:0 auto;}grid-area:main;padding:20px;",
           ],
         },
         "displayName": "Login__StyledLogin",

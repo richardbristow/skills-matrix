@@ -4,10 +4,12 @@ import styled from 'styled-components/macro';
 
 const StyledLogin = styled.div`
   @media all and (min-width: 480px) {
-    max-width: 350px;
+    max-width: 400px;
     padding-top: 80px;
     margin: 0 auto;
   }
+  grid-area: main;
+  padding: 20px;
 `;
 
 class Login extends Component {
@@ -49,12 +51,7 @@ class Login extends Component {
     return (
       <StyledLogin>
         <h2>Login</h2>
-        <Form
-          className="justify-content-center"
-          validated={validated}
-          noValidate
-          onSubmit={this.handleSubmit}
-        >
+        <Form validated={validated} noValidate onSubmit={this.handleSubmit}>
           <Form.Group controlId="email">
             <Form.Control
               value={email}

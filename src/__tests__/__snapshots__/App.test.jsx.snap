@@ -19,16 +19,18 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <TopNavBar />,
-        <Switch>
-          <Route
-            component={[Function]}
-            path="/login"
-          />
-          <Route
-            component={[Function]}
-          />
-        </Switch>,
+        <SideBar />,
+        <main>
+          <Switch>
+            <Route
+              component={[Function]}
+              path="/login"
+            />
+            <Route
+              component={[Function]}
+            />
+          </Switch>
+        </main>,
       ],
     },
     "ref": null,
@@ -45,58 +47,9 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "host",
         "props": Object {
-          "children": Array [
-            <Route
-              component={[Function]}
-              path="/login"
-            />,
-            <Route
-              component={[Function]}
-            />,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/login",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": [Function],
-      },
-    ],
-    "type": Symbol(react.fragment),
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          <TopNavBar />,
-          <Switch>
+          "children": <Switch>
             <Route
               component={[Function]}
               path="/login"
@@ -105,20 +58,9 @@ ShallowWrapper {
               component={[Function]}
             />
           </Switch>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
         },
-        Object {
+        "ref": null,
+        "rendered": Object {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
@@ -161,8 +103,142 @@ ShallowWrapper {
           ],
           "type": [Function],
         },
+        "type": "main",
+      },
+    ],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "App__StyledApp-n5nkjo-0",
+        "isStatic": true,
+        "rules": Array [
+          "display:grid;grid-template-areas:'sidebar main';grid-template-columns:250px 1fr;height:100vh;",
+        ],
+      },
+      "displayName": "App__StyledApp",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "App__StyledApp-n5nkjo-0",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <SideBar />,
+          <main>
+            <Switch>
+              <Route
+                component={[Function]}
+                path="/login"
+              />
+              <Route
+                component={[Function]}
+              />
+            </Switch>
+          </main>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Switch>
+              <Route
+                component={[Function]}
+                path="/login"
+              />
+              <Route
+                component={[Function]}
+              />
+            </Switch>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Route
+                  component={[Function]}
+                  path="/login"
+                />,
+                <Route
+                  component={[Function]}
+                />,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                  "path": "/login",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "component": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          "type": "main",
+        },
       ],
-      "type": Symbol(react.fragment),
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "App__StyledApp-n5nkjo-0",
+          "isStatic": true,
+          "rules": Array [
+            "display:grid;grid-template-areas:'sidebar main';grid-template-columns:250px 1fr;height:100vh;",
+          ],
+        },
+        "displayName": "App__StyledApp",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "App__StyledApp-n5nkjo-0",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
