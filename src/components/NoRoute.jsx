@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
 import styled from 'styled-components/macro';
 
-const StyledNoRoute = styled.div`
-  grid-area: main;
-  margin: 20px;
-  padding: 60px 20px 20px 20px;
+import StyledMain from '../shared/StyledMain';
+
+const StyledNoRoute = styled(StyledMain)`
   text-align: center;
 `;
 

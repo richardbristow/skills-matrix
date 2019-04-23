@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 
-const StyledLogin = styled.div`
+import StyledMain from '../shared/StyledMain';
+
+const StyledLogin = styled(StyledMain)`
   @media all and (min-width: 480px) {
     max-width: 400px;
-    padding-top: 80px;
-    margin: 0 auto;
   }
-  grid-area: main;
-  padding: 20px;
 `;
 
 class Login extends Component {
@@ -49,7 +47,7 @@ class Login extends Component {
   render() {
     const { email, password, validated } = this.state;
     return (
-      <StyledLogin>
+      <StyledLogin centre>
         <h2>Login</h2>
         <Form validated={validated} noValidate onSubmit={this.handleSubmit}>
           <Form.Group controlId="email">
