@@ -18,6 +18,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
+      "centre": true,
       "children": Array [
         <h2>
           Login
@@ -359,13 +360,18 @@ ShallowWrapper {
       "attrs": Array [],
       "componentStyle": ComponentStyle {
         "componentId": "Login__StyledLogin-sc-4kj774-0",
-        "isStatic": true,
+        "isStatic": false,
         "rules": Array [
-          "@media all and (min-width:480px){max-width:400px;padding-top:80px;margin:0 auto;}grid-area:main;padding:20px;",
+          "grid-area:main;padding:60px 20px 20px 20px;margin:",
+          [Function],
+          ";",
+          "@media all and (min-width:480px){max-width:400px;}",
         ],
       },
       "displayName": "Login__StyledLogin",
-      "foldedComponentIds": Array [],
+      "foldedComponentIds": Array [
+        "StyledMain-sc-1o4u4y0-0",
+      ],
       "render": [Function],
       "styledComponentId": "Login__StyledLogin-sc-4kj774-0",
       "target": "div",
@@ -380,6 +386,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
+        "centre": true,
         "children": Array [
           <h2>
             Login
@@ -721,13 +728,18 @@ ShallowWrapper {
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "Login__StyledLogin-sc-4kj774-0",
-          "isStatic": true,
+          "isStatic": false,
           "rules": Array [
-            "@media all and (min-width:480px){max-width:400px;padding-top:80px;margin:0 auto;}grid-area:main;padding:20px;",
+            "grid-area:main;padding:60px 20px 20px 20px;margin:",
+            [Function],
+            ";",
+            "@media all and (min-width:480px){max-width:400px;}",
           ],
         },
         "displayName": "Login__StyledLogin",
-        "foldedComponentIds": Array [],
+        "foldedComponentIds": Array [
+          "StyledMain-sc-1o4u4y0-0",
+        ],
         "render": [Function],
         "styledComponentId": "Login__StyledLogin-sc-4kj774-0",
         "target": "div",

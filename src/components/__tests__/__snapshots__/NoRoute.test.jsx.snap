@@ -97,13 +97,18 @@ ShallowWrapper {
       "attrs": Array [],
       "componentStyle": ComponentStyle {
         "componentId": "NoRoute__StyledNoRoute-u6sinz-0",
-        "isStatic": true,
+        "isStatic": false,
         "rules": Array [
-          "grid-area:main;margin:20px;padding:60px 20px 20px 20px;text-align:center;",
+          "grid-area:main;padding:60px 20px 20px 20px;margin:",
+          [Function],
+          ";",
+          "text-align:center;",
         ],
       },
       "displayName": "NoRoute__StyledNoRoute",
-      "foldedComponentIds": Array [],
+      "foldedComponentIds": Array [
+        "StyledMain-sc-1o4u4y0-0",
+      ],
       "render": [Function],
       "styledComponentId": "NoRoute__StyledNoRoute-u6sinz-0",
       "target": "div",
@@ -197,13 +202,18 @@ ShallowWrapper {
         "attrs": Array [],
         "componentStyle": ComponentStyle {
           "componentId": "NoRoute__StyledNoRoute-u6sinz-0",
-          "isStatic": true,
+          "isStatic": false,
           "rules": Array [
-            "grid-area:main;margin:20px;padding:60px 20px 20px 20px;text-align:center;",
+            "grid-area:main;padding:60px 20px 20px 20px;margin:",
+            [Function],
+            ";",
+            "text-align:center;",
           ],
         },
         "displayName": "NoRoute__StyledNoRoute",
-        "foldedComponentIds": Array [],
+        "foldedComponentIds": Array [
+          "StyledMain-sc-1o4u4y0-0",
+        ],
         "render": [Function],
         "styledComponentId": "NoRoute__StyledNoRoute-u6sinz-0",
         "target": "div",
