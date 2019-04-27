@@ -3,7 +3,12 @@
     "browser": true,
     "jest": true
   },
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "extends": [
+    "react-app",
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
   "rules": {
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   }
