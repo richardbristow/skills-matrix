@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { Auth } from 'aws-amplify';
 import styled from 'styled-components/macro';
 
 import StyledMain from '../shared/StyledMain';
@@ -25,16 +26,22 @@ class Login extends Component {
     this.setState({ [id]: value });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
+    e.preventDefault();
     const { email, password } = this.state;
     const form = e.currentTarget;
 
     if (form.checkValidity() === false) {
-      e.preventDefault();
       e.stopPropagation();
     } else {
-      // eslint-disable-next-line no-alert
-      alert(`Form has been submitted by ${email} with password ${password}`);
+      try {
+        await Auth.signIn(email, password);
+        // eslint-disable-next-line no-alert
+        alert('Logged in');
+      } catch (err) {
+        // eslint-disable-next-line no-alert
+        alert(err.message);
+      }
     }
     this.setState({ validated: true });
   }
