@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Card, Alert, InputGroup } from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
+import { AtSign, Lock } from 'react-feather';
 import styled from 'styled-components/macro';
 
 import StyledMain from '../shared/StyledMain';
@@ -14,7 +15,7 @@ const StyledLogin = styled(StyledMain)`
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', validated: false };
+    this.state = { email: '', password: '', validated: false, authError: null };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,24 +24,23 @@ class Login extends Component {
 
   handleInputChange({ target }) {
     const { id, value } = target;
-    this.setState({ [id]: value });
+    this.setState({ [id]: value, authError: null });
   }
 
-  async handleSubmit(e) {
-    e.preventDefault();
+  async handleSubmit(event) {
+    event.preventDefault();
     const { email, password } = this.state;
-    const form = e.currentTarget;
+    const form = event.currentTarget;
 
     if (form.checkValidity() === false) {
-      e.stopPropagation();
+      event.stopPropagation();
     } else {
       try {
         await Auth.signIn(email, password);
         // eslint-disable-next-line no-alert
         alert('Logged in');
       } catch (err) {
-        // eslint-disable-next-line no-alert
-        alert(err.message);
+        this.setState({ authError: err.message });
       }
     }
     this.setState({ validated: true });
@@ -52,45 +52,68 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password, validated } = this.state;
+    const { email, password, validated, authError } = this.state;
     return (
       <StyledLogin centre>
-        <h2>Login</h2>
-        <Form validated={validated} noValidate onSubmit={this.handleSubmit}>
-          <Form.Group controlId="email">
-            <Form.Control
-              value={email}
-              autoFocus
-              onChange={this.handleInputChange}
-              type="email"
-              placeholder="Email"
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid email address.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Control
-              value={password}
-              onChange={this.handleInputChange}
-              type="password"
-              placeholder="Password"
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Please provide a password.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Button
-            variant="outline-primary"
-            disabled={this.checkForEmptyForm()}
-            type="submit"
-            block
-          >
-            Login
-          </Button>
-        </Form>
+        <Card>
+          <Card.Header as="h3">Login</Card.Header>
+          <Card.Body>
+            <Form validated={validated} noValidate onSubmit={this.handleSubmit}>
+              <Form.Group controlId="email">
+                <InputGroup>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text>
+                      <AtSign size={16} />
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    value={email}
+                    autoFocus
+                    onChange={this.handleInputChange}
+                    type="email"
+                    placeholder="Email"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a valid email address.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group controlId="password">
+                <InputGroup>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text>
+                      <Lock size={16} />
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    value={password}
+                    onChange={this.handleInputChange}
+                    type="password"
+                    placeholder="Password"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a password.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              {authError && (
+                <Alert variant="danger">
+                  <strong>Error:</strong> {authError}
+                </Alert>
+              )}
+              <Button
+                variant="outline-primary"
+                disabled={this.checkForEmptyForm()}
+                type="submit"
+                block
+              >
+                Login
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
       </StyledLogin>
     );
   }
