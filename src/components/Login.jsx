@@ -23,8 +23,8 @@ class Login extends Component {
   }
 
   handleInputChange({ target }) {
-    const { id, value } = target;
-    this.setState({ [id]: value, authError: null });
+    const { name, value } = target;
+    this.setState({ [name]: value, authError: null });
   }
 
   async handleSubmit(event) {
@@ -70,6 +70,7 @@ class Login extends Component {
                     value={email}
                     autoFocus
                     onChange={this.handleInputChange}
+                    name="email"
                     type="email"
                     placeholder="Email"
                     required
@@ -89,6 +90,7 @@ class Login extends Component {
                   <Form.Control
                     value={password}
                     onChange={this.handleInputChange}
+                    name="password"
                     type="password"
                     placeholder="Password"
                     required
