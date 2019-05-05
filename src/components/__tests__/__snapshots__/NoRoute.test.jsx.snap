@@ -1,3 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NoRoute should render the NoRoute component without errors 1`] = `ShallowWrapper {}`;
+exports[`NoRoute should render the NoRoute component without errors on non matching route 1`] = `
+<div>
+  <div
+    class="App__StyledApp-n5nkjo-0 fLlJrz"
+  >
+    <aside
+      class="SideBar__StyledSideBar-sc-1l67eb2-0 lldNPQ"
+    >
+      <ul
+        class="SideBar__StyledSideBarMenu-sc-1l67eb2-1 lbJvnL"
+      >
+        <li
+          class="SideBar__StyledSidebarMenuLink-sc-1l67eb2-3 bEKnlD"
+        >
+          <a
+            class="SideBar__StyledSideBarLink-sc-1l67eb2-2 hQCXjR"
+            header="true"
+            href="/"
+          >
+            <h3>
+              Skills Matrix
+            </h3>
+          </a>
+        </li>
+        <li
+          class="SideBar__StyledSidebarMenuLink-sc-1l67eb2-3 ysUGI"
+        >
+          <a
+            class="SideBar__StyledSideBarLink-sc-1l67eb2-2 hQCXjR"
+            header="false"
+            href="/login"
+          >
+            Login
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <main>
+      <div
+        class="StyledMain-sc-1o4u4y0-0 NoRoute__StyledNoRoute-u6sinz-0 bhpKqI"
+      >
+        <h1>
+          404
+        </h1>
+        <p>
+          Page does not exist.
+        </p>
+        <p>
+          Do you want to go back 
+          <a
+            href="/"
+          >
+            home
+          </a>
+        </p>
+      </div>
+    </main>
+  </div>
+</div>
+`;

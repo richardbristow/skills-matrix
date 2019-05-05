@@ -53,6 +53,7 @@ const Login = () => {
         <Card.Body>
           <Form validated={validated} noValidate onSubmit={handleSubmit}>
             <Form.Group controlId="email">
+              <Form.Label>Email address</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>
@@ -65,7 +66,7 @@ const Login = () => {
                   onChange={handleInputChange}
                   name="email"
                   type="email"
-                  placeholder="Email"
+                  placeholder="Enter email..."
                   required
                 />
                 <Form.Control.Feedback type="invalid">
@@ -74,6 +75,7 @@ const Login = () => {
               </InputGroup>
             </Form.Group>
             <Form.Group controlId="password">
+              <Form.Label>Password</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>
@@ -85,7 +87,7 @@ const Login = () => {
                   onChange={handleInputChange}
                   name="password"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Password..."
                   required
                 />
                 <Form.Control.Feedback type="invalid">

@@ -1,3 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SideBar should render SideBar without any errors 1`] = `ShallowWrapper {}`;
+exports[`SideBar should render SideBar without any errors 1`] = `
+<div>
+  <aside
+    class="SideBar__StyledSideBar-sc-1l67eb2-0 lldNPQ"
+  >
+    <ul
+      class="SideBar__StyledSideBarMenu-sc-1l67eb2-1 lbJvnL"
+    >
+      <li
+        class="SideBar__StyledSidebarMenuLink-sc-1l67eb2-3 bEKnlD"
+      >
+        <a
+          class="SideBar__StyledSideBarLink-sc-1l67eb2-2 hQCXjR"
+          header="true"
+          href="/"
+        >
+          <h3>
+            Skills Matrix
+          </h3>
+        </a>
+      </li>
+      <li
+        class="SideBar__StyledSidebarMenuLink-sc-1l67eb2-3 ysUGI"
+      >
+        <a
+          class="SideBar__StyledSideBarLink-sc-1l67eb2-2 hQCXjR"
+          header="false"
+          href="/login"
+        >
+          Login
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+`;

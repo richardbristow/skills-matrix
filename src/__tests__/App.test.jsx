@@ -1,11 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import App from '../App';
+import renderWithRouter from '../../testFunctions/renderWithRouter';
 
 describe('App', () => {
   it('renders without throwing errors', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.exists()).toBe(true);
-    expect(wrapper).toMatchSnapshot();
+    const { container } = renderWithRouter(<App />);
+    expect(container).toMatchSnapshot();
   });
 });
