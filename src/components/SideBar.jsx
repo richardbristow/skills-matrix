@@ -44,7 +44,7 @@ const SidebarMenuLink = props => {
   const { header, text, ...rest } = props;
   return (
     <StyledSidebarMenuLink header={header}>
-      <StyledSideBarLink header={header.toString()} {...rest}>
+      <StyledSideBarLink header={`${header}`} {...rest}>
         {header ? <h3>{text}</h3> : text}
       </StyledSideBarLink>
     </StyledSidebarMenuLink>
