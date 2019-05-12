@@ -28,7 +28,8 @@ exports[`App renders without throwing errors 1`] = `
           class="SideBar__StyledSidebarMenuLink-sc-1l67eb2-3 ysUGI"
         >
           <a
-            class="SideBar__StyledSideBarLink-sc-1l67eb2-2 hQCXjR"
+            aria-current="page"
+            class="SideBar__StyledSideBarLink-sc-1l67eb2-2 hQCXjR active"
             header="false"
             href="/login"
           >
@@ -39,22 +40,148 @@ exports[`App renders without throwing errors 1`] = `
     </aside>
     <main>
       <div
-        class="StyledMain-sc-1o4u4y0-0 NoRoute__StyledNoRoute-u6sinz-0 bhpKqI"
+        class="StyledMain-sc-1o4u4y0-0 Login__StyledLogin-sc-4kj774-0 jgTMyQ"
       >
-        <h1>
-          404
-        </h1>
-        <p>
-          Page does not exist.
-        </p>
-        <p>
-          Do you want to go back 
-          <a
-            href="/"
+        <div
+          class="card"
+        >
+          <h3
+            class="card-header"
           >
-            home
-          </a>
-        </p>
+            Login
+          </h3>
+          <div
+            class="card-body"
+          >
+            <form
+              class=""
+              novalidate=""
+            >
+              <div
+                class="form-group"
+              >
+                <label
+                  class="form-label"
+                  for="email"
+                >
+                  Email address
+                </label>
+                <div
+                  class="input-group"
+                >
+                  <div
+                    class="input-group-prepend"
+                  >
+                    <span
+                      class="input-group-text"
+                    >
+                      <svg
+                        fill="none"
+                        height="16"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="4"
+                        />
+                        <path
+                          d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                  <input
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email..."
+                    required=""
+                    type="email"
+                    value=""
+                  />
+                  <div
+                    class="invalid-feedback"
+                  >
+                    Please provide a valid email address.
+                  </div>
+                </div>
+              </div>
+              <div
+                class="form-group"
+              >
+                <label
+                  class="form-label"
+                  for="password"
+                >
+                  Password
+                </label>
+                <div
+                  class="input-group"
+                >
+                  <div
+                    class="input-group-prepend"
+                  >
+                    <span
+                      class="input-group-text"
+                    >
+                      <svg
+                        fill="none"
+                        height="16"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        width="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect
+                          height="11"
+                          rx="2"
+                          ry="2"
+                          width="18"
+                          x="3"
+                          y="11"
+                        />
+                        <path
+                          d="M7 11V7a5 5 0 0 1 10 0v4"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                  <input
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password..."
+                    required=""
+                    type="password"
+                    value=""
+                  />
+                  <div
+                    class="invalid-feedback"
+                  >
+                    Please provide a password.
+                  </div>
+                </div>
+              </div>
+              <button
+                class="btn btn-outline-primary btn-block"
+                disabled=""
+                type="submit"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </main>
   </div>

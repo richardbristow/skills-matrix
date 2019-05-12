@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Form, Card, Alert, InputGroup } from 'react-bootstrap';
+import {
+  Button,
+  Form,
+  Card,
+  Alert,
+  InputGroup,
+  Spinner,
+} from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { AtSign, Lock } from 'react-feather';
 import styled from 'styled-components/macro';
@@ -12,10 +20,12 @@ const StyledLogin = styled(StyledMain)`
   }
 `;
 
-const Login = () => {
+const Login = ({ setAuthenticated, ...props }) => {
   const [values, setValues] = useState({ email: '', password: '' });
   const [validated, setValidated] = useState(false);
   const [authError, setAuthError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const { email, password } = values;
 
   const handleInputChange = ({ target }) => {
@@ -26,20 +36,25 @@ const Login = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    setAuthError(null);
+    setLoading(true);
     const form = event.currentTarget;
 
     if (form.checkValidity() === false) {
       event.stopPropagation();
+      setLoading(false);
+      setValidated(true);
     } else {
       try {
         await Auth.signIn(email, password);
-        // eslint-disable-next-line no-alert
-        alert('Logged in');
+        setAuthenticated(true);
+        props.history.push('/');
       } catch (err) {
         setAuthError(err.message);
+        setLoading(false);
+        setValidated(true);
       }
     }
-    setValidated(true);
   };
 
   const checkForEmptyForm = () => {
@@ -102,17 +117,37 @@ const Login = () => {
             )}
             <Button
               variant="outline-primary"
-              disabled={checkForEmptyForm()}
+              disabled={checkForEmptyForm() || loading}
               type="submit"
               block
             >
-              Login
+              {loading ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    variant="primary"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  Logging in...
+                </>
+              ) : (
+                'Login'
+              )}
             </Button>
           </Form>
         </Card.Body>
       </Card>
     </StyledLogin>
   );
+};
+
+Login.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.object.isRequired,
+  setAuthenticated: PropTypes.func.isRequired,
 };
 
 export default Login;

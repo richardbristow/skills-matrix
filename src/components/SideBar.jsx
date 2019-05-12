@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 const StyledSideBar = styled.aside`
@@ -51,16 +51,23 @@ const SidebarMenuLink = props => {
   );
 };
 
-const SideBar = () => {
-  return (
-    <StyledSideBar>
-      <StyledSideBarMenu>
-        <SidebarMenuLink header to="/" as={Link} text="Skills Matrix" />
+const SideBar = ({ authenticated, handleLogout, ...props }) => (
+  <StyledSideBar>
+    <StyledSideBarMenu>
+      <SidebarMenuLink header to="/" as={Link} text="Skills Matrix" />
+      {authenticated ? (
+        <SidebarMenuLink
+          text="Logout"
+          to="#"
+          as={Link}
+          onClick={() => handleLogout(props)}
+        />
+      ) : (
         <SidebarMenuLink to="/login" text="Login" />
-      </StyledSideBarMenu>
-    </StyledSideBar>
-  );
-};
+      )}
+    </StyledSideBarMenu>
+  </StyledSideBar>
+);
 
 SidebarMenuLink.defaultProps = {
   header: false,
@@ -71,4 +78,9 @@ SidebarMenuLink.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-export default SideBar;
+SideBar.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+};
+
+export default withRouter(SideBar);
