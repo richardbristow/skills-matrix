@@ -8,6 +8,7 @@ import NoRoute from './components/NoRoute';
 import SideBar from './components/SideBar';
 import PrivateRoute from './shared/PrivateRoute';
 import Home from './components/Home';
+import EditSkills from './components/admin/EditSkills';
 
 const StyledApp = styled.div`
   display: grid;
@@ -59,6 +60,11 @@ const App = () => {
               render={props => (
                 <Login setAuthenticated={setAuthenticated} {...props} />
               )}
+            />
+            <PrivateRoute
+              path="/editskills"
+              authenticated={authenticated}
+              component={EditSkills}
             />
             <Route component={NoRoute} />
           </Switch>

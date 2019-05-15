@@ -56,12 +56,15 @@ const SideBar = ({ authenticated, handleLogout, ...props }) => (
     <StyledSideBarMenu>
       <SidebarMenuLink header to="/" as={Link} text="Skills Matrix" />
       {authenticated ? (
-        <SidebarMenuLink
-          text="Logout"
-          to="#"
-          as={Link}
-          onClick={() => handleLogout(props)}
-        />
+        <>
+          <SidebarMenuLink to="/editskills" text="Edit Skills" />
+          <SidebarMenuLink
+            text="Logout"
+            to="#"
+            as={Link}
+            onClick={() => handleLogout(props)}
+          />
+        </>
       ) : (
         <SidebarMenuLink to="/login" text="Login" />
       )}
