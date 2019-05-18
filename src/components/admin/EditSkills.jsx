@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import styled from 'styled-components/macro';
+import { Trash2, Edit } from 'react-feather';
 
 import StyledMain from '../../shared/StyledMain';
 
@@ -18,6 +19,15 @@ const StyledSkillsGrid = styled.div`
   grid-gap: 40px;
 `;
 
+const StyledButton = styled.button`
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  &:focus {
+    outline: none;
+  }
+`;
+
 const EditSkills = () => {
   return (
     <StyledMain>
@@ -25,10 +35,18 @@ const EditSkills = () => {
       <p>Add a new skill</p>
       <StyledSkillsGrid>
         {skillsTest.map(skill => (
-          <Card key={skill}>
+          <Card css="flex-direction: row" className="card" key={skill}>
             <Card.Body>{skill}</Card.Body>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
+            <OverlayTrigger placement="top" overlay={<Tooltip>Edit</Tooltip>}>
+              <StyledButton type="button">
+                <Edit size={18} />
+              </StyledButton>
+            </OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={<Tooltip>Delete</Tooltip>}>
+              <StyledButton type="button">
+                <Trash2 size={18} />
+              </StyledButton>
+            </OverlayTrigger>
           </Card>
         ))}
       </StyledSkillsGrid>
