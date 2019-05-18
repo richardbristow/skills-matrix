@@ -120,6 +120,7 @@ const Login = ({ setAuthenticated, ...props }) => {
               disabled={checkForEmptyForm() || loading}
               type="submit"
               block
+              css={checkForEmptyForm() && 'cursor: not-allowed;'}
             >
               {loading ? (
                 <>
