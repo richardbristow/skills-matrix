@@ -35,14 +35,55 @@ const StyledButton = styled.button`
   }
 `;
 
+const SkillModal = ({ addSkill, modalOpen, setOpenModal }) => (
+  <Modal show={modalOpen} onHide={() => setOpenModal(false)}>
+    <Modal.Header>
+      <Modal.Title>{addSkill ? 'Add New Skill' : 'Edit Skill'}</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <Form>
+        <Form.Group
+          controlId={addSkill ? 'formAddSkillName' : 'formEditSkillName'}
+        >
+          <Form.Label>Skill Name</Form.Label>
+          <Form.Control type="text" placeholder="Skill" />
+        </Form.Group>
+        <Form.Group
+          controlId={
+            addSkill ? 'formAddSkillDescription' : 'formEditSkillDescription'
+          }
+        >
+          <Form.Label>Skill Description</Form.Label>
+          <Form.Control as="textarea" rows="3" />
+        </Form.Group>
+      </Form>
+    </Modal.Body>
+    <Modal.Footer>
+      <Button variant="outline-secondary" onClick={() => setOpenModal(false)}>
+        Cancel
+      </Button>
+      <Button variant="primary" onClick={() => setOpenModal(false)}>
+        Save Changes
+      </Button>
+    </Modal.Footer>
+  </Modal>
+);
+
 const EditSkills = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [addSkillModalOpen, setAddSkillModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   return (
     <StyledMain>
       <h2>Edit Skills</h2>
-      <p>Add a new skill</p>
+      <p>Use this page to add, edit an delete skills.</p>
+      <Button
+        css="margin-bottom: 40px"
+        onClick={() => setAddSkillModalOpen(true)}
+      >
+        Add new skill
+      </Button>
       <StyledSkillsGrid>
         {skillsTest.map(skill => (
           <Card css="flex-direction: row" className="card" key={skill}>
@@ -86,34 +127,17 @@ const EditSkills = () => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={editModalOpen} onHide={() => setEditModalOpen(false)}>
-        <Modal.Header>
-          <Modal.Title>Edit Skill</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formEditSkillName">
-              <Form.Label>Skill Name</Form.Label>
-              <Form.Control type="text" placeholder="Skill" />
-            </Form.Group>
-            <Form.Group controlId="formEditSkillDescription">
-              <Form.Label>Skill Description</Form.Label>
-              <Form.Control as="textarea" rows="3" />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="outline-secondary"
-            onClick={() => setEditModalOpen(false)}
-          >
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={() => setEditModalOpen(false)}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <SkillModal
+        addSkill
+        modalOpen={addSkillModalOpen}
+        setOpenModal={setAddSkillModalOpen}
+      />
+
+      <SkillModal
+        addSkill={false}
+        modalOpen={editModalOpen}
+        setOpenModal={setEditModalOpen}
+      />
     </StyledMain>
   );
 };
