@@ -7,6 +7,7 @@ import {
   Button,
   Form,
 } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import { Trash2, Edit } from 'react-feather';
 
@@ -164,13 +165,19 @@ const EditSkills = () => {
         setOpenModal={setAddSkillModalOpen}
       />
 
-      <SkillModal
-        addSkill={false}
-        modalOpen={editModalOpen}
-        setOpenModal={setEditModalOpen}
-      />
+      <SkillModal modalOpen={editModalOpen} setOpenModal={setEditModalOpen} />
     </StyledMain>
   );
+};
+
+SkillModal.defaultProps = {
+  addSkill: false,
+};
+
+SkillModal.propTypes = {
+  addSkill: PropTypes.bool,
+  modalOpen: PropTypes.bool.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
 };
 
 export default EditSkills;
