@@ -13,16 +13,31 @@ import { Trash2, Edit } from 'react-feather';
 import StyledMain from '../../shared/StyledMain';
 
 const skillsTest = [
-  'Printers',
-  'Windows 10',
-  'Checkouts',
-  'Telephony',
-  'Outlook',
+  {
+    skillName: 'Printers',
+    skillDescription: 'A description of the Printers skill',
+  },
+  {
+    skillName: 'Windows 10',
+    skillDescription: 'A description of the Windows 10 skill',
+  },
+  {
+    skillName: 'Checkouts',
+    skillDescription: 'A description of the Checkouts skill',
+  },
+  {
+    skillName: 'Telephony',
+    skillDescription: 'A description of the Telephony skill',
+  },
+  {
+    skillName: 'Outlook',
+    skillDescription: 'A description of the Outlook skill',
+  },
 ];
 
 const StyledSkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 40px;
 `;
 
@@ -85,28 +100,44 @@ const EditSkills = () => {
         Add new skill
       </Button>
       <StyledSkillsGrid>
-        {skillsTest.map(skill => (
-          <Card css="flex-direction: row" className="card" key={skill}>
-            <Card.Body>{skill}</Card.Body>
-            <OverlayTrigger placement="top" overlay={<Tooltip>Edit</Tooltip>}>
-              <StyledButton
-                name={skill}
-                type="button"
-                onClick={() => setEditModalOpen(true)}
-              >
-                <Edit size={18} />
-              </StyledButton>
-            </OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={<Tooltip>Delete</Tooltip>}>
-              <StyledButton
-                type="button"
-                onClick={() => setDeleteModalOpen(true)}
-              >
-                <Trash2 size={18} />
-              </StyledButton>
-            </OverlayTrigger>
-          </Card>
-        ))}
+        {skillsTest.map(skill => {
+          const { skillName, skillDescription } = skill;
+          return (
+            <Card key={skillName}>
+              <Card.Body>
+                <Card.Title>
+                  {skillName}
+                  <div css="float: right">
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={<Tooltip>Edit</Tooltip>}
+                    >
+                      <StyledButton
+                        name={skillName}
+                        type="button"
+                        onClick={() => setEditModalOpen(true)}
+                      >
+                        <Edit size={18} />
+                      </StyledButton>
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={<Tooltip>Delete</Tooltip>}
+                    >
+                      <StyledButton
+                        type="button"
+                        onClick={() => setDeleteModalOpen(true)}
+                      >
+                        <Trash2 size={18} />
+                      </StyledButton>
+                    </OverlayTrigger>
+                  </div>
+                </Card.Title>
+                <Card.Text>{skillDescription}</Card.Text>
+              </Card.Body>
+            </Card>
+          );
+        })}
       </StyledSkillsGrid>
 
       <Modal show={deleteModalOpen} onHide={() => setDeleteModalOpen(false)}>
