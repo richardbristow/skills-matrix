@@ -49,6 +49,7 @@ const StyledButton = styled.button`
   &:focus {
     outline: none;
   }
+  background-color: transparent;
 `;
 
 const SkillModal = ({ addSkill, modalOpen, setOpenModal }) => (
