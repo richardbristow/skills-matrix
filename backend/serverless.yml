@@ -1,0 +1,59 @@
+service: skills-matrix-backend
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  versionFunctions: false
+  memorySize: 128
+  region: us-east-1
+  logRetentionInDays: 30
+  stage: ${opt:stage, 'dev'}
+  environment:
+    TABLENAME: ${opt:stage, self:provider.stage}-skillsTable
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:Scan
+      Resource:
+        Fn::GetAtt:
+          - SkillsTable
+          - Arn
+
+functions:
+  skillsList:
+    handler: lambda/skillsList.skillsList
+    name: ${self:provider.stage}-skillsList
+    description: 'Gets the skills list from ${self:provider.environment.TABLENAME}'
+    events:
+      - http:
+          path: /${self:provider.stage}-skillslist
+          method: get
+          cors: true
+      # - http:
+      #     path: /${self:provider.stage}-skillslist/add
+      #     method: post
+      #     cors: true
+      # - http:
+      #     path: /${self:provider.stage}-skillslist/delete
+      #     method: delete
+      #     cors: true
+      # - http:
+      #     path: /${self:provider.stage}-skillslist/edit
+      #     method: put
+      #     cors: true
+
+resources:
+  Resources:
+    SkillsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TABLENAME}
+        AttributeDefinitions:
+          - AttributeName: skillName
+            AttributeType: S
+        KeySchema:
+          - AttributeName: skillName
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
