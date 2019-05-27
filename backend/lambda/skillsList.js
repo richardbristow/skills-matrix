@@ -27,10 +27,10 @@ const skillsListAdd = async event => {
   };
 
   try {
-    const dynamoResponse = await dynamoDbCall('put', params);
+    await dynamoDbCall('put', params);
     console.log(`PUT: Success adding item to ${process.env.TABLENAME}`);
-    console.log('PUT dynamoResponse', dynamoResponse);
-    return buildResponse(201, dynamoResponse);
+    console.log('PUT dynamoResponse', params.Item);
+    return buildResponse(201, params.Item);
   } catch (error) {
     throw new Error(error);
   }
@@ -46,6 +46,7 @@ const skillsListEdit = async event => {
       ':name': body.skillName,
       ':description': body.skillDescription,
     },
+    ReturnValues: 'ALL_NEW',
   };
 
   try {
@@ -62,6 +63,7 @@ const skillsListDelete = async event => {
   const params = {
     TableName: process.env.TABLENAME,
     Key: { ...event.pathParameters },
+    ReturnValues: 'ALL_OLD',
   };
 
   try {
