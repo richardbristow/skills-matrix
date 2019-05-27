@@ -9,11 +9,14 @@ provider:
   logRetentionInDays: 30
   stage: ${opt:stage, 'dev'}
   environment:
-    TABLENAME: ${opt:stage, self:provider.stage}-skillsTable
+    TABLENAME: ${opt:stage, self:provider.stage}-SkillsTable
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
         - dynamodb:Scan
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
       Resource:
         Fn::GetAtt:
           - SkillsTable
@@ -23,24 +26,28 @@ functions:
   skillsList:
     handler: lambda/skillsList.skillsList
     name: ${self:provider.stage}-skillsList
-    description: 'Gets the skills list from ${self:provider.environment.TABLENAME}'
+    description: 'CRUD function for skills in the table, ${self:provider.environment.TABLENAME}'
     events:
       - http:
-          path: /${self:provider.stage}-skillslist
+          path: /skillslist
           method: get
           cors: true
-      # - http:
-      #     path: /${self:provider.stage}-skillslist/add
-      #     method: post
-      #     cors: true
-      # - http:
-      #     path: /${self:provider.stage}-skillslist/delete
-      #     method: delete
-      #     cors: true
-      # - http:
-      #     path: /${self:provider.stage}-skillslist/edit
-      #     method: put
-      #     cors: true
+      - http:
+          path: /skillslist/add
+          method: post
+          cors: true
+      - http:
+          path: /skillslist/edit/{skillName}
+          method: patch
+          cors: true
+      - http:
+          path: /skillslist/delete/{skillName}
+          method: delete
+          cors: true
+          # request:
+          #   parameters:
+          #     paths:
+          #       skillName: true
 
 resources:
   Resources:
