@@ -1,13 +1,7 @@
 /* eslint-disable no-console */
 
-const DynamoDB = require('aws-sdk/clients/dynamodb');
-
-const docClient = new DynamoDB.DocumentClient({ region: 'us-east-1' });
-
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Credentials': true,
-};
+const buildResponse = require('../utils/buildResponse');
+const dynamoDbCall = require('../utils/dynamoDbCall');
 
 const skillsListGet = async () => {
   const params = {
@@ -15,25 +9,10 @@ const skillsListGet = async () => {
   };
 
   try {
-    const dynamoResponse = await docClient
-      .scan(params, (error, data) => {
-        if (error) {
-          return error;
-        }
-        return data;
-      })
-      .promise();
-
-    console.log('dynamoResponse', dynamoResponse);
-    console.log(`Success getting ${process.env.TABLENAME}`);
-
-    const response = {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ ...dynamoResponse }),
-    };
-
-    return response;
+    const dynamoResponse = await dynamoDbCall('scan', params);
+    console.log(`SCAN: Success getting ${process.env.TABLENAME}`);
+    console.log('SCAN dynamoResponse', dynamoResponse);
+    return buildResponse(200, dynamoResponse);
   } catch (error) {
     throw new Error(error);
   }
@@ -41,31 +20,16 @@ const skillsListGet = async () => {
 
 const skillsListAdd = async event => {
   const body = JSON.parse(event.body);
-
   const params = {
     TableName: process.env.TABLENAME,
     Item: { ...body },
   };
 
-  console.log('params :', params);
-
   try {
-    const dynamoResponse = await docClient
-      .put(params, (error, data) => {
-        if (error) {
-          return error;
-        }
-        return data;
-      })
-      .promise();
-
-    const response = {
-      statusCode: 201,
-      headers,
-      body: JSON.stringify({ ...dynamoResponse }),
-    };
-
-    return response;
+    const dynamoResponse = await dynamoDbCall('put', params);
+    console.log(`PUT: Success adding item to ${process.env.TABLENAME}`);
+    console.log('PUT dynamoResponse', dynamoResponse);
+    return buildResponse(201, dynamoResponse);
   } catch (error) {
     throw new Error(error);
   }
@@ -73,7 +37,6 @@ const skillsListAdd = async event => {
 
 const skillsListEdit = async event => {
   const body = JSON.parse(event.body);
-
   const params = {
     TableName: process.env.TABLENAME,
     Key: { ...event.pathParameters },
@@ -84,22 +47,10 @@ const skillsListEdit = async event => {
   };
 
   try {
-    const dynamoResponse = await docClient
-      .update(params, (error, data) => {
-        if (error) {
-          return error;
-        }
-        return data;
-      })
-      .promise();
-
-    const response = {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ ...dynamoResponse }),
-    };
-
-    return response;
+    const dynamoResponse = await dynamoDbCall('update', params);
+    console.log(`UPDATE: Success udating item in ${process.env.TABLENAME}`);
+    console.log('UPDATE dynamoResponse', dynamoResponse);
+    return buildResponse(200, dynamoResponse);
   } catch (error) {
     throw new Error(error);
   }
@@ -111,24 +62,11 @@ const skillsListDelete = async event => {
     Key: { ...event.pathParameters },
   };
 
-  console.log('params :', params);
   try {
-    const dynamoResponse = await docClient
-      .delete(params, (error, data) => {
-        if (error) {
-          return error;
-        }
-        return data;
-      })
-      .promise();
-
-    const response = {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ ...dynamoResponse }),
-    };
-
-    return response;
+    const dynamoResponse = await dynamoDbCall('delete', params);
+    console.log(`DELETE: Success deleting item in ${process.env.TABLENAME}`);
+    console.log('DELETE dynamoResponse', dynamoResponse);
+    return buildResponse(200, dynamoResponse);
   } catch (error) {
     throw new Error(error);
   }
