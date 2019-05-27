@@ -23,7 +23,12 @@ const skillsListAdd = async event => {
   const body = JSON.parse(event.body);
   const params = {
     TableName: process.env.TABLENAME,
-    Item: { skillId: uuid(), ...body },
+    Item: {
+      skillId: uuid(),
+      ...body,
+      lastModified: Date.now(),
+      createdAt: Date.now(),
+    },
   };
 
   try {
@@ -41,10 +46,12 @@ const skillsListEdit = async event => {
   const params = {
     TableName: process.env.TABLENAME,
     Key: { ...event.pathParameters },
-    UpdateExpression: 'set skillDescription = :description, skillName = :name',
+    UpdateExpression:
+      'set skillDescription = :description, skillName = :name, lastModified = :modified',
     ExpressionAttributeValues: {
       ':name': body.skillName,
       ':description': body.skillDescription,
+      ':modified': Date.now(),
     },
     ReturnValues: 'ALL_NEW',
   };
