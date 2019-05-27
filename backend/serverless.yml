@@ -1,5 +1,8 @@
 service: skills-matrix-backend
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs10.x
@@ -44,10 +47,6 @@ functions:
           path: /skillslist/{skillName}
           method: delete
           cors: true
-          # request:
-          #   parameters:
-          #     paths:
-          #       skillName: true
 
 resources:
   Resources:

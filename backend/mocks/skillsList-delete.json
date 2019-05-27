@@ -1,0 +1,6 @@
+{
+  "httpMethod": "DELETE",
+  "pathParameters": {
+    "skillName": "MOCK ADD SKILL"
+  }
+}

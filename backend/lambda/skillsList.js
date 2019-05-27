@@ -77,9 +77,9 @@ const skillsListEdit = async event => {
   const params = {
     TableName: process.env.TABLENAME,
     Key: { ...event.pathParameters },
-    UpdateExpression: 'set skillDescription = :d',
+    UpdateExpression: 'set skillDescription = :description',
     ExpressionAttributeValues: {
-      ':d': body.skillDescription,
+      ':description': body.skillDescription,
     },
   };
 

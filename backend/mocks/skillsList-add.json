@@ -1,0 +1,4 @@
+{
+  "httpMethod": "POST",
+  "body": "{\n\t\"skillName\": \"MOCK ADD SKILL\",\n\t\"skillDescription\": \"This description is from the mock event\"\n}"
+}

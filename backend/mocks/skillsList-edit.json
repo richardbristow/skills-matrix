@@ -1,0 +1,7 @@
+{
+  "httpMethod": "PATCH",
+  "pathParameters": {
+    "skillName": "MOCK ADD SKILL"
+  },
+  "body": "{\n\t\"skillDescription\": \"This EDITED description is from the mock event\"\n}"
+}
