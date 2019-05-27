@@ -38,7 +38,7 @@ const skillsTest = [
 
 const StyledSkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
   grid-gap: 40px;
 `;
 
@@ -108,7 +108,6 @@ const EditSkills = () => {
             <Card key={skillName}>
               <Card.Body>
                 <Card.Title>
-                  {skillName}
                   <div css="float: right">
                     <OverlayTrigger
                       placement="top"
@@ -134,6 +133,7 @@ const EditSkills = () => {
                       </StyledButton>
                     </OverlayTrigger>
                   </div>
+                  {skillName}
                 </Card.Title>
                 <Card.Text>{skillDescription}</Card.Text>
               </Card.Body>
