@@ -1,6 +1,6 @@
 {
   "httpMethod": "DELETE",
   "pathParameters": {
-    "skillName": "MOCK ADD SKILL"
+    "skillId": "c751fc10-8087-11e9-b5cb-59bef3a1f7e1"
   }
 }

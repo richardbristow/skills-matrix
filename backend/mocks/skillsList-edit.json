@@ -1,7 +1,7 @@
 {
   "httpMethod": "PATCH",
   "pathParameters": {
-    "skillName": "MOCK ADD SKILL"
+    "skillId": "c751fc10-8087-11e9-b5cb-59bef3a1f7e1"
   },
-  "body": "{\n\t\"skillDescription\": \"This EDITED description is from the mock event\"\n}"
+  "body": "{\n\t\"skillName\": \"EDITED MOCK SKILL\", \n\t\"skillDescription\": \"EDITIED This is the skill description from the mock event\"\n}"
 }

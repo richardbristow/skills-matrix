@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 
+const uuid = require('uuid/v1');
 const buildResponse = require('../utils/buildResponse');
 const dynamoDbCall = require('../utils/dynamoDbCall');
 
@@ -22,7 +23,7 @@ const skillsListAdd = async event => {
   const body = JSON.parse(event.body);
   const params = {
     TableName: process.env.TABLENAME,
-    Item: { ...body },
+    Item: { skillId: uuid(), ...body },
   };
 
   try {
@@ -40,8 +41,9 @@ const skillsListEdit = async event => {
   const params = {
     TableName: process.env.TABLENAME,
     Key: { ...event.pathParameters },
-    UpdateExpression: 'set skillDescription = :description',
+    UpdateExpression: 'set skillDescription = :description, skillName = :name',
     ExpressionAttributeValues: {
+      ':name': body.skillName,
       ':description': body.skillDescription,
     },
   };

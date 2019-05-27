@@ -40,11 +40,11 @@ functions:
           method: post
           cors: true
       - http:
-          path: /skillslist/{skillName}
+          path: /skillslist/{skillId}
           method: patch
           cors: true
       - http:
-          path: /skillslist/{skillName}
+          path: /skillslist/{skillId}
           method: delete
           cors: true
 
@@ -55,10 +55,10 @@ resources:
       Properties:
         TableName: ${self:provider.environment.TABLENAME}
         AttributeDefinitions:
-          - AttributeName: skillName
+          - AttributeName: skillId
             AttributeType: S
         KeySchema:
-          - AttributeName: skillName
+          - AttributeName: skillId
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
@@ -67,3 +67,5 @@ resources:
 package:
   exclude:
     - mocks/**
+  include:
+    - ../node_modules/uuid/**
