@@ -33,15 +33,15 @@ functions:
           method: get
           cors: true
       - http:
-          path: /skillslist/add
+          path: /skillslist
           method: post
           cors: true
       - http:
-          path: /skillslist/edit/{skillName}
+          path: /skillslist/{skillName}
           method: patch
           cors: true
       - http:
-          path: /skillslist/delete/{skillName}
+          path: /skillslist/{skillName}
           method: delete
           cors: true
           # request:
