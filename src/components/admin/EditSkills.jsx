@@ -64,6 +64,23 @@ const SkillModal = ({ addSkill, modalOpen, setOpenModal }) => (
   </Modal>
 );
 
+const DeleteModal = ({ modalOpen, setOpenModal }) => (
+  <Modal show={modalOpen} onHide={() => setOpenModal(false)}>
+    <Modal.Header>
+      <Modal.Title>Please confirm</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>Are you sure you want to delete this skill?</Modal.Body>
+    <Modal.Footer>
+      <Button variant="outline-secondary" onClick={() => setOpenModal(false)}>
+        Cancel
+      </Button>
+      <Button variant="danger" onClick={() => setOpenModal(false)}>
+        Delete
+      </Button>
+    </Modal.Footer>
+  </Modal>
+);
+
 const EditSkills = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [addSkillModalOpen, setAddSkillModalOpen] = useState(false);
@@ -147,23 +164,10 @@ const EditSkills = () => {
         </StyledSkillsGrid>
       )}
 
-      <Modal show={deleteModalOpen} onHide={() => setDeleteModalOpen(false)}>
-        <Modal.Header>
-          <Modal.Title>Please confirm</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this skill?</Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="outline-secondary"
-            onClick={() => setDeleteModalOpen(false)}
-          >
-            Cancel
-          </Button>
-          <Button variant="danger" onClick={() => setDeleteModalOpen(false)}>
-            Delete
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <DeleteModal
+        modalOpen={deleteModalOpen}
+        setOpenModal={setDeleteModalOpen}
+      />
 
       <SkillModal
         addSkill
@@ -182,6 +186,11 @@ SkillModal.defaultProps = {
 
 SkillModal.propTypes = {
   addSkill: PropTypes.bool,
+  modalOpen: PropTypes.bool.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
+};
+
+DeleteModal.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   setOpenModal: PropTypes.func.isRequired,
 };
