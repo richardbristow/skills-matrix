@@ -4,7 +4,7 @@ import {
   fireEvent,
   getByLabelText,
   getByText,
-} from 'react-testing-library';
+} from '@testing-library/react';
 import Login from '../Login';
 
 describe('Login', () => {

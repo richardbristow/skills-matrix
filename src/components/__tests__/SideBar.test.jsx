@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByText } from 'react-testing-library';
+import { fireEvent, getByText } from '@testing-library/react';
 import SideBar from '../SideBar';
 import renderWithRouter from '../../../testFunctions/renderWithRouter';
 

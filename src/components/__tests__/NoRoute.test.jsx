@@ -3,7 +3,7 @@ import {
   getByText,
   queryByText,
   waitForDomChange,
-} from 'react-testing-library';
+} from '@testing-library/react';
 import App from '../../App';
 import renderWithRouter from '../../../testFunctions/renderWithRouter';
 

@@ -32,29 +32,29 @@
   },
   "dependencies": {
     "aws-amplify": "^1.1.28",
-    "aws-sdk": "^2.463.0",
+    "aws-sdk": "^2.466.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.8",
+    "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
     "react-feather": "^1.1.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
-    "styled-components": "^4.2.0",
+    "styled-components": "^4.2.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@testing-library/react": "^8.0.1",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
-    "eslint-config-prettier": "^4.2.0",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.11.0",
     "history": "^4.9.0",
-    "jest-dom": "^3.2.2",
+    "jest-dom": "^3.4.0",
     "prettier": "^1.17.1",
-    "react-testing-library": "^7.0.0",
-    "serverless-offline": "^4.10.6"
+    "serverless-offline": "^5.0.1"
   }
 }

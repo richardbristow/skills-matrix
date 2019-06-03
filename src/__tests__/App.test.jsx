@@ -1,5 +1,5 @@
 import React from 'react';
-import { waitForDomChange, getByText } from 'react-testing-library';
+import { waitForDomChange, getByText } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../../testFunctions/renderWithRouter';
 
