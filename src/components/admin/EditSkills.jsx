@@ -77,9 +77,9 @@ const EditSkills = () => {
         <>
           <StyledSkillsGrid>
             {data.Items.map((skill, index) => {
-              const { skillName, skillDescription } = skill;
+              const { skillName, skillDescription, skillId } = skill;
               return (
-                <Card key={skillName}>
+                <Card key={skillId}>
                   <Card.Body>
                     <Card.Title>
                       <div css="float: right">
