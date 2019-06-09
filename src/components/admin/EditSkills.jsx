@@ -6,6 +6,8 @@ import {
   Modal,
   Button,
   Form,
+  Spinner,
+  Alert,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
@@ -38,6 +40,8 @@ const SkillModal = ({
   setClickedModalData,
 }) => {
   const [values, setValues] = useState(clickedModalData);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     setValues(clickedModalData);
@@ -46,6 +50,7 @@ const SkillModal = ({
   const handleInputChange = ({ target }) => {
     const { name, value } = target;
     setValues({ ...values, [name]: value });
+    setIsError(null);
   };
 
   const handleCloseModal = () => {
@@ -53,18 +58,31 @@ const SkillModal = ({
     setClickedModalData(null);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    console.log('validate and add to database with loading spinner');
-    console.log(`submitting: values: ${JSON.stringify(values)}`);
-    handleCloseModal();
+    const { skillName, skillDescription } = values;
+    const params = {
+      body: { skillName, skillDescription },
+    };
+    setIsError(null);
+    setIsLoading(true);
+    try {
+      if (addSkill) {
+        await API.post('skillsList', '/skillslists', params);
+      } else {
+        await API.patch(
+          'skillsList',
+          `/skillslist/${clickedModalData.skillId}`,
+          params,
+        );
+        handleCloseModal();
+        // setIsLoading(false);
+      }
+    } catch (error) {
+      setIsError(error);
+      setIsLoading(false);
+    }
   };
-
-  console.log(
-    `addSkill: ${addSkill}, modalOpen: ${modalOpen}, values: ${JSON.stringify(
-      values,
-    )}`,
-  );
 
   return (
     <Modal show={modalOpen} onHide={handleCloseModal}>
@@ -76,6 +94,11 @@ const SkillModal = ({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            {isError && (
+              <Alert variant="danger">
+                <strong>Error:</strong> {isError.message}
+              </Alert>
+            )}
             <Form id="skills-list-form" onSubmit={handleSubmit}>
               <Form.Group
                 controlId={addSkill ? 'formAddSkillName' : 'formEditSkillName'}
@@ -86,6 +109,7 @@ const SkillModal = ({
                   type="text"
                   value={values.skillName}
                   onChange={handleInputChange}
+                  disabled={isLoading}
                 />
               </Form.Group>
               <Form.Group
@@ -102,6 +126,7 @@ const SkillModal = ({
                   rows="3"
                   value={values.skillDescription}
                   onChange={handleInputChange}
+                  disabled={isLoading}
                 />
               </Form.Group>
             </Form>
@@ -110,8 +135,27 @@ const SkillModal = ({
             <Button variant="outline-secondary" onClick={handleCloseModal}>
               Cancel
             </Button>
-            <Button type="submit" form="skills-list-form" variant="primary">
-              Save Changes
+            <Button
+              disabled={isLoading}
+              type="submit"
+              form="skills-list-form"
+              variant="primary"
+            >
+              {isLoading ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    variant="primary"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  Saving...
+                </>
+              ) : (
+                'Save Changes'
+              )}
             </Button>
           </Modal.Footer>
         </>
@@ -126,22 +170,26 @@ const DeleteModal = ({
   clickedModalData,
   setClickedModalData,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
+
   const handleCloseModal = () => {
     setClickedModalData(null);
     setOpenModal(false);
   };
 
-  const handleDelete = () => {
-    console.log('delete from database with loading spinner');
-    console.log(`deleting: values: ${JSON.stringify(clickedModalData)}`);
-    handleCloseModal();
+  const handleDelete = async () => {
+    setIsError(null);
+    setIsLoading(true);
+    try {
+      await API.del('skillsList', `/skillslist/${clickedModalData.skillId}`);
+      handleCloseModal();
+      // setIsLoading(false);
+    } catch (error) {
+      setIsError(error);
+      setIsLoading(false);
+    }
   };
-
-  console.log(
-    `deleteModal, modalOpen: ${modalOpen}, values: ${JSON.stringify(
-      clickedModalData,
-    )}`,
-  );
 
   return (
     <Modal show={modalOpen} onHide={handleCloseModal}>
@@ -151,6 +199,11 @@ const DeleteModal = ({
             <Modal.Title>Please confirm</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            {isError && (
+              <Alert variant="danger">
+                <strong>Error:</strong> {isError.message}
+              </Alert>
+            )}
             Are you sure you want to delete the skill,{' '}
             {clickedModalData.skillName}?
           </Modal.Body>
@@ -158,8 +211,26 @@ const DeleteModal = ({
             <Button variant="outline-secondary" onClick={handleCloseModal}>
               Cancel
             </Button>
-            <Button variant="danger" onClick={handleDelete}>
-              Delete
+            <Button
+              disabled={isLoading}
+              variant="danger"
+              onClick={handleDelete}
+            >
+              {isLoading ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    variant="light"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  Deleting...
+                </>
+              ) : (
+                'Delete'
+              )}
             </Button>
           </Modal.Footer>
         </>
@@ -179,20 +250,22 @@ const EditSkills = () => {
   const [isError, setIsError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsError(null);
-      setIsLoading(true);
-      try {
-        const response = await API.get('skillsList', '/skillslist');
-        setData(response);
-      } catch (error) {
-        setIsError(error);
-      }
-      setIsLoading(false);
-    };
+    if (!clickedModalData) {
+      const fetchData = async () => {
+        setIsError(null);
+        setIsLoading(true);
+        try {
+          const response = await API.get('skillsList', '/skillslist');
+          setData(response);
+        } catch (error) {
+          setIsError(error);
+        }
+        setIsLoading(false);
+      };
 
-    fetchData();
-  }, []);
+      fetchData();
+    }
+  }, [clickedModalData]);
 
   return (
     <StyledMain>
