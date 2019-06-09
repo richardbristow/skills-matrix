@@ -13,6 +13,7 @@ const SkillModal = ({
   const [values, setValues] = useState(clickedModalData);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
+  const [validated, setValidated] = useState(false);
 
   useEffect(() => {
     setValues(clickedModalData);
@@ -37,21 +38,30 @@ const SkillModal = ({
     };
     setIsError(null);
     setIsLoading(true);
-    try {
-      if (addSkill) {
-        await API.post('skillsList', '/skillslist', params);
-      } else {
-        await API.patch(
-          'skillsList',
-          `/skillslist/${clickedModalData.skillId}`,
-          params,
-        );
-      }
-      handleCloseModal();
-      // setIsLoading(false);
-    } catch (error) {
-      setIsError(error);
+    const form = event.currentTarget;
+
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
       setIsLoading(false);
+      setValidated(true);
+    } else {
+      try {
+        if (addSkill) {
+          await API.post('skillsList', '/skillslist', params);
+        } else {
+          await API.patch(
+            'skillsList',
+            `/skillslist/${clickedModalData.skillId}`,
+            params,
+          );
+        }
+        handleCloseModal();
+        // setIsLoading(false);
+      } catch (error) {
+        setIsError(error);
+        setIsLoading(false);
+        setValidated(true);
+      }
     }
   };
 
@@ -70,18 +80,28 @@ const SkillModal = ({
                 <strong>Error:</strong> {isError.message}
               </Alert>
             )}
-            <Form id="skills-list-form" onSubmit={handleSubmit}>
+            <Form
+              validated={validated}
+              noValidate
+              id="skills-list-form"
+              onSubmit={handleSubmit}
+            >
               <Form.Group
                 controlId={addSkill ? 'formAddSkillName' : 'formEditSkillName'}
               >
                 <Form.Label>Skill Name</Form.Label>
                 <Form.Control
+                  autoFocus
                   name="skillName"
                   type="text"
                   value={values.skillName}
                   onChange={handleInputChange}
                   disabled={isLoading}
+                  required
                 />
+                <Form.Control.Feedback type="invalid">
+                  Please provide a skill name.
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group
                 controlId={
@@ -98,7 +118,11 @@ const SkillModal = ({
                   value={values.skillDescription}
                   onChange={handleInputChange}
                   disabled={isLoading}
+                  required
                 />
+                <Form.Control.Feedback type="invalid">
+                  Please provide a short skill description.
+                </Form.Control.Feedback>
               </Form.Group>
             </Form>
           </Modal.Body>
