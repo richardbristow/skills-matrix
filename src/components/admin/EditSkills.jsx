@@ -68,16 +68,16 @@ const SkillModal = ({
     setIsLoading(true);
     try {
       if (addSkill) {
-        await API.post('skillsList', '/skillslists', params);
+        await API.post('skillsList', '/skillslist', params);
       } else {
         await API.patch(
           'skillsList',
           `/skillslist/${clickedModalData.skillId}`,
           params,
         );
-        handleCloseModal();
-        // setIsLoading(false);
       }
+      handleCloseModal();
+      // setIsLoading(false);
     } catch (error) {
       setIsError(error);
       setIsLoading(false);
