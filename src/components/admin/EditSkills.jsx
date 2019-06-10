@@ -76,50 +76,59 @@ const EditSkills = () => {
       ) : (
         <>
           <StyledSkillsGrid>
-            {data.Items.map((skill, index) => {
-              const { skillName, skillDescription, skillId } = skill;
-              return (
-                <Card key={skillId}>
-                  <Card.Body>
-                    <Card.Title>
-                      <div css="float: right">
-                        <OverlayTrigger
-                          placement="top"
-                          overlay={<Tooltip>Edit</Tooltip>}
-                        >
-                          <StyledButton
-                            name={skillName}
-                            type="button"
-                            onClick={() => {
-                              setClickedModalData(data.Items[index]);
-                              setEditModalOpen(true);
-                            }}
+            {data.Items.length < 1 ? (
+              <div css="grid-column: span 2">
+                <p>
+                  <strong>No skills to display.</strong>
+                </p>
+                <p>Skills can be added using the button above.</p>
+              </div>
+            ) : (
+              data.Items.map((skill, index) => {
+                const { skillName, skillDescription, skillId } = skill;
+                return (
+                  <Card key={skillId}>
+                    <Card.Body>
+                      <Card.Title>
+                        <div css="float: right">
+                          <OverlayTrigger
+                            placement="top"
+                            overlay={<Tooltip>Edit</Tooltip>}
                           >
-                            <Edit size={18} />
-                          </StyledButton>
-                        </OverlayTrigger>
-                        <OverlayTrigger
-                          placement="top"
-                          overlay={<Tooltip>Delete</Tooltip>}
-                        >
-                          <StyledButton
-                            type="button"
-                            onClick={() => {
-                              setClickedModalData(data.Items[index]);
-                              setDeleteModalOpen(true);
-                            }}
+                            <StyledButton
+                              name={skillName}
+                              type="button"
+                              onClick={() => {
+                                setClickedModalData(data.Items[index]);
+                                setEditModalOpen(true);
+                              }}
+                            >
+                              <Edit size={18} />
+                            </StyledButton>
+                          </OverlayTrigger>
+                          <OverlayTrigger
+                            placement="top"
+                            overlay={<Tooltip>Delete</Tooltip>}
                           >
-                            <Trash2 size={18} />
-                          </StyledButton>
-                        </OverlayTrigger>
-                      </div>
-                      {skillName}
-                    </Card.Title>
-                    <Card.Text>{skillDescription}</Card.Text>
-                  </Card.Body>
-                </Card>
-              );
-            })}
+                            <StyledButton
+                              type="button"
+                              onClick={() => {
+                                setClickedModalData(data.Items[index]);
+                                setDeleteModalOpen(true);
+                              }}
+                            >
+                              <Trash2 size={18} />
+                            </StyledButton>
+                          </OverlayTrigger>
+                        </div>
+                        {skillName}
+                      </Card.Title>
+                      <Card.Text>{skillDescription}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                );
+              })
+            )}
           </StyledSkillsGrid>
 
           <SkillModal
