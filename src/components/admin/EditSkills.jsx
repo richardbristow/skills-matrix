@@ -35,22 +35,20 @@ const EditSkills = () => {
   const [isError, setIsError] = useState(null);
 
   useEffect(() => {
-    if (!clickedModalData) {
-      const fetchData = async () => {
-        setIsError(null);
-        setIsLoading(true);
-        try {
-          const response = await API.get('skillsList', '/skillslist');
-          setData(response);
-        } catch (error) {
-          setIsError(error);
-        }
-        setIsLoading(false);
-      };
+    const fetchData = async () => {
+      setIsError(null);
+      setIsLoading(true);
+      try {
+        const response = await API.get('skillsList', '/skillslist');
+        setData(response);
+      } catch (error) {
+        setIsError(error);
+      }
+      setIsLoading(false);
+    };
 
-      fetchData();
-    }
-  }, [clickedModalData]);
+    fetchData();
+  }, []);
 
   return (
     <StyledMain>
@@ -137,6 +135,7 @@ const EditSkills = () => {
             setOpenModal={setAddSkillModalOpen}
             clickedModalData={clickedModalData}
             setClickedModalData={setClickedModalData}
+            setData={setData}
           />
 
           <SkillModal
@@ -144,6 +143,7 @@ const EditSkills = () => {
             setOpenModal={setEditModalOpen}
             clickedModalData={clickedModalData}
             setClickedModalData={setClickedModalData}
+            setData={setData}
           />
 
           <DeleteModal
@@ -151,6 +151,7 @@ const EditSkills = () => {
             setOpenModal={setDeleteModalOpen}
             clickedModalData={clickedModalData}
             setClickedModalData={setClickedModalData}
+            setData={setData}
           />
         </>
       )}

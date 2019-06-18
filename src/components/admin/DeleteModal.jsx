@@ -8,13 +8,14 @@ const DeleteModal = ({
   setOpenModal,
   clickedModalData,
   setClickedModalData,
+  setData,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
 
   const handleCloseModal = () => {
-    setClickedModalData(null);
     setOpenModal(false);
+    setClickedModalData(null);
   };
 
   const handleDelete = async () => {
@@ -22,12 +23,13 @@ const DeleteModal = ({
     setIsLoading(true);
     try {
       await API.del('skillsList', `/skillslist/${clickedModalData.skillId}`);
+      const response = await API.get('skillsList', '/skillslist');
+      setData(response);
       handleCloseModal();
-      // setIsLoading(false);
     } catch (error) {
       setIsError(error);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -95,6 +97,7 @@ DeleteModal.propTypes = {
     skillId: PropTypes.string,
   }),
   setClickedModalData: PropTypes.func.isRequired,
+  setData: PropTypes.func.isRequired,
 };
 
 export default DeleteModal;

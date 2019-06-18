@@ -9,6 +9,7 @@ const SkillModal = ({
   setOpenModal,
   clickedModalData,
   setClickedModalData,
+  setData,
 }) => {
   const [values, setValues] = useState(clickedModalData);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,13 +56,14 @@ const SkillModal = ({
             params,
           );
         }
+        const response = await API.get('skillsList', '/skillslist');
+        setData(response);
         handleCloseModal();
-        // setIsLoading(false);
       } catch (error) {
         setIsError(error);
-        setIsLoading(false);
         setValidated(true);
       }
+      setIsLoading(false);
     }
   };
 
@@ -177,6 +179,7 @@ SkillModal.propTypes = {
     skillDescription: PropTypes.string,
     skillId: PropTypes.string,
   }),
+  setData: PropTypes.func.isRequired,
   setClickedModalData: PropTypes.func.isRequired,
 };
 
