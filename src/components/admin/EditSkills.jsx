@@ -68,7 +68,15 @@ const EditSkills = () => {
       >
         Add new skill
       </Button>
-      {isError && <div>Something went wrong ...</div>}
+      {isError ? (
+        <div>
+          <p>Something went wrong :(</p>
+          <p>
+            <strong>Error:</strong> {isError.message}
+          </p>
+        </div>
+      ) : (
+        <>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -153,6 +161,8 @@ const EditSkills = () => {
             setClickedModalData={setClickedModalData}
             setData={setData}
           />
+        </>
+      )}
         </>
       )}
     </StyledMain>
