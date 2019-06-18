@@ -9,6 +9,7 @@ import SideBar from './components/SideBar';
 import PrivateRoute from './shared/PrivateRoute';
 import Home from './components/Home';
 import EditSkills from './components/admin/EditSkills';
+import Skills from './components/user/Skills';
 
 const StyledApp = styled.div`
   display: grid;
@@ -60,6 +61,11 @@ const App = () => {
               render={props => (
                 <Login setAuthenticated={setAuthenticated} {...props} />
               )}
+            />
+            <PrivateRoute
+              path="/skills"
+              authenticated={authenticated}
+              component={Skills}
             />
             <PrivateRoute
               path="/editskills"
