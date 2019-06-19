@@ -6,6 +6,7 @@ import { Check } from 'react-feather';
 
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
+import Error from '../../shared/Error';
 
 const StyledUserSkillsGrid = styled.div`
   display: grid;
@@ -83,22 +84,15 @@ const SkillsRatingCard = ({ skill }) => {
 };
 
 const Skills = () => {
-  const [{ data, isLoading, isError }] = useFetch(
-    'skillsList',
-    '/skillslistX',
-    { Items: [] },
-  );
+  const [{ data, isLoading, isError }] = useFetch('skillsList', '/skillslist', {
+    Items: [],
+  });
 
   return (
     <StyledMain>
       <h2>My Skills</h2>
       {isError ? (
-        <div>
-          <p>Something went wrong :(</p>
-          <p>
-            <strong>Error:</strong> {isError.message}
-          </p>
-        </div>
+        <Error error={isError} contentWidth header />
       ) : (
         <>
           {isLoading ? (

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, Button, Spinner, Alert } from 'react-bootstrap';
+import { Modal, Button, Spinner } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { API } from 'aws-amplify';
+
+import Error from '../../shared/Error';
 
 const DeleteModal = ({
   modalOpen,
@@ -40,11 +42,7 @@ const DeleteModal = ({
             <Modal.Title>Please confirm</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {isError && (
-              <Alert variant="danger">
-                <strong>Error:</strong> {isError.message}
-              </Alert>
-            )}
+            {isError && <Error error={isError} />}
             Are you sure you want to delete the skill,{' '}
             <strong>{clickedModalData.skillName}</strong>?
           </Modal.Body>

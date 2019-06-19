@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form, Spinner, Alert } from 'react-bootstrap';
+import { Modal, Button, Form, Spinner } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { API } from 'aws-amplify';
+
+import Error from '../../shared/Error';
 
 const SkillModal = ({
   addSkill,
@@ -77,11 +79,7 @@ const SkillModal = ({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {isError && (
-              <Alert variant="danger">
-                <strong>Error:</strong> {isError.message}
-              </Alert>
-            )}
+            {isError && <Error error={isError} />}
             <Form
               validated={validated}
               noValidate

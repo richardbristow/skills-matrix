@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Form,
-  Card,
-  Alert,
-  InputGroup,
-  Spinner,
-} from 'react-bootstrap';
+import { Button, Form, Card, InputGroup, Spinner } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { AtSign, Lock } from 'react-feather';
 import styled from 'styled-components/macro';
 
 import StyledMain from '../shared/StyledMain';
+import Error from '../shared/Error';
 
 const StyledLogin = styled(StyledMain)`
   @media all and (min-width: 480px) {
@@ -23,26 +17,26 @@ const StyledLogin = styled(StyledMain)`
 const Login = ({ setAuthenticated, ...props }) => {
   const [values, setValues] = useState({ email: '', password: '' });
   const [validated, setValidated] = useState(false);
-  const [authError, setAuthError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { email, password } = values;
 
   const handleInputChange = ({ target }) => {
     const { name, value } = target;
     setValues({ ...values, [name]: value });
-    setAuthError(null);
+    setIsError(null);
   };
 
   const handleSubmit = async event => {
     event.preventDefault();
-    setAuthError(null);
-    setLoading(true);
+    setIsError(null);
+    setIsLoading(true);
     const form = event.currentTarget;
 
     if (form.checkValidity() === false) {
       event.stopPropagation();
-      setLoading(false);
+      setIsLoading(false);
       setValidated(true);
     } else {
       try {
@@ -50,8 +44,8 @@ const Login = ({ setAuthenticated, ...props }) => {
         setAuthenticated(true);
         props.history.push('/');
       } catch (err) {
-        setAuthError(err.message);
-        setLoading(false);
+        setIsError(err);
+        setIsLoading(false);
         setValidated(true);
       }
     }
@@ -110,19 +104,15 @@ const Login = ({ setAuthenticated, ...props }) => {
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
-            {authError && (
-              <Alert variant="danger">
-                <strong>Error:</strong> {authError}
-              </Alert>
-            )}
+            {isError && <Error error={isError} />}
             <Button
               variant="outline-primary"
-              disabled={checkForEmptyForm() || loading}
+              disabled={checkForEmptyForm() || isLoading}
               type="submit"
               block
               css={checkForEmptyForm() ? 'cursor: not-allowed;' : 'undefined'}
             >
-              {loading ? (
+              {isLoading ? (
                 <>
                   <Spinner
                     as="span"

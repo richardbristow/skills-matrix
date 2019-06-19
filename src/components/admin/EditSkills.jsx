@@ -7,6 +7,7 @@ import useFetch from '../../hooks/useFetch';
 import StyledMain from '../../shared/StyledMain';
 import SkillModal from './SkillModal';
 import DeleteModal from './DeleteModal';
+import Error from '../../shared/Error';
 
 const StyledSkillsGrid = styled.div`
   display: grid;
@@ -31,7 +32,7 @@ const EditSkills = () => {
   const [clickedModalData, setClickedModalData] = useState(null);
   const [{ data, isLoading, isError }, setData] = useFetch(
     'skillsList',
-    '/skillslistX',
+    '/skillslist',
     { Items: [] },
   );
 
@@ -54,12 +55,7 @@ const EditSkills = () => {
         Add new skill
       </Button>
       {isError ? (
-        <div>
-          <p>Something went wrong :(</p>
-          <p>
-            <strong>Error:</strong> {isError.message}
-          </p>
-        </div>
+        <Error error={isError} contentWidth header />
       ) : (
         <>
           {isLoading ? (
