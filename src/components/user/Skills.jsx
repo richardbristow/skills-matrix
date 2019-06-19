@@ -6,6 +6,7 @@ import { Check } from 'react-feather';
 
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
+import Loading from '../../shared/Loading';
 import Error from '../../shared/Error';
 
 const StyledUserSkillsGrid = styled.div`
@@ -96,7 +97,7 @@ const Skills = () => {
       ) : (
         <>
           {isLoading ? (
-            <div>Loading...</div>
+            <Loading />
           ) : (
             <StyledUserSkillsGrid>
               {data.Items.length < 1 ? (

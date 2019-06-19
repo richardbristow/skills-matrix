@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Card, InputGroup, Spinner } from 'react-bootstrap';
+import { Button, Form, Card, InputGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import { AtSign, Lock } from 'react-feather';
@@ -7,6 +7,7 @@ import styled from 'styled-components/macro';
 
 import StyledMain from '../shared/StyledMain';
 import Error from '../shared/Error';
+import Loading from '../shared/Loading';
 
 const StyledLogin = styled(StyledMain)`
   @media all and (min-width: 480px) {
@@ -113,17 +114,11 @@ const Login = ({ setAuthenticated, ...props }) => {
               css={checkForEmptyForm() ? 'cursor: not-allowed;' : 'undefined'}
             >
               {isLoading ? (
-                <>
-                  <Spinner
-                    as="span"
-                    animation="grow"
-                    variant="primary"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                  Logging in...
-                </>
+                <Loading
+                  button
+                  spinnerVariant="primary"
+                  buttonLoadingText="Logging in..."
+                />
               ) : (
                 'Login'
               )}

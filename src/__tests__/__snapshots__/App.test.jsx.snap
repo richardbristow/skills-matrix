@@ -174,7 +174,7 @@ exports[`App renders without throwing errors 1`] = `
               </div>
               <button
                 _css="cursor: not-allowed;"
-                class="sc-bdVaJa cGNLgo btn btn-outline-primary btn-block"
+                class="sc-ifAKCX CTkZc btn btn-outline-primary btn-block"
                 disabled=""
                 type="submit"
               >

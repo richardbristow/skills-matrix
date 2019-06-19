@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Modal, Button, Spinner } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { API } from 'aws-amplify';
 
 import Error from '../../shared/Error';
+import Loading from '../../shared/Loading';
 
 const DeleteModal = ({
   modalOpen,
@@ -56,17 +57,7 @@ const DeleteModal = ({
               onClick={handleDelete}
             >
               {isLoading ? (
-                <>
-                  <Spinner
-                    as="span"
-                    animation="grow"
-                    variant="light"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                  Deleting...
-                </>
+                <Loading button buttonLoadingText="Deleting..." />
               ) : (
                 'Delete'
               )}

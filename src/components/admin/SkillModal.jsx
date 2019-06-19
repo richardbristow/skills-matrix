@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form, Spinner } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { API } from 'aws-amplify';
 
 import Error from '../../shared/Error';
+import Loading from '../../shared/Loading';
 
 const SkillModal = ({
   addSkill,
@@ -137,17 +138,7 @@ const SkillModal = ({
               variant="primary"
             >
               {isLoading ? (
-                <>
-                  <Spinner
-                    as="span"
-                    animation="grow"
-                    variant="primary"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                  Saving...
-                </>
+                <Loading button buttonLoadingText="Saving..." />
               ) : (
                 'Save Changes'
               )}

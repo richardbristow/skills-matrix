@@ -7,6 +7,7 @@ import useFetch from '../../hooks/useFetch';
 import StyledMain from '../../shared/StyledMain';
 import SkillModal from './SkillModal';
 import DeleteModal from './DeleteModal';
+import Loading from '../../shared/Loading';
 import Error from '../../shared/Error';
 
 const StyledSkillsGrid = styled.div`
@@ -59,7 +60,7 @@ const EditSkills = () => {
       ) : (
         <>
           {isLoading ? (
-            <div>Loading...</div>
+            <Loading />
           ) : (
             <>
               <StyledSkillsGrid>
