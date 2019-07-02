@@ -44,8 +44,14 @@ const DeleteModal = ({
           </Modal.Header>
           <Modal.Body>
             {isError && <Error error={isError} />}
-            Are you sure you want to delete the skill,{' '}
-            <strong>{clickedModalData.skillName}</strong>?
+            <p>
+              Are you sure you want to delete the skill,{' '}
+              <strong>{clickedModalData.skillName}</strong>?{' '}
+            </p>
+            <p>
+              This will <strong>permanently</strong> delete all related user
+              ratings and training requests.
+            </p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="outline-secondary" onClick={handleCloseModal}>
