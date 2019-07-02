@@ -41,18 +41,22 @@ functions:
           path: /skillslist
           method: get
           cors: true
+          authorizer: aws_iam
       - http:
           path: /skillslist
           method: post
           cors: true
+          authorizer: aws_iam
       - http:
           path: /skillslist/{skillId}
           method: patch
           cors: true
+          authorizer: aws_iam
       - http:
           path: /skillslist/{skillId}
           method: delete
           cors: true
+          authorizer: aws_iam
 
 resources:
   Resources:
