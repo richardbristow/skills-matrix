@@ -25,8 +25,8 @@ const DeleteModal = ({
     setIsError(null);
     setIsLoading(true);
     try {
-      await API.del('skillsList', `/skillslist/${clickedModalData.skillId}`);
-      const response = await API.get('skillsList', '/skillslist');
+      await API.del('skillsMatrix', `/skillslist/${clickedModalData.skillId}`);
+      const response = await API.get('skillsMatrix', '/skillslist');
       setData(response);
       handleCloseModal();
     } catch (error) {

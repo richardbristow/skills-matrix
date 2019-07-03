@@ -51,15 +51,15 @@ const SkillModal = ({
     } else {
       try {
         if (addSkill) {
-          await API.post('skillsList', '/skillslist', params);
+          await API.post('skillsMatrix', '/skillslist', params);
         } else {
           await API.patch(
-            'skillsList',
+            'skillsMatrix',
             `/skillslist/${clickedModalData.skillId}`,
             params,
           );
         }
-        const response = await API.get('skillsList', '/skillslist');
+        const response = await API.get('skillsMatrix', '/skillslist');
         setData(response);
         handleCloseModal();
       } catch (error) {

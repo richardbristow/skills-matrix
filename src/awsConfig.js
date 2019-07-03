@@ -9,12 +9,7 @@ export default {
   API: {
     endpoints: [
       {
-        name: 'skillsList',
-        endpoint: process.env.REACT_APP_API_URL,
-        region: process.env.REACT_APP_AWS_REGION,
-      },
-      {
-        name: 'skillsUser',
+        name: 'skillsMatrix',
         endpoint: process.env.REACT_APP_API_URL,
         region: process.env.REACT_APP_AWS_REGION,
       },

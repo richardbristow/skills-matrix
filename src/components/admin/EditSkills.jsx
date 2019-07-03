@@ -32,7 +32,7 @@ const EditSkills = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [clickedModalData, setClickedModalData] = useState(null);
   const [{ data, isLoading, isError }, setData] = useFetch(
-    'skillsList',
+    'skillsMatrix',
     '/skillslist',
     { Items: [] },
   );
