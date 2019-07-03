@@ -7,12 +7,16 @@ const dynamoDbCall = require('../utils/dynamoDbCall');
 const skillsListGet = async () => {
   const params = {
     TableName: process.env.TABLENAME,
+    KeyConditionExpression: 'itemId = :id',
+    ExpressionAttributeValues: {
+      ':id': 'skill',
+    },
   };
 
   try {
-    const dynamoResponse = await dynamoDbCall('scan', params);
-    console.log(`SCAN: Success getting ${process.env.TABLENAME}`);
-    console.log('SCAN dynamoResponse', dynamoResponse);
+    const dynamoResponse = await dynamoDbCall('query', params);
+    console.log(`QUERY: Success getting items from ${process.env.TABLENAME}`);
+    console.log('QUERY dynamoResponse', dynamoResponse);
     return buildResponse(200, dynamoResponse);
   } catch (error) {
     throw new Error(error);
@@ -45,7 +49,7 @@ const skillsListEdit = async event => {
   const body = JSON.parse(event.body);
   const params = {
     TableName: process.env.TABLENAME,
-    Key: { ...event.pathParameters },
+    Key: { ...event.pathParameters, itemId: body.itemId },
     UpdateExpression:
       'set skillDescription = :description, skillName = :name, lastModified = :modified',
     ExpressionAttributeValues: {
@@ -69,12 +73,26 @@ const skillsListEdit = async event => {
 const skillsListDelete = async event => {
   const params = {
     TableName: process.env.TABLENAME,
-    Key: { ...event.pathParameters },
-    ReturnValues: 'ALL_OLD',
+    IndexName: 'skillId-index',
+    KeyConditionExpression: 'skillId = :id',
+    ExpressionAttributeValues: {
+      ':id': event.pathParameters.skillId,
+    },
+    ProjectionExpression: 'skillId, itemId',
   };
 
   try {
-    const dynamoResponse = await dynamoDbCall('delete', params);
+    const deleteRequests = [];
+    const dynamoQueryResponse = await dynamoDbCall('query', params);
+    dynamoQueryResponse.Items.forEach(item => {
+      deleteRequests.push({ DeleteRequest: { Key: item } });
+    });
+
+    const dynamoResponse = await dynamoDbCall('batchWrite', {
+      RequestItems: {
+        [process.env.TABLENAME]: deleteRequests,
+      },
+    });
     console.log(`DELETE: Success deleting item in ${process.env.TABLENAME}`);
     console.log('DELETE dynamoResponse', dynamoResponse);
     return buildResponse(200, dynamoResponse);

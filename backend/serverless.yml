@@ -22,14 +22,16 @@ provider:
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
-        - dynamodb:Scan
+        - dynamodb:Query
         - dynamodb:PutItem
         - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
+        - dynamodb:BatchWriteItem
       Resource:
-        Fn::GetAtt:
-          - SkillsTable
-          - Arn
+        - { 'Fn::GetAtt': ['SkillsTable', 'Arn'] }
+        - {
+            'Fn::Join':
+              ['/', [{ 'Fn::GetAtt': ['SkillsTable', 'Arn'] }, 'index/*']],
+          }
 
 functions:
   skillsList:
@@ -65,14 +67,30 @@ resources:
       Properties:
         TableName: ${self:provider.environment.TABLENAME}
         AttributeDefinitions:
+          - AttributeName: itemId
+            AttributeType: S
           - AttributeName: skillId
             AttributeType: S
         KeySchema:
-          - AttributeName: skillId
+          - AttributeName: itemId
             KeyType: HASH
+          - AttributeName: skillId
+            KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: ${self:custom.tableThroughput}
           WriteCapacityUnits: ${self:custom.tableThroughput}
+        GlobalSecondaryIndexes:
+          - IndexName: skillId-index
+            KeySchema:
+              - AttributeName: skillId
+                KeyType: HASH
+              - AttributeName: itemId
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: ${self:custom.tableThroughput}
+              WriteCapacityUnits: ${self:custom.tableThroughput}
 
 package:
   exclude:

@@ -38,7 +38,7 @@ const SkillModal = ({
     event.preventDefault();
     const { skillName, skillDescription } = values;
     const params = {
-      body: { skillName, skillDescription },
+      body: { skillName, skillDescription, itemId: 'skill' },
     };
     setIsError(null);
     setIsLoading(true);
