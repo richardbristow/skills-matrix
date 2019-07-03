@@ -60,6 +60,52 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  skillsUser:
+    handler: lambda/skillsUser.skillsUser
+    name: ${self:provider.stage}-skillsUser
+    description: 'CRUD function for user skills and training in the table, ${self:provider.environment.TABLENAME}'
+    events:
+      - http:
+          path: /user/skills
+          method: get
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /user/training
+          method: get
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /user/skills
+          method: post
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /user/training
+          method: post
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /user/skills/{skillId}
+          method: patch
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /user/training/{skillId}
+          method: patch
+          cors: true
+          authorizer: aws_iam
+      # - http:
+      #     path: /user/skills/{skillId}
+      #     method: delete
+      #     cors: true
+      #     authorizer: aws_iam
+      - http:
+          path: /user/training/{skillId}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+
 resources:
   Resources:
     SkillsTable:

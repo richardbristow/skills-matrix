@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Check } from 'react-feather';
+import { API } from 'aws-amplify';
 
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
@@ -44,16 +45,24 @@ const StyledTrafficRadioButton = styled.div`
   }
 `;
 
-const TrafficRadioButton = ({ skill, rating, color }) => {
+const TrafficRadioButton = ({
+  skill,
+  rating,
+  color,
+  checked,
+  handleChange,
+}) => {
   const { skillId, skillName } = skill;
   return (
     <StyledTrafficRadioButton color={color}>
-      <label htmlFor={`${skillId}-${rating}`}>
+      <label htmlFor={`${skillId}#${rating}`}>
         <input
-          id={`${skillId}-${rating}`}
+          id={`${skillId}#${rating}`}
           type="radio"
-          name={`${skillId}-${skillName}`}
+          name={`${skillId}#${skillName}`}
           value={rating}
+          checked={checked}
+          onChange={handleChange}
         />
         <span>
           <Check
@@ -68,25 +77,72 @@ const TrafficRadioButton = ({ skill, rating, color }) => {
 };
 
 const SkillsRatingCard = ({ skill }) => {
-  const { skillName, skillDescription } = skill;
+  const { skillName, skillDescription, rating } = skill;
+  const [checkedRating, setCheckedRating] = useState(rating);
+
+  const handleChange = async ({ target }) => {
+    setCheckedRating(target.value);
+    const params = {
+      body: { rating: target.value, skillId: skill.skillId },
+    };
+    await API.post('skillsList', `/user/skills`, params);
+  };
+
   return (
     <Card>
       <Card.Header as="h5">{skillName}</Card.Header>
       <Card.Body>
         {skillDescription}
         <div>
-          <TrafficRadioButton skill={skill} rating="good" color="green" />
-          <TrafficRadioButton skill={skill} rating="okay" color="orange" />
-          <TrafficRadioButton skill={skill} rating="bad" color="red" />
+          <TrafficRadioButton
+            skill={skill}
+            rating="good"
+            color="green"
+            checked={checkedRating === 'good'}
+            handleChange={handleChange}
+          />
+          <TrafficRadioButton
+            skill={skill}
+            rating="ok"
+            color="orange"
+            checked={checkedRating === 'ok'}
+            handleChange={handleChange}
+          />
+          <TrafficRadioButton
+            skill={skill}
+            rating="bad"
+            color="red"
+            checked={checkedRating === 'bad'}
+            handleChange={handleChange}
+          />
         </div>
+        {skill.lastModified && (
+          <span className="text-muted" css="font-size: 12px">
+            Last updated: {new Date(skill.lastModified).toLocaleString()}
+          </span>
+        )}
       </Card.Body>
     </Card>
   );
 };
 
 const Skills = () => {
-  const [{ data, isLoading, isError }] = useFetch('skillsList', '/skillslist', {
-    Items: [],
+  const [{ data, isLoading, isError }] = useFetch(
+    'skillsUser',
+    '/user/skills',
+    { skillsList: { Items: [] }, skillsUser: { Items: [] } },
+  );
+
+  const reformattedData = data.skillsList.Items.map(skill => {
+    const userRating = data.skillsUser.Items.find(
+      user => user.skillId === skill.skillId,
+    );
+    return {
+      ...userRating,
+      skillDescription: skill.skillDescription,
+      skillName: skill.skillName,
+      skillId: skill.skillId,
+    };
   });
 
   return (
@@ -100,10 +156,10 @@ const Skills = () => {
             <Loading />
           ) : (
             <StyledUserSkillsGrid>
-              {data.Items.length < 1 ? (
+              {reformattedData.length < 1 ? (
                 <div>Nothing to see here</div>
               ) : (
-                data.Items.map(skill => {
+                reformattedData.map(skill => {
                   const { skillId } = skill;
                   return <SkillsRatingCard key={skillId} skill={skill} />;
                 })
