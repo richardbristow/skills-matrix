@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
-import { Card } from 'react-bootstrap';
+import styled, { css } from 'styled-components/macro';
+import { Card, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Check } from 'react-feather';
 import { API } from 'aws-amplify';
@@ -55,80 +55,136 @@ const TrafficRadioButton = ({
   const { skillId, skillName } = skill;
   return (
     <StyledTrafficRadioButton color={color}>
-      <label htmlFor={`${skillId}#${rating}`}>
-        <input
-          id={`${skillId}#${rating}`}
-          type="radio"
-          name={`${skillId}#${skillName}`}
-          value={rating}
-          checked={checked}
-          onChange={handleChange}
-        />
-        <span>
-          <Check
-            css="opacity: 0; transition: all .2s ease;"
-            size={35}
-            color="white"
+      <OverlayTrigger placement="bottom" overlay={<Tooltip>{rating}</Tooltip>}>
+        <label htmlFor={`${skillId}#${rating}`}>
+          <input
+            id={`${skillId}#${rating}`}
+            type="radio"
+            name={`${skillId}#${skillName}`}
+            value={rating}
+            checked={checked}
+            onChange={handleChange}
           />
-        </span>
-      </label>
+          <span>
+            <Check
+              css="opacity: 0; transition: all .2s ease;"
+              size={35}
+              color="white"
+            />
+          </span>
+        </label>
+      </OverlayTrigger>
     </StyledTrafficRadioButton>
   );
 };
 
-const SkillsRatingCard = ({ skill }) => {
+const StyledLoadingOverlay = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  text-align: center;
+`;
+
+const LoadingOverlay = () => (
+  <StyledLoadingOverlay>
+    <Spinner
+      css="width: 4rem; height: 4rem"
+      animation="border"
+      variant="light"
+      role="status"
+    />
+  </StyledLoadingOverlay>
+);
+
+const SkillsRatingCard = ({ skill, setData }) => {
   const { skillName, skillDescription, rating } = skill;
   const [checkedRating, setCheckedRating] = useState(rating);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
 
   const handleChange = async ({ target }) => {
     setCheckedRating(target.value);
+    setIsError(null);
+    setIsLoading(true);
     const params = {
       body: { rating: target.value, skillId: skill.skillId },
     };
-    await API.post('skillsList', `/user/skills`, params);
+    try {
+      await API.post('skillsMatrix', `/user/skills`, params);
+      const response = await API.get('skillsMatrix', `/user/skills`);
+      setData(response);
+    } catch (error) {
+      setIsError(error);
+    }
+    setIsLoading(false);
   };
 
   return (
     <Card>
-      <Card.Header as="h5">{skillName}</Card.Header>
-      <Card.Body>
-        {skillDescription}
-        <div>
-          <TrafficRadioButton
-            skill={skill}
-            rating="good"
-            color="green"
-            checked={checkedRating === 'good'}
-            handleChange={handleChange}
-          />
-          <TrafficRadioButton
-            skill={skill}
-            rating="ok"
-            color="orange"
-            checked={checkedRating === 'ok'}
-            handleChange={handleChange}
-          />
-          <TrafficRadioButton
-            skill={skill}
-            rating="bad"
-            color="red"
-            checked={checkedRating === 'bad'}
-            handleChange={handleChange}
-          />
-        </div>
-        {skill.lastModified && (
-          <span className="text-muted" css="font-size: 12px">
-            Last updated: {new Date(skill.lastModified).toLocaleString()}
-          </span>
+      <Card.Header as="h5">
+        {isLoading ? (
+          <i>
+            {skillName} - <span className="text-muted">Updating...</span>
+          </i>
+        ) : (
+          skillName
         )}
+      </Card.Header>
+      <Card.Body css="position: relative">
+        {isLoading && <LoadingOverlay />}
+        {isError && <Error error={isError} />}
+        {skillDescription}
+        <div css="padding: 20px 0px; text-align: center;">
+          <h6>My Rating:</h6>
+          <div
+            css={css`
+              padding: 10px 0px;
+              div:not(:last-child) {
+                padding-right: 30px;
+              }
+            `}
+          >
+            <TrafficRadioButton
+              skill={skill}
+              rating="good"
+              color="green"
+              checked={checkedRating === 'good'}
+              handleChange={handleChange}
+            />
+            <TrafficRadioButton
+              skill={skill}
+              rating="ok"
+              color="orange"
+              checked={checkedRating === 'ok'}
+              handleChange={handleChange}
+            />
+            <TrafficRadioButton
+              skill={skill}
+              rating="bad"
+              color="red"
+              checked={checkedRating === 'bad'}
+              handleChange={handleChange}
+            />
+          </div>
+        </div>
       </Card.Body>
+      <Card.Footer className="text-muted" css="font-size: 12px">
+        Last updated:{' '}
+        {skill.lastModified
+          ? new Date(skill.lastModified).toLocaleString()
+          : 'Not yet rated'}
+      </Card.Footer>
     </Card>
   );
 };
 
 const Skills = () => {
-  const [{ data, isLoading, isError }] = useFetch(
-    'skillsUser',
+  const [{ data, isLoading, isError }, setData] = useFetch(
+    'skillsMatrix',
     '/user/skills',
     { skillsList: { Items: [] }, skillsUser: { Items: [] } },
   );
@@ -155,16 +211,28 @@ const Skills = () => {
           {isLoading ? (
             <Loading />
           ) : (
-            <StyledUserSkillsGrid>
-              {reformattedData.length < 1 ? (
-                <div>Nothing to see here</div>
-              ) : (
-                reformattedData.map(skill => {
-                  const { skillId } = skill;
-                  return <SkillsRatingCard key={skillId} skill={skill} />;
-                })
-              )}
-            </StyledUserSkillsGrid>
+            <>
+              <p>
+                Use this page to rate how comfortable you feel supporting the
+                below services:
+              </p>
+              <StyledUserSkillsGrid>
+                {reformattedData.length < 1 ? (
+                  <div>Nothing to see here</div>
+                ) : (
+                  reformattedData.map(skill => {
+                    const { skillId } = skill;
+                    return (
+                      <SkillsRatingCard
+                        key={skillId}
+                        skill={skill}
+                        setData={setData}
+                      />
+                    );
+                  })
+                )}
+              </StyledUserSkillsGrid>
+            </>
           )}
         </>
       )}
@@ -182,6 +250,8 @@ TrafficRadioButton.propTypes = {
     skillId: PropTypes.string,
     skillName: PropTypes.string,
   }).isRequired,
+  checked: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 SkillsRatingCard.propTypes = {
@@ -192,6 +262,7 @@ SkillsRatingCard.propTypes = {
     skillId: PropTypes.string,
     skillName: PropTypes.string,
   }).isRequired,
+  setData: PropTypes.func.isRequired,
 };
 
 export default Skills;

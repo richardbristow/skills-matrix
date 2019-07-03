@@ -86,20 +86,10 @@ functions:
           cors: true
           authorizer: aws_iam
       - http:
-          path: /user/skills/{skillId}
-          method: patch
-          cors: true
-          authorizer: aws_iam
-      - http:
           path: /user/training/{skillId}
           method: patch
           cors: true
           authorizer: aws_iam
-      # - http:
-      #     path: /user/skills/{skillId}
-      #     method: delete
-      #     cors: true
-      #     authorizer: aws_iam
       - http:
           path: /user/training/{skillId}
           method: delete

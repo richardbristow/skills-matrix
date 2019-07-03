@@ -60,39 +60,9 @@ const skillsUserAdd = async event => {
   }
 };
 
-const skillsUserEdit = async event => {
-  const body = JSON.parse(event.body);
-  const params = {
-    TableName: process.env.TABLENAME,
-    Key: {
-      ...event.pathParameters,
-      itemId: `rating#${event.requestContext.identity.cognitoIdentityId}`,
-    },
-    UpdateExpression: 'set rating = :rating, lastModified = :modified',
-    ExpressionAttributeValues: {
-      ':rating': body.rating,
-      ':modified': Date.now(),
-    },
-    ReturnValues: 'ALL_NEW',
-  };
-
-  try {
-    const dynamoResponse = await dynamoDbCall('update', params);
-    console.log(
-      `UPDATE: Success udating user item in ${process.env.TABLENAME}`,
-    );
-    console.log('UPDATE dynamoResponse', dynamoResponse);
-    return buildResponse(200, dynamoResponse);
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
 const handlers = {
   GET: skillsUserGet,
   POST: skillsUserAdd,
-  PATCH: skillsUserEdit,
-  // DELETE: skillsUserDelete,
 };
 
 exports.skillsUser = event => {
