@@ -63,7 +63,7 @@ functions:
   skillsUser:
     handler: lambda/skillsUser.skillsUser
     name: ${self:provider.stage}-skillsUser
-    description: 'CRUD function for user skills and training in the table, ${self:provider.environment.TABLENAME}'
+    description: 'CRUD function for user skills in ${self:provider.environment.TABLENAME}'
     events:
       - http:
           path: /user/skills
@@ -71,13 +71,19 @@ functions:
           cors: true
           authorizer: aws_iam
       - http:
-          path: /user/training
-          method: get
-          cors: true
-          authorizer: aws_iam
-      - http:
           path: /user/skills
           method: post
+          cors: true
+          authorizer: aws_iam
+
+  trainingList:
+    handler: lambda/trainingList.trainingList
+    name: ${self:provider.stage}-trainingList
+    description: 'CRUD function for user training in ${self:provider.environment.TABLENAME}'
+    events:
+      - http:
+          path: /user/training
+          method: get
           cors: true
           authorizer: aws_iam
       - http:

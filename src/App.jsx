@@ -10,6 +10,7 @@ import PrivateRoute from './shared/PrivateRoute';
 import Home from './components/Home';
 import EditSkills from './components/admin/EditSkills';
 import Skills from './components/user/Skills';
+import Training from './components/user/Training';
 
 const StyledApp = styled.div`
   display: grid;
@@ -66,6 +67,11 @@ const App = () => {
               path="/skills"
               authenticated={authenticated}
               component={Skills}
+            />
+            <PrivateRoute
+              path="/training"
+              authenticated={authenticated}
+              component={Training}
             />
             <PrivateRoute
               path="/editskills"
