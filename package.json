@@ -31,30 +31,30 @@
     ]
   },
   "dependencies": {
-    "aws-amplify": "^1.1.28",
-    "aws-sdk": "^2.466.0",
+    "aws-amplify": "^1.1.32",
+    "aws-sdk": "^2.496.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
-    "react-feather": "^1.1.6",
-    "react-router-dom": "^5.0.0",
+    "react-feather": "^2.0.3",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "styled-components": "^4.2.1",
+    "styled-components": "^4.3.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@testing-library/react": "^8.0.1",
+    "@testing-library/react": "^8.0.5",
     "eslint": "5.16.0",
-    "eslint-config-airbnb": "17.1.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-config-airbnb": "17.1.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.11.0",
+    "eslint-plugin-react": "^7.14.2",
     "history": "^4.9.0",
-    "jest-dom": "^3.4.0",
-    "prettier": "^1.17.1",
-    "serverless-offline": "^5.0.1"
+    "jest-dom": "^4.0.0",
+    "prettier": "^1.18.2",
+    "serverless-offline": "^5.8.0"
   }
 }
