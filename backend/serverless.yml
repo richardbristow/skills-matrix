@@ -26,6 +26,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:BatchWriteItem
+        - dynamodb:DeleteItem
       Resource:
         - { 'Fn::GetAtt': ['SkillsTable', 'Arn'] }
         - {
@@ -89,11 +90,6 @@ functions:
       - http:
           path: /user/training
           method: post
-          cors: true
-          authorizer: aws_iam
-      - http:
-          path: /user/training/{skillId}
-          method: patch
           cors: true
           authorizer: aws_iam
       - http:

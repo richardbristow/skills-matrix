@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-const uuid = require('uuid/v1');
 const buildResponse = require('../utils/buildResponse');
 const dynamoDbCall = require('../utils/dynamoDbCall');
 
@@ -17,10 +16,10 @@ const trainingListGet = async event => {
     TableName: process.env.TABLENAME,
     KeyConditionExpression: 'itemId = :id',
     ExpressionAttributeValues: {
-      ':id': 'training',
+      ':id': `training#${event.requestContext.identity.cognitoIdentityId}`,
     },
   };
-  console.log(event);
+
   try {
     const [skillsList, trainingList] = await Promise.all([
       dynamoDbCall('query', skillsListParams),
@@ -42,7 +41,7 @@ const trainingListAdd = async event => {
   const params = {
     TableName: process.env.TABLENAME,
     Item: {
-      itemId: 'training',
+      itemId: `training#${event.requestContext.identity.cognitoIdentityId}`,
       ...body,
       lastModified: Date.now(),
       createdAt: Date.now(),
@@ -61,9 +60,29 @@ const trainingListAdd = async event => {
   }
 };
 
+const trainingListDelete = async event => {
+  const params = {
+    TableName: process.env.TABLENAME,
+    Key: {
+      itemId: `training#${event.requestContext.identity.cognitoIdentityId}`,
+      skillId: event.pathParameters.skillId,
+    },
+  };
+
+  try {
+    const dynamoResponse = await dynamoDbCall('delete', params);
+    console.log(`DELETE: Success deleting item in ${process.env.TABLENAME}`);
+    console.log('DELETE dynamoResponse', dynamoResponse);
+    return buildResponse(200, dynamoResponse);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const handlers = {
   GET: trainingListGet,
   POST: trainingListAdd,
+  DELETE: trainingListDelete,
 };
 
 exports.trainingList = event => {
