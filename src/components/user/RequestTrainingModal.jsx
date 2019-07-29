@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { API } from 'aws-amplify';
 import PropTypes from 'prop-types';
 
 import Error from '../../shared/Error';
 import Loading from '../../shared/Loading';
+import AuthenticatedUserContext from '../../AuthenticatedUserContext';
 
 const RequestTrainingModal = ({
   requestModalOpen,
@@ -12,6 +13,7 @@ const RequestTrainingModal = ({
   reformattedSkillsList,
   setData,
 }) => {
+  const authenticatedUser = useContext(AuthenticatedUserContext);
   const [values, setValues] = useState({
     skillId: reformattedSkillsList[0].skillId,
   });
@@ -34,11 +36,11 @@ const RequestTrainingModal = ({
     setIsError(null);
     setIsLoading(true);
     const { skillId } = values;
-    // TODO: Params have hard coded name and userID
     const params = {
       body: {
         skillId,
-        attendees: [{ name: 'richard', userId: 'user-uuid-1' }],
+        attendeeName: authenticatedUser.name,
+        attendeeEmail: authenticatedUser.email,
       },
     };
     try {

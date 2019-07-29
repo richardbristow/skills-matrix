@@ -11,6 +11,7 @@ import Home from './components/Home';
 import EditSkills from './components/admin/EditSkills';
 import Skills from './components/user/Skills';
 import Training from './components/user/Training';
+import AuthenticatedUserContext from './AuthenticatedUserContext';
 
 const StyledApp = styled.div`
   display: grid;
@@ -22,17 +23,33 @@ const StyledApp = styled.div`
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [authenticating, setAuthenticating] = useState(true);
+  const [authenticatedUser, setAuthenticatedUser] = useState({});
 
   const handleLogout = async props => {
     await Auth.signOut();
     setAuthenticated(false);
+    setAuthenticatedUser({});
     props.history.push('/login');
   };
 
   useEffect(() => {
     const getUserSession = async () => {
       try {
-        await Auth.currentSession();
+        const {
+          accessToken: {
+            payload: { 'cognito:groups': group },
+          },
+          idToken: {
+            payload: { name },
+          },
+          idToken: {
+            payload: { email },
+          },
+          accessToken: {
+            payload: { username },
+          },
+        } = await Auth.currentSession();
+        setAuthenticatedUser({ name, email, username, group: group[0] });
         setAuthenticated(true);
       } catch (error) {
         if (error !== 'No current user') {
@@ -47,41 +64,43 @@ const App = () => {
 
   return (
     !authenticating && (
-      <StyledApp>
-        <SideBar authenticated={authenticated} handleLogout={handleLogout} />
-        <main>
-          <Switch>
-            <PrivateRoute
-              path="/"
-              exact
-              authenticated={authenticated}
-              component={Home}
-            />
-            <Route
-              path="/login"
-              render={props => (
-                <Login setAuthenticated={setAuthenticated} {...props} />
-              )}
-            />
-            <PrivateRoute
-              path="/skills"
-              authenticated={authenticated}
-              component={Skills}
-            />
-            <PrivateRoute
-              path="/training"
-              authenticated={authenticated}
-              component={Training}
-            />
-            <PrivateRoute
-              path="/editskills"
-              authenticated={authenticated}
-              component={EditSkills}
-            />
-            <Route component={NoRoute} />
-          </Switch>
-        </main>
-      </StyledApp>
+      <AuthenticatedUserContext.Provider value={authenticatedUser}>
+        <StyledApp>
+          <SideBar authenticated={authenticated} handleLogout={handleLogout} />
+          <main>
+            <Switch>
+              <PrivateRoute
+                path="/"
+                exact
+                authenticated={authenticated}
+                component={Home}
+              />
+              <Route
+                path="/login"
+                render={props => (
+                  <Login setAuthenticated={setAuthenticated} {...props} />
+                )}
+              />
+              <PrivateRoute
+                path="/skills"
+                authenticated={authenticated}
+                component={Skills}
+              />
+              <PrivateRoute
+                path="/training"
+                authenticated={authenticated}
+                component={Training}
+              />
+              <PrivateRoute
+                path="/editskills"
+                authenticated={authenticated}
+                component={EditSkills}
+              />
+              <Route component={NoRoute} />
+            </Switch>
+          </main>
+        </StyledApp>
+      </AuthenticatedUserContext.Provider>
     )
   );
 };
