@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 // eslint-disable-next-line no-unused-vars
 import styled, { css } from 'styled-components/macro';
+import { API } from 'aws-amplify';
 
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
@@ -10,7 +11,6 @@ import Loading from '../../shared/Loading';
 import RequestTrainingModal from './RequestTrainingModal';
 
 const Training = () => {
-  const reformattedAvailableTraining = [];
   const reformattedAttendingTraining = [];
   const reformattedSkillsList = [];
   const [{ data, isLoading, isError }, setData] = useFetch(
@@ -19,25 +19,28 @@ const Training = () => {
     { skillsList: { Items: [] }, trainingList: { Items: [] } },
   );
   const [requestModalOpen, setRequestModalOpen] = useState(false);
+  const [isDeleteError, setIsDeleteError] = useState(null);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+
+  const handleDeleteTraining = async skillId => {
+    setIsDeleteError(null);
+    setIsDeleteLoading(true);
+    try {
+      await API.del('skillsMatrix', `/user/training/${skillId}`);
+      const response = await API.get('skillsMatrix', '/user/training');
+      setData(response);
+    } catch (error) {
+      setIsDeleteError(error);
+    }
+    setIsDeleteLoading(false);
+  };
 
   data.skillsList.Items.forEach(skill => {
     const trainingSession = data.trainingList.Items.find(
       training => training.skillId === skill.skillId,
     );
     if (trainingSession) {
-      const attendingSession = trainingSession.attendees.find(
-        // TODO: Remove the hardcoded user-uuid and replace with current user id
-        attendee => attendee.userId === 'user-uuid-1',
-      );
-      if (attendingSession) {
-        return reformattedAttendingTraining.push({
-          ...trainingSession,
-          skillDescription: skill.skillDescription,
-          skillName: skill.skillName,
-          skillId: skill.skillId,
-        });
-      }
-      return reformattedAvailableTraining.push({
+      return reformattedAttendingTraining.push({
         ...trainingSession,
         skillDescription: skill.skillDescription,
         skillName: skill.skillName,
@@ -71,47 +74,44 @@ const Training = () => {
             <>
               <div>
                 <h5>My Scheduled Training</h5>
-                <p>You have requested to attend the below training sessions:</p>
+                {reformattedAttendingTraining.length > 0 ? (
+                  <p>
+                    You have requested to attend the below training sessions:
+                  </p>
+                ) : (
+                  <p>You have not requested any training sessions yet.</p>
+                )}
+                {isDeleteError && <Error error={isDeleteError} />}
                 <ListGroup>
                   {reformattedAttendingTraining.map(training => (
-                    <ListGroup.Item
-                      action
-                      css={css`
-                        &:hover {
-                          cursor: pointer;
-                        }
-                      `}
-                      key={training.skillId}
-                    >
-                      {training.skillName}
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              </div>
-              <div css="margin-top: 40px">
-                <h5>Other Available Training</h5>
-                <p>
-                  The below training sessions have been requested by other users
-                  and are available for attendance:
-                </p>
-                <ListGroup>
-                  {reformattedAvailableTraining.map(training => (
-                    <ListGroup.Item
-                      action
-                      css={css`
-                        &:hover {
-                          cursor: pointer;
-                        }
-                      `}
-                      key={training.skillId}
-                    >
-                      {training.skillName}
-                    </ListGroup.Item>
+                    <Fragment key={training.skillId}>
+                      <ListGroup.Item
+                        action
+                        css={css`
+                          &:hover {
+                            cursor: pointer;
+                          }
+                        `}
+                      >
+                        {training.skillName}
+                      </ListGroup.Item>
+                      <Button
+                        disabled={isDeleteLoading}
+                        variant="outline-warning"
+                        onClick={() => handleDeleteTraining(training.skillId)}
+                      >
+                        {isDeleteLoading ? (
+                          <Loading button buttonLoadingText="Cancelling..." />
+                        ) : (
+                          'Cancel'
+                        )}
+                      </Button>
+                    </Fragment>
                   ))}
                 </ListGroup>
               </div>
 
-              {reformattedSkillsList.length >= 1 && (
+              {reformattedSkillsList.length > 0 && (
                 <RequestTrainingModal
                   requestModalOpen={requestModalOpen}
                   setRequestModalOpen={setRequestModalOpen}
