@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { API } from 'aws-amplify';
 import PropTypes from 'prop-types';
@@ -19,6 +19,10 @@ const RequestTrainingModal = ({
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
+
+  useEffect(() => {
+    setValues({ skillId: reformattedSkillsList[0].skillId });
+  }, [reformattedSkillsList]);
 
   const handleCloseModal = () => {
     setIsError(null);

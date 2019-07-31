@@ -11,8 +11,6 @@ import Loading from '../../shared/Loading';
 import RequestTrainingModal from './RequestTrainingModal';
 
 const Training = () => {
-  const reformattedAttendingTraining = [];
-  const reformattedSkillsList = [];
   const [{ data, isLoading, isError }, setData] = useFetch(
     'skillsMatrix',
     '/user/training',
@@ -35,20 +33,32 @@ const Training = () => {
     setIsDeleteLoading(false);
   };
 
-  data.skillsList.Items.forEach(skill => {
-    const trainingSession = data.trainingList.Items.find(
-      training => training.skillId === skill.skillId,
-    );
-    if (trainingSession) {
-      return reformattedAttendingTraining.push({
-        ...trainingSession,
-        skillDescription: skill.skillDescription,
-        skillName: skill.skillName,
-        skillId: skill.skillId,
-      });
-    }
-    return reformattedSkillsList.push(skill);
-  });
+  const reformatData = () => {
+    const reformattedAttendingTraining = [];
+    const reformattedSkillsList = [];
+
+    data.skillsList.Items.forEach(skill => {
+      const trainingSession = data.trainingList.Items.find(
+        training => training.skillId === skill.skillId,
+      );
+      if (trainingSession) {
+        return reformattedAttendingTraining.push({
+          ...trainingSession,
+          skillDescription: skill.skillDescription,
+          skillName: skill.skillName,
+          skillId: skill.skillId,
+        });
+      }
+      return reformattedSkillsList.push(skill);
+    });
+
+    return { reformattedAttendingTraining, reformattedSkillsList };
+  };
+
+  const {
+    reformattedAttendingTraining,
+    reformattedSkillsList,
+  } = reformatData();
 
   return (
     <StyledMain>
@@ -58,7 +68,7 @@ const Training = () => {
         scheduled session.
       </p>
       <Button
-        disabled={isLoading}
+        disabled={isLoading || reformattedSkillsList.length === 0}
         css="margin-bottom: 40px"
         onClick={() => setRequestModalOpen(true)}
       >
