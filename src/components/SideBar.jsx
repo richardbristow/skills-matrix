@@ -40,16 +40,13 @@ const StyledSidebarMenuLink = styled.li`
   }
 `;
 
-const SidebarMenuLink = props => {
-  const { header, text, ...rest } = props;
-  return (
-    <StyledSidebarMenuLink header={header}>
-      <StyledSideBarLink header={`${header}`} {...rest}>
-        {header ? <h3>{text}</h3> : text}
-      </StyledSideBarLink>
-    </StyledSidebarMenuLink>
-  );
-};
+const SidebarMenuLink = ({ header, text, ...rest }) => (
+  <StyledSidebarMenuLink header={header}>
+    <StyledSideBarLink header={`${header}`} {...rest}>
+      {header ? <h3>{text}</h3> : text}
+    </StyledSideBarLink>
+  </StyledSidebarMenuLink>
+);
 
 const SideBar = ({ authenticated, handleLogout, ...props }) => (
   <StyledSideBar>
@@ -58,6 +55,7 @@ const SideBar = ({ authenticated, handleLogout, ...props }) => (
       {authenticated ? (
         <>
           <SidebarMenuLink to="/editskills" text="Edit Skills" />
+          <SidebarMenuLink to="/editusers" text="Edit Users" />
           <SidebarMenuLink
             text="Logout"
             to="#"
