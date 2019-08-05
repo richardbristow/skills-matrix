@@ -5,8 +5,8 @@ import { Trash2, Edit } from 'react-feather';
 
 import useFetch from '../../../hooks/useFetch';
 import StyledMain from '../../../shared/StyledMain';
-import SkillModal from '../editUsers/SkillModal';
-import DeleteModal from '../editUsers/DeleteSkillModal';
+import SkillModal from './SkillModal';
+import DeleteModal from './DeleteSkillModal';
 import Loading from '../../../shared/Loading';
 import Error from '../../../shared/Error';
 
