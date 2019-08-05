@@ -104,18 +104,19 @@ const Training = () => {
                         `}
                       >
                         {training.skillName}
+                        <Button
+                          disabled={isDeleteLoading}
+                          variant="outline-warning"
+                          onClick={() => handleDeleteTraining(training.skillId)}
+                          css="float: right"
+                        >
+                          {isDeleteLoading ? (
+                            <Loading button buttonLoadingText="Cancelling..." />
+                          ) : (
+                            'Cancel'
+                          )}
+                        </Button>
                       </ListGroup.Item>
-                      <Button
-                        disabled={isDeleteLoading}
-                        variant="outline-warning"
-                        onClick={() => handleDeleteTraining(training.skillId)}
-                      >
-                        {isDeleteLoading ? (
-                          <Loading button buttonLoadingText="Cancelling..." />
-                        ) : (
-                          'Cancel'
-                        )}
-                      </Button>
                     </Fragment>
                   ))}
                 </ListGroup>
