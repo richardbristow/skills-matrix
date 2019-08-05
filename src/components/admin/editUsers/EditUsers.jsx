@@ -7,6 +7,7 @@ import { Trash2 } from 'react-feather';
 import StyledMain from '../../../shared/StyledMain';
 import Loading from '../../../shared/Loading';
 import Error from '../../../shared/Error';
+import UserModal from './UserModal';
 
 AWS.config.update({
   region: 'us-east-1',
@@ -66,6 +67,9 @@ const EditUsers = () => {
   const [groupUsers, setGroupUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(null);
+  const [userModalOpen, setUserModalOpen] = useState(false);
+  const [clickedModalData, setClickedModalData] = useState(null);
+  // const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     const getUsersInGroup = async group => {
@@ -91,7 +95,18 @@ const EditUsers = () => {
   return (
     <StyledMain>
       <h2>Edit Users</h2>
-      <Button>Add User</Button>
+      <p>Use this page to add, edit and remove users from the application.</p>
+      <Button
+        onClick={() => {
+          setClickedModalData({
+            userName: '',
+            email: '',
+          });
+          setUserModalOpen(true);
+        }}
+      >
+        Add User
+      </Button>
       <Tabs
         activeKey={tabKey}
         id="user-group-tabs"
@@ -118,6 +133,13 @@ const EditUsers = () => {
           )}
         </Tab>
       </Tabs>
+
+      <UserModal
+        modalOpen={userModalOpen}
+        setOpenModal={setUserModalOpen}
+        clickedModalData={clickedModalData}
+        setClickedModalData={setClickedModalData}
+      />
     </StyledMain>
   );
 };
