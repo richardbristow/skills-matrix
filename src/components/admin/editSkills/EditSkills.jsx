@@ -40,7 +40,7 @@ const EditSkills = () => {
   return (
     <StyledMain>
       <h2>Edit Skills</h2>
-      <p>Use this page to add, edit an delete skills.</p>
+      <p>Use this page to add, edit and delete skills.</p>
       <Button
         disabled={isLoading}
         css="margin-bottom: 40px"

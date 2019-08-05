@@ -8,11 +8,11 @@ import NoRoute from './components/NoRoute';
 import SideBar from './components/SideBar';
 import PrivateRoute from './shared/PrivateRoute';
 import Home from './components/Home';
-import EditSkills from './components/admin/EditSkills';
+import EditSkills from './components/admin/editSkills/EditSkills';
 import Skills from './components/user/Skills';
 import Training from './components/user/Training';
 import AuthenticatedUserContext from './AuthenticatedUserContext';
-import EditUsers from './components/admin/EditUsers';
+import EditUsers from './components/admin/editUsers/EditUsers';
 
 const StyledApp = styled.div`
   display: grid;
