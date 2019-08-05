@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, NavLink, withRouter } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 
 const StyledSideBar = styled.aside`
   grid-area: sidebar;
@@ -28,7 +28,6 @@ const StyledSideBarLink = styled(NavLink)`
   }
   padding: 20px 20px 20px 40px;
   display: block;
-  cursor: ${({ header }) => (header ? 'default' : 'pointer')};
 `;
 
 const StyledSidebarMenuLink = styled.li`
@@ -42,7 +41,12 @@ const StyledSidebarMenuLink = styled.li`
 
 const SidebarMenuLink = ({ header, text, ...rest }) => (
   <StyledSidebarMenuLink header={header}>
-    <StyledSideBarLink header={`${header}`} {...rest}>
+    <StyledSideBarLink
+      css={css`
+        cursor: ${header ? 'default' : 'pointer'};
+      `}
+      {...rest}
+    >
       {header ? <h3>{text}</h3> : text}
     </StyledSideBarLink>
   </StyledSidebarMenuLink>
