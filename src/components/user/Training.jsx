@@ -75,7 +75,7 @@ const Training = () => {
         Request New Training Session
       </Button>
       {isError ? (
-        <Error error={isError} contentWidth header />
+        <Error error={isError} header />
       ) : (
         <>
           {isLoading ? (
