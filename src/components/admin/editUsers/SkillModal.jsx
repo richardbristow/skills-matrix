@@ -3,8 +3,8 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { API } from 'aws-amplify';
 
-import Error from '../../shared/Error';
-import Loading from '../../shared/Loading';
+import Error from '../../../shared/Error';
+import Loading from '../../../shared/Loading';
 
 const SkillModal = ({
   addSkill,

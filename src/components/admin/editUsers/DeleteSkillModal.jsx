@@ -3,10 +3,10 @@ import { Modal, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { API } from 'aws-amplify';
 
-import Error from '../../shared/Error';
-import Loading from '../../shared/Loading';
+import Error from '../../../shared/Error';
+import Loading from '../../../shared/Loading';
 
-const DeleteModal = ({
+const DeleteSkillModal = ({
   modalOpen,
   setOpenModal,
   clickedModalData,
@@ -75,7 +75,7 @@ const DeleteModal = ({
   );
 };
 
-DeleteModal.defaultProps = {
+DeleteSkillModal.defaultProps = {
   clickedModalData: {
     skillName: '',
     skillDescription: '',
@@ -83,7 +83,7 @@ DeleteModal.defaultProps = {
   },
 };
 
-DeleteModal.propTypes = {
+DeleteSkillModal.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   setOpenModal: PropTypes.func.isRequired,
   clickedModalData: PropTypes.shape({
@@ -95,4 +95,4 @@ DeleteModal.propTypes = {
   setData: PropTypes.func.isRequired,
 };
 
-export default DeleteModal;
+export default DeleteSkillModal;

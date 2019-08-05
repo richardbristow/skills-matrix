@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AWS from 'aws-sdk';
-import { Table, Tabs, Tab } from 'react-bootstrap';
+import { Table, Tabs, Tab, Button } from 'react-bootstrap';
 import { Trash2 } from 'react-feather';
 
-import StyledMain from '../../shared/StyledMain';
-import Loading from '../../shared/Loading';
-import Error from '../../shared/Error';
+import StyledMain from '../../../shared/StyledMain';
+import Loading from '../../../shared/Loading';
+import Error from '../../../shared/Error';
 
 AWS.config.update({
   region: 'us-east-1',
@@ -91,6 +91,7 @@ const EditUsers = () => {
   return (
     <StyledMain>
       <h2>Edit Users</h2>
+      <Button>Add User</Button>
       <Tabs
         activeKey={tabKey}
         id="user-group-tabs"
