@@ -89,6 +89,14 @@ const StyledLoadingOverlay = styled.div`
   text-align: center;
 `;
 
+const StyledCardBody = styled(Card.Body)`
+  position: relative;
+`;
+
+const StyledCardFooter = styled(Card.Footer)`
+  font-size: 12px;
+`;
+
 const LoadingOverlay = () => (
   <StyledLoadingOverlay>
     <Spinner
@@ -134,7 +142,7 @@ const SkillsRatingCard = ({ skill, setData }) => {
           skillName
         )}
       </Card.Header>
-      <Card.Body css="position: relative">
+      <StyledCardBody>
         {isLoading && <LoadingOverlay />}
         {isError && <Error error={isError} />}
         {skillDescription}
@@ -171,13 +179,13 @@ const SkillsRatingCard = ({ skill, setData }) => {
             />
           </div>
         </div>
-      </Card.Body>
-      <Card.Footer className="text-muted" css="font-size: 12px">
+      </StyledCardBody>
+      <StyledCardFooter className="text-muted">
         Last updated:{' '}
         {skill.lastModified
           ? new Date(skill.lastModified).toLocaleString()
           : 'Not yet rated'}
-      </Card.Footer>
+      </StyledCardFooter>
     </Card>
   );
 };

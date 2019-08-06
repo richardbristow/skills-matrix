@@ -137,7 +137,7 @@ exports[`Login should render the login form without throwing an error 1`] = `
           </div>
           <button
             _css="cursor: not-allowed;"
-            class="sc-ifAKCX CTkZc btn btn-outline-primary btn-block"
+            class="sc-bxivhb etoTOR btn btn-outline-primary btn-block"
             disabled=""
             type="submit"
           >

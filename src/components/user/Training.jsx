@@ -95,14 +95,7 @@ const Training = () => {
                 <ListGroup>
                   {reformattedAttendingTraining.map(training => (
                     <Fragment key={training.skillId}>
-                      <ListGroup.Item
-                        action
-                        css={css`
-                          &:hover {
-                            cursor: pointer;
-                          }
-                        `}
-                      >
+                      <ListGroup.Item action>
                         {training.skillName}
                         <Button
                           disabled={isDeleteLoading}
