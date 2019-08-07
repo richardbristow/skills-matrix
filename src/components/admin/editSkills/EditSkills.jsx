@@ -6,7 +6,7 @@ import { Trash2, Edit } from 'react-feather';
 import useFetch from '../../../hooks/useFetch';
 import StyledMain from '../../../shared/StyledMain';
 import SkillModal from './SkillModal';
-import DeleteModal from './DeleteSkillModal';
+import DeleteSkillModal from './DeleteSkillModal';
 import Loading from '../../../shared/Loading';
 import Error from '../../../shared/Error';
 
@@ -136,7 +136,7 @@ const EditSkills = () => {
                 setData={setData}
               />
 
-              <DeleteModal
+              <DeleteSkillModal
                 modalOpen={deleteModalOpen}
                 setOpenModal={setDeleteModalOpen}
                 clickedModalData={clickedModalData}
