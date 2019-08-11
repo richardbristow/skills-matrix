@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Tabs, Tab, Button } from 'react-bootstrap';
 import { Trash2 } from 'react-feather';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { AWS } from '../../../awsConfig';
 import StyledMain from '../../../shared/StyledMain';
@@ -89,24 +89,25 @@ const EditUsers = () => {
   const [clickedModalData, setClickedModalData] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  useEffect(() => {
-    const getUsersInGroup = async group => {
-      setIsError(null);
-      setIsLoading(true);
-      const userPool = new AWS.CognitoIdentityServiceProvider();
-      const poolData = {
-        GroupName: group,
-        UserPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID,
-      };
-
-      try {
-        const data = await userPool.listUsersInGroup(poolData).promise();
-        setGroupUsers(data.Users);
-      } catch (error) {
-        setIsError(error);
-      }
-      setIsLoading(false);
+  const getUsersInGroup = async group => {
+    setIsError(null);
+    setIsLoading(true);
+    const userPool = new AWS.CognitoIdentityServiceProvider();
+    const poolData = {
+      GroupName: group,
+      UserPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID,
     };
+
+    try {
+      const data = await userPool.listUsersInGroup(poolData).promise();
+      setGroupUsers(data.Users);
+    } catch (error) {
+      setIsError(error);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
     getUsersInGroup(tabKey);
   }, [tabKey]);
 
@@ -115,6 +116,8 @@ const EditUsers = () => {
       <h2>Edit Users</h2>
       <p>Use this page to add, edit and remove users from the application.</p>
       <Button
+        css="margin-bottom: 40px"
+        disabled={isLoading}
         onClick={() => {
           setClickedModalData({
             userName: '',
@@ -162,6 +165,8 @@ const EditUsers = () => {
         setOpenModal={setUserModalOpen}
         clickedModalData={clickedModalData}
         setClickedModalData={setClickedModalData}
+        getUsersInGroup={getUsersInGroup}
+        tabKey={tabKey}
       />
 
       <DeleteUserModal
@@ -169,6 +174,8 @@ const EditUsers = () => {
         setOpenModal={setDeleteModalOpen}
         clickedModalData={clickedModalData}
         setClickedModalData={setClickedModalData}
+        getUsersInGroup={getUsersInGroup}
+        tabKey={tabKey}
       />
     </StyledMain>
   );

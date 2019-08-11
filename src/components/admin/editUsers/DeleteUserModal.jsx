@@ -11,6 +11,8 @@ const DeleteUserModal = ({
   setOpenModal,
   clickedModalData,
   setClickedModalData,
+  getUsersInGroup,
+  tabKey,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
@@ -31,6 +33,7 @@ const DeleteUserModal = ({
     try {
       await userPool.adminDeleteUser(params).promise();
       // TODO: also delete the users data in the database
+      getUsersInGroup(tabKey);
       handleCloseModal();
     } catch (error) {
       setIsError(error);
@@ -93,6 +96,8 @@ DeleteUserModal.propTypes = {
     name: PropTypes.string,
   }),
   setClickedModalData: PropTypes.func.isRequired,
+  getUsersInGroup: PropTypes.func.isRequired,
+  tabKey: PropTypes.string.isRequired,
 };
 
 export default DeleteUserModal;

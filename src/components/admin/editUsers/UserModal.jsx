@@ -11,6 +11,8 @@ const UserModal = ({
   setOpenModal,
   clickedModalData,
   setClickedModalData,
+  getUsersInGroup,
+  tabKey,
 }) => {
   const [values, setValues] = useState(clickedModalData);
   const [isLoading, setIsLoading] = useState(false);
@@ -61,6 +63,7 @@ const UserModal = ({
           Username: email,
         };
         await userPool.adminAddUserToGroup(addToGroupParams).promise();
+        getUsersInGroup(tabKey);
         handleCloseModal();
       } catch (error) {
         setIsError(error);
@@ -165,6 +168,8 @@ UserModal.propTypes = {
     email: PropTypes.string,
   }),
   setClickedModalData: PropTypes.func.isRequired,
+  getUsersInGroup: PropTypes.func.isRequired,
+  tabKey: PropTypes.string.isRequired,
 };
 
 export default UserModal;
