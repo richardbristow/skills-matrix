@@ -48,7 +48,13 @@ jobs:
         with:
           version: 12.x
 
+      - name: install yarn
+        run: npm install -g yarn
+
       - run: node --version
+      - run: yarn --version
+
+      - run: yarn build
 
       - name: 'PROD: deploy to netlify'
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
