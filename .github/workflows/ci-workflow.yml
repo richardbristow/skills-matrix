@@ -37,9 +37,9 @@ jobs:
 
   deployNetlify:
     name: deploy to netlify
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: test
-    if: github.event_name == 'push'
 
     steps:
       - uses: actions/checkout@master
@@ -103,9 +103,9 @@ jobs:
 
   serverlessDeployAws:
     name: serverless deploy to AWS
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: test
-    if: github.event_name == 'push'
 
     steps:
       - uses: actions/checkout@master
