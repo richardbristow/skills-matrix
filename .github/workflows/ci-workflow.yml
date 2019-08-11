@@ -54,6 +54,8 @@ jobs:
       - run: node --version
       - run: yarn --version
 
+      - run: yarn install
+
       - run: yarn build
 
       - name: 'PROD: deploy to netlify'
