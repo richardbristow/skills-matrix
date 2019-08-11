@@ -1,4 +1,6 @@
-export default {
+import AWS from 'aws-sdk';
+
+const amplifyConfig = {
   Auth: {
     mandatorySignIn: true,
     identityPoolId: process.env.REACT_APP_COGNITO_IDENTITY_POOL_ID,
@@ -16,3 +18,11 @@ export default {
     ],
   },
 };
+
+AWS.config.update({
+  region: 'us-east-1',
+  accessKeyId: process.env.REACT_APP_COGNITO_ADMIN_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_COGNITO_ADMIN_AWS_SECRET_KEY,
+});
+
+export { amplifyConfig, AWS };

@@ -5,11 +5,11 @@ import Amplify from 'aws-amplify';
 import { ThemeProvider } from 'styled-components/macro';
 import * as serviceWorker from './serviceWorker';
 
-import awsConfig from './awsConfig';
+import { amplifyConfig } from './awsConfig';
 import globalTheme from './globalStyle';
 import App from './App';
 
-Amplify.configure(awsConfig);
+Amplify.configure(amplifyConfig);
 
 ReactDOM.render(
   <ThemeProvider theme={globalTheme}>

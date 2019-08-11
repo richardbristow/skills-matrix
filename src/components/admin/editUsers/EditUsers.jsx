@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import AWS from 'aws-sdk';
 import { Table, Tabs, Tab, Button } from 'react-bootstrap';
 import { Trash2 } from 'react-feather';
+import styled from 'styled-components';
 
+import { AWS } from '../../../awsConfig';
 import StyledMain from '../../../shared/StyledMain';
 import Loading from '../../../shared/Loading';
 import Error from '../../../shared/Error';
 import UserModal from './UserModal';
+import DeleteUserModal from './DeleteUserModal';
 
-AWS.config.update({
-  region: 'us-east-1',
-  accessKeyId: process.env.REACT_APP_COGNITO_ADMIN_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.REACT_APP_COGNITO_ADMIN_AWS_SECRET_KEY,
-});
+const StyledButton = styled.button`
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  background-color: transparent;
+`;
 
-const UserTable = ({ groupUsers, isLoading, isError }) => (
+const UserTable = ({
+  groupUsers,
+  isLoading,
+  isError,
+  setClickedModalData,
+  setDeleteModalOpen,
+}) => (
   <>
     <Table>
       <thead>
@@ -49,7 +60,14 @@ const UserTable = ({ groupUsers, isLoading, isError }) => (
                   <td>{email}</td>
                   <td>{new Date(UserCreateDate).toLocaleDateString()}</td>
                   <td>
-                    <Trash2 size={18} />
+                    <StyledButton
+                      onClick={() => {
+                        setClickedModalData({ Username, name });
+                        setDeleteModalOpen(true);
+                      }}
+                    >
+                      <Trash2 size={18} />
+                    </StyledButton>
                   </td>
                 </tr>
               );
@@ -69,7 +87,7 @@ const EditUsers = () => {
   const [isError, setIsError] = useState(null);
   const [userModalOpen, setUserModalOpen] = useState(false);
   const [clickedModalData, setClickedModalData] = useState(null);
-  // const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     const getUsersInGroup = async group => {
@@ -119,6 +137,8 @@ const EditUsers = () => {
               isLoading={isLoading}
               isError={isError}
               tableName="Support Staff"
+              setClickedModalData={setClickedModalData}
+              setDeleteModalOpen={setDeleteModalOpen}
             />
           )}
         </Tab>
@@ -129,6 +149,8 @@ const EditUsers = () => {
               isLoading={isLoading}
               isError={isError}
               tableName="Admins"
+              setClickedModalData={setClickedModalData}
+              setDeleteModalOpen={setDeleteModalOpen}
             />
           )}
         </Tab>
@@ -137,6 +159,13 @@ const EditUsers = () => {
       <UserModal
         modalOpen={userModalOpen}
         setOpenModal={setUserModalOpen}
+        clickedModalData={clickedModalData}
+        setClickedModalData={setClickedModalData}
+      />
+
+      <DeleteUserModal
+        modalOpen={deleteModalOpen}
+        setOpenModal={setDeleteModalOpen}
         clickedModalData={clickedModalData}
         setClickedModalData={setClickedModalData}
       />
@@ -162,6 +191,8 @@ UserTable.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   isError: PropTypes.object,
+  setClickedModalData: PropTypes.func.isRequired,
+  setDeleteModalOpen: PropTypes.func.isRequired,
 };
 
 export default EditUsers;
