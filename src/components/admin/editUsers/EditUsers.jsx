@@ -119,6 +119,7 @@ const EditUsers = () => {
           setClickedModalData({
             userName: '',
             email: '',
+            group: 'staffUsers',
           });
           setUserModalOpen(true);
         }}

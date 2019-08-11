@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Form } from 'react-bootstrap';
 
+import { AWS } from '../../../awsConfig';
 import Error from '../../../shared/Error';
 import Loading from '../../../shared/Loading';
 
@@ -31,9 +32,9 @@ const UserModal = ({
     setClickedModalData(null);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    const { userName, email } = values;
+    const { userName, email, group } = values;
     setIsError(null);
     setIsLoading(true);
     const form = event.currentTarget;
@@ -43,12 +44,23 @@ const UserModal = ({
       setIsLoading(false);
       setValidated(true);
     } else {
+      const userPool = new AWS.CognitoIdentityServiceProvider();
+      const createUserParams = {
+        UserPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID,
+        Username: email,
+        UserAttributes: [
+          { Name: 'email', Value: email },
+          { Name: 'name', Value: userName },
+        ],
+      };
       try {
-        // do stuff with form data
-        console.log('form submitted');
-        console.log('user name', userName);
-        console.log('email', email);
-
+        await userPool.adminCreateUser(createUserParams).promise();
+        const addToGroupParams = {
+          UserPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID,
+          GroupName: group,
+          Username: email,
+        };
+        await userPool.adminAddUserToGroup(addToGroupParams).promise();
         handleCloseModal();
       } catch (error) {
         setIsError(error);
@@ -103,6 +115,20 @@ const UserModal = ({
                 <Form.Control.Feedback type="invalid">
                   Please provide the users email.
                 </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group controlId="formRole">
+                <Form.Label>Role</Form.Label>
+                <Form.Control
+                  as="select"
+                  onChange={handleInputChange}
+                  name="group"
+                  required
+                  value={values.group}
+                  disabled={isLoading}
+                >
+                  <option value="staffUsers">Support Staff</option>
+                  <option value="adminUsers">Admin</option>
+                </Form.Control>
               </Form.Group>
             </Form>
           </Modal.Body>
