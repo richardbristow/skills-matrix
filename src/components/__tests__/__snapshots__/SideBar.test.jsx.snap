@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SideBar should render SideBar without any errors 1`] = `
+exports[`SideBar should render SideBar without any errors when not authenticated 1`] = `
 <div>
   <aside
     class="SideBar__StyledSideBar-sc-1l67eb2-0 lldNPQ"

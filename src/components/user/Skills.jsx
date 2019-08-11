@@ -269,6 +269,7 @@ SkillsRatingCard.propTypes = {
     skillDescription: PropTypes.string,
     skillId: PropTypes.string,
     skillName: PropTypes.string,
+    rating: PropTypes.string,
   }).isRequired,
   setData: PropTypes.func.isRequired,
 };
