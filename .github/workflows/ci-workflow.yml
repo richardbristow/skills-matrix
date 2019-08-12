@@ -18,9 +18,6 @@ jobs:
         with:
           version: ${{ matrix.node }}
 
-      - name: install yarn
-        run: npm install -g yarn
-
       - run: node --version
       - run: yarn --version
 
@@ -47,9 +44,6 @@ jobs:
         uses: actions/setup-node@v1.1.0
         with:
           version: 12.x
-
-      - name: install yarn
-        run: npm install -g yarn
 
       - name: install netlify-cli
         run: npm install netlify-cli -g
@@ -112,9 +106,6 @@ jobs:
         uses: actions/setup-node@v1.1.0
         with:
           version: 12.x
-
-      - name: install yarn
-        run: npm install -g yarn
 
       - name: install serverless
         run: npm install serverless -g
