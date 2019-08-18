@@ -95,7 +95,7 @@ const Training = () => {
                 <ListGroup>
                   {reformattedAttendingTraining.map(training => (
                     <Fragment key={training.skillId}>
-                      <ListGroup.Item action>
+                      <ListGroup.Item as="div" action>
                         {training.skillName}
                         <Button
                           disabled={isDeleteLoading}
