@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { Auth } from 'aws-amplify';
 
-import Login from './components/Login';
+import Login from './components/login/Login';
 import NoRoute from './components/NoRoute';
 import SideBar from './components/SideBar';
 import PrivateRoute from './shared/PrivateRoute';

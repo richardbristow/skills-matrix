@@ -3,7 +3,7 @@
 exports[`Login should render the login form without throwing an error 1`] = `
 <div>
   <div
-    class="StyledMain-sc-1o4u4y0-0 Login__StyledLogin-sc-4kj774-0 jgTMyQ"
+    class="StyledMain-sc-1o4u4y0-0 Login__StyledLogin-sc-1bf8mvn-0 fmKcZv"
   >
     <div
       class="card"
@@ -136,8 +136,8 @@ exports[`Login should render the login form without throwing an error 1`] = `
             </div>
           </div>
           <button
-            _css="cursor: not-allowed;"
-            class="sc-ifAKCX CTkZc btn btn-outline-primary btn-block"
+            class="btn btn-outline-primary btn-block"
+            css="cursor: not-allowed;"
             disabled=""
             type="submit"
           >

@@ -8,7 +8,7 @@ import {
 import { createMemoryHistory } from 'history';
 
 import renderWithRouter from '../../../testFunctions/renderWithRouter';
-import Login from '../Login';
+import Login from '../login/Login';
 
 const setAuthenticated = jest.fn();
 const history = createMemoryHistory();
