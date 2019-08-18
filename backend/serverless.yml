@@ -98,6 +98,27 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  admin:
+    handler: lambda/admin.admin
+    name: ${self:provider.stage}-admin
+    description: 'CRUD function for admin in ${self:provider.environment.TABLENAME}'
+    events:
+      - http:
+          path: /admin/training
+          method: get
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /admin/skills
+          method: get
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: /admin/deleteuser/{userPoolUsername}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+
 resources:
   Resources:
     SkillsTable:
@@ -108,6 +129,10 @@ resources:
           - AttributeName: itemId
             AttributeType: S
           - AttributeName: skillId
+            AttributeType: S
+          - AttributeName: userPoolUsername
+            AttributeType: S
+          - AttributeName: itemType
             AttributeType: S
         KeySchema:
           - AttributeName: itemId
@@ -124,6 +149,24 @@ resources:
                 KeyType: HASH
               - AttributeName: itemId
                 KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: ${self:custom.tableThroughput}
+              WriteCapacityUnits: ${self:custom.tableThroughput}
+          - IndexName: userPoolUsername-index
+            KeySchema:
+              - AttributeName: userPoolUsername
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: ${self:custom.tableThroughput}
+              WriteCapacityUnits: ${self:custom.tableThroughput}
+          - IndexName: itemType-index
+            KeySchema:
+              - AttributeName: itemType
+                KeyType: HASH
             Projection:
               ProjectionType: ALL
             ProvisionedThroughput:

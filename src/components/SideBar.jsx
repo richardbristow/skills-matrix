@@ -59,6 +59,7 @@ const SideBar = ({ authenticated, handleLogout, ...props }) => (
       {authenticated ? (
         <>
           <SidebarMenuLink to="/editskills" text="Edit Skills" />
+          <SidebarMenuLink to="/trainingrequests" text="Training Requests" />
           <SidebarMenuLink to="/editusers" text="Edit Users" />
           <SidebarMenuLink
             text="Logout"

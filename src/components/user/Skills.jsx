@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled, { css } from 'styled-components/macro';
 import { Card, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -9,6 +9,7 @@ import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../../shared/Loading';
 import Error from '../../shared/Error';
+import AuthenticatedUserContext from '../../AuthenticatedUserContext';
 
 const StyledUserSkillsGrid = styled.div`
   display: grid;
@@ -113,13 +114,20 @@ const SkillsRatingCard = ({ skill, setData }) => {
   const [checkedRating, setCheckedRating] = useState(rating);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
+  const authenticatedUser = useContext(AuthenticatedUserContext);
 
   const handleChange = async ({ target }) => {
     setCheckedRating(target.value);
     setIsError(null);
     setIsLoading(true);
     const params = {
-      body: { rating: target.value, skillId: skill.skillId },
+      body: {
+        rating: target.value,
+        skillId: skill.skillId,
+        userPoolUsername: authenticatedUser.username,
+        name: authenticatedUser.name,
+        itemType: 'rating',
+      },
     };
     try {
       await API.post('skillsMatrix', `/user/skills`, params);

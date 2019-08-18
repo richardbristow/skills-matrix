@@ -13,6 +13,7 @@ import Skills from './components/user/Skills';
 import Training from './components/user/Training';
 import AuthenticatedUserContext from './AuthenticatedUserContext';
 import EditUsers from './components/admin/editUsers/EditUsers';
+import TrainingRequests from './components/admin/TrainingRequests';
 
 const StyledApp = styled.div`
   display: grid;
@@ -96,6 +97,11 @@ const App = () => {
                 path="/editskills"
                 authenticated={authenticated}
                 component={EditSkills}
+              />
+              <PrivateRoute
+                path="/trainingrequests"
+                authenticated={authenticated}
+                component={TrainingRequests}
               />
               <PrivateRoute
                 path="/editusers"
