@@ -91,14 +91,19 @@ const deleteUserItems = async event => {
       deleteRequests.push({ DeleteRequest: { Key: item } });
     });
 
-    const dynamoResponse = await dynamoDbCall('batchWrite', {
-      RequestItems: {
-        [process.env.TABLENAME]: deleteRequests,
-      },
-    });
-    console.log(`DELETE: Success deleting items in ${process.env.TABLENAME}`);
-    console.log('DELETE dynamoResponse', dynamoResponse);
-    return buildResponse(200, dynamoResponse);
+    if (deleteRequests.length > 0) {
+      const dynamoResponse = await dynamoDbCall('batchWrite', {
+        RequestItems: {
+          [process.env.TABLENAME]: deleteRequests,
+        },
+      });
+      console.log(`DELETE: Success deleting items in ${process.env.TABLENAME}`);
+      console.log('DELETE dynamoResponse', dynamoResponse);
+      return buildResponse(200, dynamoResponse);
+    }
+
+    console.log('DELETE dynamoResponse', 'No user items to delete');
+    return buildResponse(200, { message: 'No user items to delete' });
   } catch (error) {
     throw new Error(error);
   }
