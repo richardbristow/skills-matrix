@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { API } from 'aws-amplify';
 
 import { AWS } from '../../../awsConfig';
 import Loading from '../../../shared/Loading';
@@ -31,8 +32,10 @@ const DeleteUserModal = ({
       Username,
     };
     try {
-      await userPool.adminDeleteUser(params).promise();
-      // TODO: also delete the users data in the database
+      await Promise.all([
+        userPool.adminDeleteUser(params).promise(),
+        API.del('skillsMatrix', `/admin/deleteuser/${Username}`),
+      ]);
       getUsersInGroup(tabKey);
       handleCloseModal();
     } catch (error) {

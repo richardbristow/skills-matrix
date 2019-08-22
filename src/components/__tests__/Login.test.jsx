@@ -8,16 +8,21 @@ import {
 import { createMemoryHistory } from 'history';
 
 import renderWithRouter from '../../../testFunctions/renderWithRouter';
-import Login from '../Login';
+import Login from '../login/Login';
 
-const setAuthenticated = jest.fn();
-const history = createMemoryHistory();
+// const setAuthenticated = jest.fn();
+// const setAuthenticating = jest.fn();
+// const history = createMemoryHistory();
+
+const props = {
+  setAuthenticated: jest.fn(),
+  setAuthenticating: jest.fn(),
+  history: createMemoryHistory(),
+};
 
 describe('Login', () => {
   it('should render the login form without throwing an error', () => {
-    const { container } = renderWithRouter(
-      <Login setAuthenticated={setAuthenticated} history={history} />,
-    );
+    const { container } = renderWithRouter(<Login {...props} />);
     expect(getByLabelText(container, 'Email address')).toBeInTheDocument();
     expect(getByLabelText(container, 'Password')).toBeInTheDocument();
     expect(
@@ -29,9 +34,7 @@ describe('Login', () => {
 
 describe('checkForEmptyForm', () => {
   it('should enable the login button only when both email and password fields have values', () => {
-    const { container } = render(
-      <Login setAuthenticated={setAuthenticated} history={history} />,
-    );
+    const { container } = render(<Login {...props} />);
     const input = getByLabelText(container, 'Email address');
     const password = getByLabelText(container, 'Password');
     const submit = getByText(container, 'Login', { selector: 'button' });

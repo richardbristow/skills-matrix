@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { Auth } from 'aws-amplify';
 
-import Login from './components/Login';
+import Login from './components/login/Login';
 import NoRoute from './components/NoRoute';
 import SideBar from './components/SideBar';
 import PrivateRoute from './shared/PrivateRoute';
@@ -13,6 +13,7 @@ import Skills from './components/user/Skills';
 import Training from './components/user/Training';
 import AuthenticatedUserContext from './AuthenticatedUserContext';
 import EditUsers from './components/admin/editUsers/EditUsers';
+import TrainingRequests from './components/admin/TrainingRequests';
 
 const StyledApp = styled.div`
   display: grid;
@@ -61,7 +62,7 @@ const App = () => {
       setAuthenticating(false);
     };
     getUserSession();
-  }, []);
+  }, [authenticating]);
 
   return (
     !authenticating && (
@@ -79,7 +80,11 @@ const App = () => {
               <Route
                 path="/login"
                 render={props => (
-                  <Login setAuthenticated={setAuthenticated} {...props} />
+                  <Login
+                    setAuthenticating={setAuthenticating}
+                    setAuthenticated={setAuthenticated}
+                    {...props}
+                  />
                 )}
               />
               <PrivateRoute
@@ -96,6 +101,11 @@ const App = () => {
                 path="/editskills"
                 authenticated={authenticated}
                 component={EditSkills}
+              />
+              <PrivateRoute
+                path="/trainingrequests"
+                authenticated={authenticated}
+                component={TrainingRequests}
               />
               <PrivateRoute
                 path="/editusers"

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
+import { LogOut } from 'react-feather';
+
+import AuthenticatedUserContext from '../AuthenticatedUserContext';
 
 const StyledSideBar = styled.aside`
   grid-area: sidebar;
@@ -52,6 +55,34 @@ const SidebarMenuLink = ({ header, text, ...rest }) => (
   </StyledSidebarMenuLink>
 );
 
+const SidebarLogout = ({ handleLogout, ...props }) => {
+  const authenticatedUser = useContext(AuthenticatedUserContext);
+  return (
+    <>
+      <div css="flex-grow: 1" />
+      <div
+        css={css`
+          background-color: ${({ theme }) => theme.sidebarHover};
+        `}
+      >
+        <h5
+          css={css`
+            padding: 20px 20px 0px 40px;
+            overflow: hidden;
+            color: ${({ theme }) => theme.sidebarText};
+          `}
+        >
+          <strong>{authenticatedUser.name}</strong>
+        </h5>
+        <StyledSideBarLink to="#" as={Link} onClick={() => handleLogout(props)}>
+          Logout
+          <LogOut css="margin-left: 15px" size={18} />
+        </StyledSideBarLink>
+      </div>
+    </>
+  );
+};
+
 const SideBar = ({ authenticated, handleLogout, ...props }) => (
   <StyledSideBar>
     <StyledSideBarMenu>
@@ -59,18 +90,14 @@ const SideBar = ({ authenticated, handleLogout, ...props }) => (
       {authenticated ? (
         <>
           <SidebarMenuLink to="/editskills" text="Edit Skills" />
+          <SidebarMenuLink to="/trainingrequests" text="Training Requests" />
           <SidebarMenuLink to="/editusers" text="Edit Users" />
-          <SidebarMenuLink
-            text="Logout"
-            to="#"
-            as={Link}
-            onClick={() => handleLogout(props)}
-          />
         </>
       ) : (
         <SidebarMenuLink to="/login" text="Login" />
       )}
     </StyledSideBarMenu>
+    {authenticated && <SidebarLogout handleLogout={handleLogout} {...props} />}
   </StyledSideBar>
 );
 
@@ -81,6 +108,10 @@ SidebarMenuLink.defaultProps = {
 SidebarMenuLink.propTypes = {
   header: PropTypes.bool,
   text: PropTypes.string.isRequired,
+};
+
+SidebarLogout.propTypes = {
+  handleLogout: PropTypes.func.isRequired,
 };
 
 SideBar.propTypes = {

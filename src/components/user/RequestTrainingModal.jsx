@@ -45,6 +45,8 @@ const RequestTrainingModal = ({
         skillId,
         attendeeName: authenticatedUser.name,
         attendeeEmail: authenticatedUser.email,
+        userPoolUsername: authenticatedUser.username,
+        itemType: 'training',
       },
     };
     try {
