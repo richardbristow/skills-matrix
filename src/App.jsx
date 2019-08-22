@@ -62,7 +62,7 @@ const App = () => {
       setAuthenticating(false);
     };
     getUserSession();
-  }, []);
+  }, [authenticating]);
 
   return (
     !authenticating && (
@@ -80,7 +80,11 @@ const App = () => {
               <Route
                 path="/login"
                 render={props => (
-                  <Login setAuthenticated={setAuthenticated} {...props} />
+                  <Login
+                    setAuthenticating={setAuthenticating}
+                    setAuthenticated={setAuthenticated}
+                    {...props}
+                  />
                 )}
               />
               <PrivateRoute

@@ -14,7 +14,7 @@ const StyledLogin = styled(StyledMain)`
   }
 `;
 
-const Login = ({ setAuthenticated, ...props }) => {
+const Login = ({ setAuthenticated, setAuthenticating, ...props }) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -57,6 +57,7 @@ const Login = ({ setAuthenticated, ...props }) => {
               await Auth.completeNewPassword(user, newPassword);
               setChangePassword(false);
               setAuthenticated(true);
+              setAuthenticating(true);
               props.history.push('/');
             }
           } else {
@@ -65,6 +66,7 @@ const Login = ({ setAuthenticated, ...props }) => {
           }
         } else {
           setAuthenticated(true);
+          setAuthenticating(true);
           props.history.push('/');
         }
       } catch (err) {
@@ -115,6 +117,7 @@ Login.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.object.isRequired,
   setAuthenticated: PropTypes.func.isRequired,
+  setAuthenticating: PropTypes.func.isRequired,
 };
 
 export default Login;
