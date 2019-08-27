@@ -15,6 +15,7 @@ import AuthenticatedUserContext from './AuthenticatedUserContext';
 import EditUsers from './components/admin/editUsers/EditUsers';
 import SkillReview from './components/admin/SkillReview';
 import TrainingRequests from './components/admin/TrainingRequests';
+import NoPermissions from './components/NoPermissions';
 
 const StyledApp = styled.div`
   display: grid;
@@ -92,32 +93,39 @@ const App = () => {
                 path="/myskills"
                 authenticated={authenticated}
                 component={Skills}
+                restrictToGroup="staffUsers"
               />
               <PrivateRoute
                 path="/requesttraining"
                 authenticated={authenticated}
                 component={Training}
+                restrictToGroup="staffUsers"
               />
               <PrivateRoute
                 path="/editskills"
                 authenticated={authenticated}
                 component={EditSkills}
+                restrictToGroup="adminUsers"
               />
               <PrivateRoute
                 path="/skillreview"
                 authenticated={authenticated}
                 component={SkillReview}
+                restrictToGroup="adminUsers"
               />
               <PrivateRoute
                 path="/trainingrequests"
                 authenticated={authenticated}
                 component={TrainingRequests}
+                restrictToGroup="adminUsers"
               />
               <PrivateRoute
                 path="/editusers"
                 authenticated={authenticated}
                 component={EditUsers}
+                restrictToGroup="adminUsers"
               />
+              <Route path="/forbidden" component={NoPermissions} />
               <Route component={NoRoute} />
             </Switch>
           </main>
