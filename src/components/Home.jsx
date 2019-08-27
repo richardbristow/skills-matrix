@@ -1,12 +1,21 @@
-import React from 'react';
-import StyledMain from '../shared/StyledMain';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+
+import AuthenticatedUserContext from '../AuthenticatedUserContext';
 
 const Home = () => {
+  const authenticatedUser = useContext(AuthenticatedUserContext);
+
   return (
-    <StyledMain>
-      <h2>Home</h2>
-      <p>This is a private route</p>
-    </StyledMain>
+    <Redirect
+      to={{
+        pathname: `${
+          authenticatedUser.group === 'adminUsers'
+            ? '/skillreview'
+            : '/myskills'
+        }`,
+      }}
+    />
   );
 };
 
