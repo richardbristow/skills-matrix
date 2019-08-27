@@ -83,23 +83,44 @@ const SidebarLogout = ({ handleLogout, ...props }) => {
   );
 };
 
-const SideBar = ({ authenticated, handleLogout, ...props }) => (
-  <StyledSideBar>
-    <StyledSideBarMenu>
-      <SidebarMenuLink header to="/" as={Link} text="Skills Matrix" />
-      {authenticated ? (
-        <>
-          <SidebarMenuLink to="/editskills" text="Edit Skills" />
-          <SidebarMenuLink to="/trainingrequests" text="Training Requests" />
-          <SidebarMenuLink to="/editusers" text="Edit Users" />
-        </>
-      ) : (
-        <SidebarMenuLink to="/login" text="Login" />
+const SideBar = ({ authenticated, handleLogout, ...props }) => {
+  const authenticatedUser = useContext(AuthenticatedUserContext);
+  return (
+    <StyledSideBar>
+      <StyledSideBarMenu>
+        <SidebarMenuLink header to="/" as={Link} text="Skills Matrix" />
+        {authenticated ? (
+          <>
+            {authenticatedUser.group === 'adminUsers' ? (
+              <>
+                <SidebarMenuLink to="/skillreview" text="Skill Review" />
+                <SidebarMenuLink to="/editskills" text="Edit Skills" />
+                <SidebarMenuLink
+                  to="/trainingrequests"
+                  text="Training Requests"
+                />
+                <SidebarMenuLink to="/editusers" text="Edit Users" />
+              </>
+            ) : (
+              <>
+                <SidebarMenuLink to="/myskills" text="My Skills" />
+                <SidebarMenuLink
+                  to="/requesttraining"
+                  text="Request Training"
+                />
+              </>
+            )}
+          </>
+        ) : (
+          <SidebarMenuLink to="/login" text="Login" />
+        )}
+      </StyledSideBarMenu>
+      {authenticated && (
+        <SidebarLogout handleLogout={handleLogout} {...props} />
       )}
-    </StyledSideBarMenu>
-    {authenticated && <SidebarLogout handleLogout={handleLogout} {...props} />}
-  </StyledSideBar>
-);
+    </StyledSideBar>
+  );
+};
 
 SidebarMenuLink.defaultProps = {
   header: false,

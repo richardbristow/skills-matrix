@@ -89,12 +89,12 @@ const App = () => {
                 )}
               />
               <PrivateRoute
-                path="/skills"
+                path="/myskills"
                 authenticated={authenticated}
                 component={Skills}
               />
               <PrivateRoute
-                path="/training"
+                path="/requesttraining"
                 authenticated={authenticated}
                 component={Training}
               />
