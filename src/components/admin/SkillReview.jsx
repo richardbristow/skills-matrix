@@ -66,7 +66,7 @@ const SkillReview = () => {
           ) : (
             <>
               {data.skillsList.Items.length === 0 ? (
-                <Info heading="The skills matrix is currently empty.">
+                <Info heading="The skills matrix is currently empty">
                   <p>
                     Skills can be added to the matrix on the{' '}
                     <Alert.Link to="/editskills" as={Link}>

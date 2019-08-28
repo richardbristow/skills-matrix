@@ -96,8 +96,8 @@ const Training = () => {
                     <Info heading="No requested training to display">
                       <p>You haven&apos;t requested any training yet.</p>
                       <p>
-                        Training can be requested using the Request Training
-                        button above.
+                        Training can be requested using the{' '}
+                        <strong>Request Training</strong> button above.
                       </p>
                     </Info>
                   ) : (

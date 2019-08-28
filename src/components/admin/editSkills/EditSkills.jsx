@@ -54,7 +54,7 @@ const EditSkills = () => {
           setAddSkillModalOpen(true);
         }}
       >
-        Add new skill
+        Add Skill
       </Button>
       {isError ? (
         <Error error={isError} contentWidth header />
@@ -66,7 +66,10 @@ const EditSkills = () => {
             <>
               {data.Items.length < 1 ? (
                 <Info heading="No skills to display">
-                  <p>Skills can be added using the button above.</p>
+                  <p>
+                    Skills can be added to the skills matrix using the{' '}
+                    <strong>Add Skill</strong> button above.
+                  </p>
                 </Info>
               ) : (
                 <StyledSkillsGrid>
