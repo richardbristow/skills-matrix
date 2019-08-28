@@ -5,6 +5,7 @@ import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../../shared/Loading';
 import Error from '../../shared/Error';
+import Info from '../../shared/Info';
 
 const TrainingRequestTable = ({ data }) =>
   data.map(training =>
@@ -93,7 +94,12 @@ const TrainingRequests = () => {
                   </tbody>
                 </Table>
               ) : (
-                <p>No training requests have been made.</p>
+                <Info heading="No training requests to display">
+                  <p>
+                    No training requests have been made by any users, please
+                    come back later
+                  </p>
+                </Info>
               )}
             </>
           )}
