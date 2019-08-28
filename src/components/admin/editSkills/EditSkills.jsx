@@ -9,6 +9,7 @@ import SkillModal from './SkillModal';
 import DeleteSkillModal from './DeleteSkillModal';
 import Loading from '../../../shared/Loading';
 import Error from '../../../shared/Error';
+import Info from '../../../shared/Info';
 
 const StyledSkillsGrid = styled.div`
   display: grid;
@@ -63,16 +64,13 @@ const EditSkills = () => {
             <Loading />
           ) : (
             <>
-              <StyledSkillsGrid>
-                {data.Items.length < 1 ? (
-                  <div css="grid-column: span 2">
-                    <p>
-                      <strong>No skills to display.</strong>
-                    </p>
-                    <p>Skills can be added using the button above.</p>
-                  </div>
-                ) : (
-                  data.Items.map((skill, index) => {
+              {data.Items.length < 1 ? (
+                <Info heading="No skills to display">
+                  <p>Skills can be added using the button above.</p>
+                </Info>
+              ) : (
+                <StyledSkillsGrid>
+                  {data.Items.map((skill, index) => {
                     const { skillName, skillDescription, skillId } = skill;
                     return (
                       <Card key={skillId}>
@@ -115,9 +113,9 @@ const EditSkills = () => {
                         </Card.Body>
                       </Card>
                     );
-                  })
-                )}
-              </StyledSkillsGrid>
+                  })}
+                </StyledSkillsGrid>
+              )}
 
               <SkillModal
                 addSkill
