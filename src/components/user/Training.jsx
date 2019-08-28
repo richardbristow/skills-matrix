@@ -4,6 +4,7 @@ import { Button, ListGroup } from 'react-bootstrap';
 import styled, { css } from 'styled-components/macro';
 import { API } from 'aws-amplify';
 
+import Info from '../../shared/Info';
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
 import Error from '../../shared/Error';
@@ -72,7 +73,7 @@ const Training = () => {
         css="margin-bottom: 40px"
         onClick={() => setRequestModalOpen(true)}
       >
-        Request New Training Session
+        Request Training
       </Button>
       {isError ? (
         <Error error={isError} header />
@@ -82,36 +83,59 @@ const Training = () => {
             <Loading />
           ) : (
             <>
-              <div>
-                <h5>My Scheduled Training</h5>
-                {reformattedAttendingTraining.length > 0 ? (
+              {data.skillsList.Items.length === 0 ? (
+                <Info heading="The skills matrix is currently empty">
                   <p>
-                    You have requested to attend the below training sessions:
+                    Training can be requested once skills have been added to the
+                    skills matrix, please come back later.
                   </p>
-                ) : (
-                  <p>You have not requested any training sessions yet.</p>
-                )}
-                {isDeleteError && <Error error={isDeleteError} />}
-                <ListGroup>
-                  {reformattedAttendingTraining.map(training => (
-                    <ListGroup.Item key={training.skillId} as="div" action>
-                      {training.skillName}
-                      <Button
-                        disabled={isDeleteLoading}
-                        variant="outline-warning"
-                        onClick={() => handleDeleteTraining(training.skillId)}
-                        css="float: right"
-                      >
-                        {isDeleteLoading ? (
-                          <Loading button buttonLoadingText="Cancelling..." />
-                        ) : (
-                          'Cancel'
-                        )}
-                      </Button>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              </div>
+                </Info>
+              ) : (
+                <>
+                  {reformattedAttendingTraining.length === 0 ? (
+                    <Info heading="No requested training to display">
+                      <p>You haven&apos;t requested any training yet.</p>
+                      <p>
+                        Training can be requested using the Request Training
+                        button above.
+                      </p>
+                    </Info>
+                  ) : (
+                    <>
+                      <h5>My Scheduled Training</h5>
+                      {isDeleteError && <Error error={isDeleteError} />}
+                      <ListGroup>
+                        {reformattedAttendingTraining.map(training => (
+                          <ListGroup.Item
+                            key={training.skillId}
+                            as="div"
+                            action
+                          >
+                            {training.skillName}
+                            <Button
+                              disabled={isDeleteLoading}
+                              variant="outline-warning"
+                              onClick={() =>
+                                handleDeleteTraining(training.skillId)
+                              }
+                              css="float: right"
+                            >
+                              {isDeleteLoading ? (
+                                <Loading
+                                  button
+                                  buttonLoadingText="Cancelling..."
+                                />
+                              ) : (
+                                'Cancel'
+                              )}
+                            </Button>
+                          </ListGroup.Item>
+                        ))}
+                      </ListGroup>
+                    </>
+                  )}
+                </>
+              )}
 
               {reformattedSkillsList.length > 0 && (
                 <RequestTrainingModal
