@@ -6,6 +6,7 @@ import styled from 'styled-components/macro';
 
 import { AWS } from '../../../awsConfig';
 import StyledMain from '../../../shared/StyledMain';
+import Info from '../../../shared/Info';
 import Loading from '../../../shared/Loading';
 import Error from '../../../shared/Error';
 import UserModal from './UserModal';
@@ -26,6 +27,7 @@ const UserTable = ({
   isError,
   setClickedModalData,
   setDeleteModalOpen,
+  userType,
 }) => (
   <>
     <Table>
@@ -77,10 +79,10 @@ const UserTable = ({
               ) : (
                 <tr>
                   <td css="text-align: center" colSpan="4">
-                    There are currently no support staff users.
-                    <br />
-                    Users can be added using the &apos;Add Users&apos; button
-                    above.
+                    <Info heading={`No ${userType} users to display`}>
+                      Users can be added using the <strong>Add Users</strong>{' '}
+                      button above.
+                    </Info>
                   </td>
                 </tr>
               )}
@@ -153,7 +155,7 @@ const EditUsers = () => {
               groupUsers={groupUsers}
               isLoading={isLoading}
               isError={isError}
-              tableName="Support Staff"
+              userType="support staff"
               setClickedModalData={setClickedModalData}
               setDeleteModalOpen={setDeleteModalOpen}
             />
@@ -165,7 +167,7 @@ const EditUsers = () => {
               groupUsers={groupUsers}
               isLoading={isLoading}
               isError={isError}
-              tableName="Admins"
+              userType="admin"
               setClickedModalData={setClickedModalData}
               setDeleteModalOpen={setDeleteModalOpen}
             />
@@ -209,6 +211,7 @@ UserTable.propTypes = {
       Username: PropTypes.string,
     }),
   ).isRequired,
+  userType: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   isError: PropTypes.object,
