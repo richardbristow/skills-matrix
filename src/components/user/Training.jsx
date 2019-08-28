@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 // eslint-disable-next-line no-unused-vars
 import styled, { css } from 'styled-components/macro';
@@ -94,23 +94,21 @@ const Training = () => {
                 {isDeleteError && <Error error={isDeleteError} />}
                 <ListGroup>
                   {reformattedAttendingTraining.map(training => (
-                    <Fragment key={training.skillId}>
-                      <ListGroup.Item as="div" action>
-                        {training.skillName}
-                        <Button
-                          disabled={isDeleteLoading}
-                          variant="outline-warning"
-                          onClick={() => handleDeleteTraining(training.skillId)}
-                          css="float: right"
-                        >
-                          {isDeleteLoading ? (
-                            <Loading button buttonLoadingText="Cancelling..." />
-                          ) : (
-                            'Cancel'
-                          )}
-                        </Button>
-                      </ListGroup.Item>
-                    </Fragment>
+                    <ListGroup.Item key={training.skillId} as="div" action>
+                      {training.skillName}
+                      <Button
+                        disabled={isDeleteLoading}
+                        variant="outline-warning"
+                        onClick={() => handleDeleteTraining(training.skillId)}
+                        css="float: right"
+                      >
+                        {isDeleteLoading ? (
+                          <Loading button buttonLoadingText="Cancelling..." />
+                        ) : (
+                          'Cancel'
+                        )}
+                      </Button>
+                    </ListGroup.Item>
                   ))}
                 </ListGroup>
               </div>
