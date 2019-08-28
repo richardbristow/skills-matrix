@@ -14,7 +14,7 @@ const Info = ({ heading, children }) => {
 
 Info.propTypes = {
   heading: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Info;
