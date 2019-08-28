@@ -1,7 +1,9 @@
 import React from 'react';
-import { Tabs, Tab, Accordion, Card } from 'react-bootstrap';
+import { Tabs, Tab, Accordion, Card, Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
+import Info from '../../shared/Info';
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../../shared/Loading';
@@ -62,20 +64,45 @@ const SkillReview = () => {
           {isError ? (
             <Error error={isError} header />
           ) : (
-            <Tabs defaultActiveKey="bySkill" id="skill-tabs">
-              <Tab eventKey="bySkill" title="By Skill">
-                <SkillReviewAccordion
-                  data={groupBy(reformatData(), 'skillName')}
-                  accordionType="bySkill"
-                />
-              </Tab>
-              <Tab eventKey="byUser" title="By User">
-                <SkillReviewAccordion
-                  data={groupBy(reformatData(), 'name')}
-                  accordionType="byUser"
-                />
-              </Tab>
-            </Tabs>
+            <>
+              {data.skillsList.Items.length === 0 ? (
+                <Info heading="The skills matrix is currently empty.">
+                  <p>
+                    Skills can be added to the matrix on the{' '}
+                    <Alert.Link to="/editskills" as={Link}>
+                      Edit Skills
+                    </Alert.Link>{' '}
+                    page.
+                  </p>
+                </Info>
+              ) : (
+                <>
+                  {data.skillsReport.Items.length === 0 ? (
+                    <Info heading="No user ratings data to display">
+                      <p>
+                        There are skills added to skills matrix, but no users
+                        have rated their skills yet, please come back later.
+                      </p>
+                    </Info>
+                  ) : (
+                    <Tabs defaultActiveKey="bySkill" id="skill-tabs">
+                      <Tab eventKey="bySkill" title="By Skill">
+                        <SkillReviewAccordion
+                          data={groupBy(reformatData(), 'skillName')}
+                          accordionType="bySkill"
+                        />
+                      </Tab>
+                      <Tab eventKey="byUser" title="By User">
+                        <SkillReviewAccordion
+                          data={groupBy(reformatData(), 'name')}
+                          accordionType="byUser"
+                        />
+                      </Tab>
+                    </Tabs>
+                  )}
+                </>
+              )}
+            </>
           )}
         </>
       )}
