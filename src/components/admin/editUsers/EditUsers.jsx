@@ -46,32 +46,45 @@ const UserTable = ({
               </td>
             </tr>
           ) : (
-            groupUsers.map(user => {
-              const { Username, Attributes, UserCreateDate } = user;
-              const { Value: name } = Attributes.find(
-                attribute => attribute.Name === 'name',
-              );
-              const { Value: email } = Attributes.find(
-                attribute => attribute.Name === 'email',
-              );
-              return (
-                <tr key={Username}>
-                  <td>{name}</td>
-                  <td>{email}</td>
-                  <td>{new Date(UserCreateDate).toLocaleDateString()}</td>
-                  <td>
-                    <StyledButton
-                      onClick={() => {
-                        setClickedModalData({ Username, name });
-                        setDeleteModalOpen(true);
-                      }}
-                    >
-                      <Trash2 size={18} />
-                    </StyledButton>
+            <>
+              {groupUsers.length > 0 ? (
+                groupUsers.map(user => {
+                  const { Username, Attributes, UserCreateDate } = user;
+                  const { Value: name } = Attributes.find(
+                    attribute => attribute.Name === 'name',
+                  );
+                  const { Value: email } = Attributes.find(
+                    attribute => attribute.Name === 'email',
+                  );
+                  return (
+                    <tr key={Username}>
+                      <td>{name}</td>
+                      <td>{email}</td>
+                      <td>{new Date(UserCreateDate).toLocaleDateString()}</td>
+                      <td>
+                        <StyledButton
+                          onClick={() => {
+                            setClickedModalData({ Username, name });
+                            setDeleteModalOpen(true);
+                          }}
+                        >
+                          <Trash2 size={18} />
+                        </StyledButton>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td css="text-align: center" colSpan="4">
+                    There are currently no support staff users.
+                    <br />
+                    Users can be added using the &apos;Add Users&apos; button
+                    above.
                   </td>
                 </tr>
-              );
-            })
+              )}
+            </>
           )}
         </tbody>
       )}

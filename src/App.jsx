@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { Auth } from 'aws-amplify';
 
-import Login from './components/login/Login';
-import NoRoute from './components/NoRoute';
+import Routes from './Routes';
 import SideBar from './components/SideBar';
-import PrivateRoute from './shared/PrivateRoute';
-import Home from './components/Home';
-import EditSkills from './components/admin/editSkills/EditSkills';
-import Skills from './components/user/Skills';
-import Training from './components/user/Training';
 import AuthenticatedUserContext from './AuthenticatedUserContext';
-import EditUsers from './components/admin/editUsers/EditUsers';
-import TrainingRequests from './components/admin/TrainingRequests';
 
 const StyledApp = styled.div`
   display: grid;
@@ -70,50 +61,11 @@ const App = () => {
         <StyledApp>
           <SideBar authenticated={authenticated} handleLogout={handleLogout} />
           <main>
-            <Switch>
-              <PrivateRoute
-                path="/"
-                exact
-                authenticated={authenticated}
-                component={Home}
-              />
-              <Route
-                path="/login"
-                render={props => (
-                  <Login
-                    setAuthenticating={setAuthenticating}
-                    setAuthenticated={setAuthenticated}
-                    {...props}
-                  />
-                )}
-              />
-              <PrivateRoute
-                path="/skills"
-                authenticated={authenticated}
-                component={Skills}
-              />
-              <PrivateRoute
-                path="/training"
-                authenticated={authenticated}
-                component={Training}
-              />
-              <PrivateRoute
-                path="/editskills"
-                authenticated={authenticated}
-                component={EditSkills}
-              />
-              <PrivateRoute
-                path="/trainingrequests"
-                authenticated={authenticated}
-                component={TrainingRequests}
-              />
-              <PrivateRoute
-                path="/editusers"
-                authenticated={authenticated}
-                component={EditUsers}
-              />
-              <Route component={NoRoute} />
-            </Switch>
+            <Routes
+              authenticated={authenticated}
+              setAuthenticating={setAuthenticating}
+              setAuthenticated={setAuthenticated}
+            />
           </main>
         </StyledApp>
       </AuthenticatedUserContext.Provider>

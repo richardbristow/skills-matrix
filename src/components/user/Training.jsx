@@ -62,7 +62,7 @@ const Training = () => {
 
   return (
     <StyledMain>
-      <h2>Training</h2>
+      <h2>Request Training</h2>
       <p>
         Use this page to request new training, or request attendance to a
         scheduled session.

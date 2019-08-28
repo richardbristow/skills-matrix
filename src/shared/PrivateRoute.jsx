@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
+import AuthenticatedUserContext from '../AuthenticatedUserContext';
+
+const PrivateRoute = ({
+  component: Component,
+  authenticated,
+  restrictToGroup,
+  ...rest
+}) => {
+  const authenticatedUser = useContext(AuthenticatedUserContext);
   return (
     <Route
       {...rest}
       render={props =>
         authenticated ? (
-          <Component {...props} />
+          <>
+            {!restrictToGroup || restrictToGroup === authenticatedUser.group ? (
+              <Component {...props} />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: '/forbidden',
+                  state: { from: props.location },
+                }}
+              />
+            )}
+          </>
         ) : (
           <Redirect
             to={{
@@ -22,9 +41,14 @@ const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
   );
 };
 
+PrivateRoute.defaultProps = {
+  restrictToGroup: null,
+};
+
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
   authenticated: PropTypes.bool.isRequired,
+  restrictToGroup: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   location: PropTypes.object, // eslint-disable-line react/require-default-props
 };
