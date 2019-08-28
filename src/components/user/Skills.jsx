@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Check } from 'react-feather';
 import { API } from 'aws-amplify';
 
+import Info from '../../shared/Info';
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../../shared/Loading';
@@ -230,13 +231,18 @@ const Skills = () => {
             <>
               <p>
                 Use this page to rate how comfortable you feel supporting the
-                below services:
+                below services.
               </p>
-              <StyledUserSkillsGrid>
-                {reformattedData.length < 1 ? (
-                  <div>Nothing to see here</div>
-                ) : (
-                  reformattedData.map(skill => {
+              {reformattedData.length < 1 ? (
+                <Info heading="No skills to display">
+                  <p>
+                    No skills have currently been added to the skills matrix,
+                    please come back later
+                  </p>
+                </Info>
+              ) : (
+                <StyledUserSkillsGrid>
+                  {reformattedData.map(skill => {
                     const { skillId } = skill;
                     return (
                       <SkillsRatingCard
@@ -245,9 +251,9 @@ const Skills = () => {
                         setData={setData}
                       />
                     );
-                  })
-                )}
-              </StyledUserSkillsGrid>
+                  })}
+                </StyledUserSkillsGrid>
+              )}
             </>
           )}
         </>
