@@ -3,7 +3,7 @@
 exports[`Login should render the login form without throwing an error 1`] = `
 <div>
   <div
-    class="StyledMain-sc-1o4u4y0-0 Login__StyledLogin-sc-1bf8mvn-0 fmKcZv"
+    class="StyledMain-sc-1o4u4y0-0 Login__StyledLogin-sc-1bf8mvn-0 kcTDFU"
   >
     <div
       class="card"

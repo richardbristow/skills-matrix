@@ -43,7 +43,7 @@ exports[`NoRoute should render the NoRoute component without errors on non match
     </aside>
     <main>
       <div
-        class="StyledMain-sc-1o4u4y0-0 NoRoute__StyledNoRoute-u6sinz-0 bhpKqI"
+        class="StyledMain-sc-1o4u4y0-0 NoRoute__StyledNoRoute-u6sinz-0 dcjMtb"
       >
         <h1>
           404
