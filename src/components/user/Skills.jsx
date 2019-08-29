@@ -45,6 +45,11 @@ const StyledTrafficRadioButton = styled.div`
       cursor: pointer;
       text-align: center;
       line-height: 45px;
+
+      &:hover {
+        border: 2px solid darkslategrey;
+        transition: 0.2s ease;
+      }
     }
   }
 `;
@@ -169,7 +174,7 @@ const SkillsRatingCard = ({ skill, setData }) => {
               padding: 10 0;
 
               div:not(:last-child) {
-                padding-right: 30px;
+                padding-right: 40px;
               }
             `}
           >

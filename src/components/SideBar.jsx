@@ -91,7 +91,7 @@ const SidebarLogout = ({ handleLogout, ...props }) => {
               &:hover {
                 background-color: ${({ theme }) => theme.sidebarActiveLink};
               }
-              transition: 0.2s;
+              transition: 0.2s ease;
               display: inline-block;
               border-radius: 5px;
               padding: 3px 8px 5px;
