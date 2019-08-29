@@ -31,7 +31,7 @@ const UserTable = ({
   userType,
 }) => (
   <>
-    <Table>
+    <Table striped>
       <thead>
         <tr>
           <th>Name</th>
