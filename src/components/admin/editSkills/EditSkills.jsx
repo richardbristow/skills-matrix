@@ -18,13 +18,14 @@ const StyledSkillsGrid = styled.div`
 `;
 
 const StyledButton = styled.button`
+  align-self: center;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  align-self: center;
+
   &:focus {
     outline: none;
   }
-  background-color: transparent;
 `;
 
 const EditSkills = () => {

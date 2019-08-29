@@ -20,7 +20,10 @@ const StyledSideBarMenu = styled.ul`
 `;
 
 const StyledSideBarLink = styled(NavLink)`
+  display: block;
+  padding: 20px 20px 20px 40px;
   text-decoration: none;
+
   &:focus,
   &:hover,
   &:visited,
@@ -29,8 +32,6 @@ const StyledSideBarLink = styled(NavLink)`
     text-decoration: none;
     color: ${({ theme }) => theme.sidebarText};
   }
-  padding: 20px 20px 20px 40px;
-  display: block;
 `;
 
 const StyledSidebarMenuLink = styled.li`

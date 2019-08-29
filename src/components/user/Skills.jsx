@@ -24,10 +24,11 @@ const StyledTrafficRadioButton = styled.div`
 
   label {
     color: ${({ color }) => color};
-    margin: 0px;
+    margin: 0;
 
     input[type='radio'] {
       display: none;
+
       &:checked ~ span svg {
         opacity: 1;
       }
@@ -159,7 +160,8 @@ const SkillsRatingCard = ({ skill, setData }) => {
           <h6>My Rating:</h6>
           <div
             css={css`
-              padding: 10px 0px;
+              padding: 10 0;
+
               div:not(:last-child) {
                 padding-right: 30px;
               }

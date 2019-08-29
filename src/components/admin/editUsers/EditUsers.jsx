@@ -15,10 +15,11 @@ import DeleteUserModal from './DeleteUserModal';
 const StyledButton = styled.button`
   border: none;
   cursor: pointer;
+  background-color: transparent;
+
   &:focus {
     outline: none;
   }
-  background-color: transparent;
 `;
 
 const UserTable = ({
