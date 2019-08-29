@@ -61,22 +61,44 @@ const SidebarLogout = ({ handleLogout, ...props }) => {
     <>
       <div css="flex-grow: 1" />
       <div
-        css={css`
+        css={`
           background-color: ${({ theme }) => theme.sidebarHover};
         `}
       >
         <h5
-          css={css`
+          css={`
             padding: 20px 20px 0px 40px;
             overflow: hidden;
             color: ${({ theme }) => theme.sidebarText};
+            cursor: default;
           `}
         >
           <strong>{authenticatedUser.name}</strong>
         </h5>
-        <StyledSideBarLink to="#" as={Link} onClick={() => handleLogout(props)}>
-          Logout
-          <LogOut css="margin-left: 15px" size={18} />
+        <StyledSideBarLink
+          css={`
+            display: inline-block;
+            margin-left: 20px;
+            padding: 20px;
+          `}
+          to="#"
+          as={Link}
+          onClick={() => handleLogout(props)}
+        >
+          <div
+            css={`
+              &:hover {
+                background-color: ${({ theme }) => theme.sidebarActiveLink};
+              }
+              transition: 0.2s;
+              display: inline-block;
+              border-radius: 5px;
+              padding: 3px 8px 5px;
+            `}
+          >
+            Logout
+            <LogOut css="margin-left: 15px;" size={18} />
+          </div>
         </StyledSideBarLink>
       </div>
     </>
