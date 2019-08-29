@@ -79,34 +79,38 @@ const TrafficRadioButton = ({ skill, rating, checked, handleChange }) => {
   );
 };
 
-const StyledLoadingOverlay = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  text-align: center;
-`;
-
 const StyledCardBody = styled(Card.Body)`
   position: relative;
+  text-align: center;
 `;
 
 const StyledCardFooter = styled(Card.Footer)`
   font-size: 12px;
 `;
 
-const LoadingOverlay = () => (
-  <StyledLoadingOverlay>
-    <Spinner
-      css="width: 4rem; height: 4rem"
-      animation="border"
-      variant="light"
-      role="status"
-    />
-  </StyledLoadingOverlay>
+const LoadingOverlay = ({ spinner }) => (
+  <div
+    css={`
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      text-align: center;
+      border-radius: inherit;
+    `}
+  >
+    {spinner && (
+      <Spinner
+        css="width: 4rem; height: 4rem"
+        animation="border"
+        variant="light"
+        role="status"
+      />
+    )}
+  </div>
 );
 
 const SkillsRatingCard = ({ skill, setData }) => {
@@ -151,11 +155,11 @@ const SkillsRatingCard = ({ skill, setData }) => {
         )}
       </Card.Header>
       <StyledCardBody>
-        {isLoading && <LoadingOverlay />}
+        {isLoading && <LoadingOverlay spinner />}
         {isError && <Error error={isError} />}
         {skillDescription}
         <hr />
-        <div css="text-align: center">
+        <div>
           <h6 css="margin-bottom: 16px">My Rating:</h6>
           <div
             css={`
@@ -187,12 +191,15 @@ const SkillsRatingCard = ({ skill, setData }) => {
           </div>
         </div>
       </StyledCardBody>
-      <StyledCardFooter className="text-muted">
-        Last updated:{' '}
-        {skill.lastModified
-          ? new Date(skill.lastModified).toLocaleString()
-          : 'Not yet rated'}
-      </StyledCardFooter>
+      <div css="position: relative">
+        <StyledCardFooter className="text-muted">
+          {isLoading && <LoadingOverlay />}
+          Last updated:{' '}
+          {skill.lastModified
+            ? new Date(skill.lastModified).toLocaleString()
+            : 'Not yet rated'}
+        </StyledCardFooter>
+      </div>
     </Card>
   );
 };
@@ -258,6 +265,14 @@ const Skills = () => {
       )}
     </StyledMain>
   );
+};
+
+LoadingOverlay.defaultProps = {
+  spinner: false,
+};
+
+LoadingOverlay.propTypes = {
+  spinner: PropTypes.bool,
 };
 
 TrafficRadioButton.propTypes = {
