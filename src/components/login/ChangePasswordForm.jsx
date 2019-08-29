@@ -16,7 +16,7 @@ const ChangePasswordForm = ({
   values,
 }) => (
   <Card.Body>
-    <Card.Subtitle style={{ marginBottom: '20px' }}>
+    <Card.Subtitle css="marginBottom: 20px">
       You are required to change your password.
     </Card.Subtitle>
     <Form validated={validated} noValidate onSubmit={handleSubmit}>
