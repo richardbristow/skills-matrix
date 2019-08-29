@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { Card, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Check } from 'react-feather';
@@ -23,7 +23,7 @@ const StyledTrafficRadioButton = styled.div`
   display: inline-block;
 
   label {
-    color: ${({ color }) => color};
+    color: ${({ rating, theme }) => theme[`trafficRadioButton${rating}`]};
     margin: 0;
 
     input[type='radio'] {
@@ -38,7 +38,8 @@ const StyledTrafficRadioButton = styled.div`
       display: inline-block;
       width: 50px;
       height: 50px;
-      background-color: ${({ color }) => color};
+      background-color: ${({ rating, theme }) =>
+        theme[`trafficRadioButton${rating}`]};
       border-radius: 50%;
       border: 2px solid grey;
       cursor: pointer;
@@ -48,16 +49,10 @@ const StyledTrafficRadioButton = styled.div`
   }
 `;
 
-const TrafficRadioButton = ({
-  skill,
-  rating,
-  color,
-  checked,
-  handleChange,
-}) => {
+const TrafficRadioButton = ({ skill, rating, checked, handleChange }) => {
   const { skillId, skillName } = skill;
   return (
-    <StyledTrafficRadioButton color={color}>
+    <StyledTrafficRadioButton rating={rating}>
       <OverlayTrigger placement="bottom" overlay={<Tooltip>{rating}</Tooltip>}>
         <label htmlFor={`${skillId}#${rating}`}>
           <input
@@ -70,7 +65,10 @@ const TrafficRadioButton = ({
           />
           <span>
             <Check
-              css="opacity: 0; transition: all .2s ease;"
+              css={`
+                opacity: 0;
+                transition: all 0.2s ease;
+              `}
               size={35}
               color="white"
             />
@@ -156,10 +154,11 @@ const SkillsRatingCard = ({ skill, setData }) => {
         {isLoading && <LoadingOverlay />}
         {isError && <Error error={isError} />}
         {skillDescription}
-        <div css="padding: 20px 0px; text-align: center;">
-          <h6>My Rating:</h6>
+        <hr />
+        <div css="text-align: center">
+          <h6 css="margin-bottom: 16px">My Rating:</h6>
           <div
-            css={css`
+            css={`
               padding: 10 0;
 
               div:not(:last-child) {
@@ -169,23 +168,20 @@ const SkillsRatingCard = ({ skill, setData }) => {
           >
             <TrafficRadioButton
               skill={skill}
-              rating="good"
-              color="green"
-              checked={checkedRating === 'good'}
+              rating="Good"
+              checked={checkedRating === 'Good'}
               handleChange={handleChange}
             />
             <TrafficRadioButton
               skill={skill}
-              rating="ok"
-              color="orange"
-              checked={checkedRating === 'ok'}
+              rating="Ok"
+              checked={checkedRating === 'Ok'}
               handleChange={handleChange}
             />
             <TrafficRadioButton
               skill={skill}
-              rating="bad"
-              color="red"
-              checked={checkedRating === 'bad'}
+              rating="Bad"
+              checked={checkedRating === 'Bad'}
               handleChange={handleChange}
             />
           </div>
@@ -266,7 +262,6 @@ const Skills = () => {
 
 TrafficRadioButton.propTypes = {
   rating: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
   skill: PropTypes.shape({
     createdAt: PropTypes.number,
     lastModified: PropTypes.number,
