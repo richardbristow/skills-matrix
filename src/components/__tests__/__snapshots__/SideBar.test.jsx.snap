@@ -15,7 +15,7 @@ exports[`SideBar should render SideBar without any errors when not authenticated
           _css2="
         cursor: ,default,;
       "
-          class="SideBar__StyledSideBarLink-sc-1l67eb2-2 sc-bdVaJa dfREeI"
+          class="SideBar__StyledSideBarLink-sc-1l67eb2-2 sc-bdVaJa dqljxT"
           href="/"
         >
           <h3>
@@ -30,7 +30,7 @@ exports[`SideBar should render SideBar without any errors when not authenticated
           _css2="
         cursor: ,pointer,;
       "
-          class="SideBar__StyledSideBarLink-sc-1l67eb2-2 sc-bdVaJa bJOWPB"
+          class="SideBar__StyledSideBarLink-sc-1l67eb2-2 sc-bdVaJa ejPosl"
           href="/login"
         >
           Login
