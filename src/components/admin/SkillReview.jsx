@@ -10,39 +10,72 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../../shared/Loading';
 import Error from '../../shared/Error';
 
+const groupBy = (objectArray, property) => {
+  return objectArray.reduce((accumulator, currentObject) => {
+    const key = currentObject[property];
+    if (!accumulator[key]) {
+      accumulator[key] = [];
+    }
+    accumulator[key].push(currentObject);
+    return accumulator;
+  }, {});
+};
+
 const StyledCardBody = styled(Card.Body)`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 20px;
 `;
 
+const MatrixItem = ({ accordionType, matrixItem }) => (
+  <div
+    css={css`
+      text-align: center;
+      border-radius: 5px;
+      background-color: ${({ theme }) =>
+        theme[`trafficRadio${matrixItem.rating}`]};
+      padding: 15px;
+      border: 2px solid
+        ${({ theme }) => theme[`trafficRadioBorder${matrixItem.rating}`]};
+    `}
+  >
+    <span>{`${
+      accordionType !== 'byUser' ? matrixItem.name : matrixItem.skillName
+    }`}</span>
+  </div>
+);
+
 const SkillReviewAccordion = ({ data, accordionType }) => (
   <Accordion defaultActiveKey="0">
-    {Object.entries(data).map((skill, index) => (
-      <Card key={skill[0]}>
+    {Object.entries(data).map((review, index) => (
+      <Card key={review[0]}>
         <Accordion.Toggle as={Card.Header} eventKey={`${index}`}>
-          {skill[0]}
+          {review[0]}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={`${index}`}>
           <StyledCardBody>
-            {skill[1].map(user => (
-              <div
-                css={css`
-                  text-align: center;
-                  border-radius: 5px;
-                  background-color: ${({ theme }) =>
-                    theme[`trafficRadio${user.rating}`]};
-                  padding: 15px;
-                  border: 2px solid
-                    ${({ theme }) => theme[`trafficRadioBorder${user.rating}`]};
-                `}
-                key={`${user.itemId}-${user.skillId}`}
-              >
-                <span>{`${
-                  accordionType === 'bySkill' ? user.name : user.skillName
-                }`}</span>
-              </div>
-            ))}
+            {(accordionType === 'byUser' || accordionType === 'bySkill') &&
+              review[1].map(matrixItem => (
+                <MatrixItem
+                  key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
+                  accordionType={accordionType}
+                  matrixItem={matrixItem}
+                />
+              ))}
+
+            {accordionType === 'byRating' &&
+              Object.entries(groupBy(review[1], 'skillName')).map(skill => (
+                <React.Fragment key={skill[0]}>
+                  <span css="grid-column: 1/-1">{skill[0]}</span>
+                  {skill[1].map(matrixItem => (
+                    <MatrixItem
+                      key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
+                      accordionType={accordionType}
+                      matrixItem={matrixItem}
+                    />
+                  ))}
+                </React.Fragment>
+              ))}
           </StyledCardBody>
         </Accordion.Collapse>
       </Card>
@@ -62,17 +95,6 @@ const SkillReview = () => {
       ...data.skillsList.Items.find(skill => skill.skillId === user.skillId),
       ...user,
     }));
-
-  const groupBy = (objectArray, property) => {
-    return objectArray.reduce((accumulator, currentObject) => {
-      const key = currentObject[property];
-      if (!accumulator[key]) {
-        accumulator[key] = [];
-      }
-      accumulator[key].push(currentObject);
-      return accumulator;
-    }, {});
-  };
 
   return (
     <StyledMain>
@@ -118,6 +140,12 @@ const SkillReview = () => {
                           accordionType="byUser"
                         />
                       </Tab>
+                      <Tab eventKey="byRating" title="By Rating">
+                        <SkillReviewAccordion
+                          data={groupBy(reformatData(), 'rating')}
+                          accordionType="byRating"
+                        />
+                      </Tab>
                     </Tabs>
                   )}
                 </>
@@ -128,6 +156,15 @@ const SkillReview = () => {
       )}
     </StyledMain>
   );
+};
+
+MatrixItem.propTypes = {
+  accordionType: PropTypes.string.isRequired,
+  matrixItem: PropTypes.shape({
+    rating: PropTypes.string,
+    name: PropTypes.string,
+    skillName: PropTypes.string,
+  }).isRequired,
 };
 
 SkillReviewAccordion.propTypes = {
