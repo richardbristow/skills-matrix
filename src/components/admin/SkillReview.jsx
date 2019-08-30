@@ -20,10 +20,10 @@ const SkillReviewAccordion = ({ data, accordionType }) => (
   <Accordion defaultActiveKey="0">
     {Object.entries(data).map((skill, index) => (
       <Card key={skill[0]}>
-        <Accordion.Toggle as={Card.Header} eventKey={index}>
+        <Accordion.Toggle as={Card.Header} eventKey={`${index}`}>
           {skill[0]}
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey={index}>
+        <Accordion.Collapse eventKey={`${index}`}>
           <StyledCardBody>
             {skill[1].map(user => (
               <div
@@ -38,7 +38,7 @@ const SkillReviewAccordion = ({ data, accordionType }) => (
                 `}
                 key={`${user.itemId}-${user.skillId}`}
               >
-                <span css="color: darkslategrey">{`${
+                <span>{`${
                   accordionType === 'bySkill' ? user.name : user.skillName
                 }`}</span>
               </div>
