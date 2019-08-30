@@ -23,7 +23,7 @@ const StyledTrafficRadioButton = styled.div`
   display: inline-block;
 
   label {
-    color: ${({ rating, theme }) => theme[`trafficRadioButton${rating}`]};
+    color: ${({ rating, theme }) => theme[`trafficRadio${rating}`]};
     margin: 0;
 
     input[type='radio'] {
@@ -39,9 +39,10 @@ const StyledTrafficRadioButton = styled.div`
       width: 50px;
       height: 50px;
       background-color: ${({ rating, theme }) =>
-        theme[`trafficRadioButton${rating}`]};
+        theme[`trafficRadio${rating}`]};
       border-radius: 50%;
-      border: 2px solid grey;
+      border: 2px solid
+        ${({ rating, theme }) => theme[`trafficRadioBorder${rating}`]};
       cursor: pointer;
       text-align: center;
       line-height: 45px;

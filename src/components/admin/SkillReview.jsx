@@ -2,12 +2,19 @@ import React from 'react';
 import { Tabs, Tab, Accordion, Card, Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components/macro';
 
 import Info from '../../shared/Info';
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../../shared/Loading';
 import Error from '../../shared/Error';
+
+const StyledCardBody = styled(Card.Body)`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 20px;
+`;
 
 const SkillReviewAccordion = ({ data, accordionType }) => (
   <Accordion defaultActiveKey="0">
@@ -17,13 +24,26 @@ const SkillReviewAccordion = ({ data, accordionType }) => (
           {skill[0]}
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={index}>
-          <Card.Body>
+          <StyledCardBody>
             {skill[1].map(user => (
-              <p key={`${user.itemId}-${user.skillId}`}>{`${
-                accordionType === 'bySkill' ? user.name : user.skillName
-              } - ${user.rating}`}</p>
+              <div
+                css={css`
+                  text-align: center;
+                  border-radius: 5px;
+                  background-color: ${({ theme }) =>
+                    theme[`trafficRadio${user.rating}`]};
+                  padding: 15px;
+                  border: 2px solid
+                    ${({ theme }) => theme[`trafficRadioBorder${user.rating}`]};
+                `}
+                key={`${user.itemId}-${user.skillId}`}
+              >
+                <span css="color: darkslategrey">{`${
+                  accordionType === 'bySkill' ? user.name : user.skillName
+                }`}</span>
+              </div>
             ))}
-          </Card.Body>
+          </StyledCardBody>
         </Accordion.Collapse>
       </Card>
     ))}

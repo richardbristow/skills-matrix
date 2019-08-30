@@ -3,7 +3,7 @@
 exports[`SideBar should render SideBar without any errors when not authenticated 1`] = `
 <div>
   <aside
-    class="SideBar__StyledSideBar-sc-1l67eb2-0 lldNPQ"
+    class="SideBar__StyledSideBar-sc-1l67eb2-0 jWgneh"
   >
     <ul
       class="SideBar__StyledSideBarMenu-sc-1l67eb2-1 lbJvnL"
