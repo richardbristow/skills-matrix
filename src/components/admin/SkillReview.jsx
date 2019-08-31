@@ -113,30 +113,28 @@ const SkillReviewAllTable = ({ usernames, skillNames }) => {
               const skill = name[1].find(
                 userData => userData.skillName === key,
               );
-              if (skill) {
-                return (
-                  <td
-                    css={css`
-                      background-color: ${({ theme }) =>
-                        theme[`trafficRadio${skill.rating}`]};
-                    `}
-                    key={`${skill.itemId}-${skill.skillId}`}
-                  >
-                    {/* {`${skill.name}-${skill.skillName}-${skill.rating}`} */}
-                  </td>
-                );
-              }
               return (
                 <td
-                  key={`${name[0]}-${key}`}
-                  css={`
-                    background-image: linear-gradient(
-                      to bottom right,
-                      transparent calc(50% - 1px),
-                      #dee2e6,
-                      transparent calc(50% + 1px)
-                    );
-                  `}
+                  key={
+                    skill
+                      ? `${skill.itemId}-${skill.skillId}`
+                      : `${name[0]}-${key}`
+                  }
+                  css={
+                    skill
+                      ? css`
+                          background-color: ${({ theme }) =>
+                            theme[`trafficRadio${skill.rating}`]};
+                        `
+                      : `
+                          background-image: linear-gradient(
+                            to bottom right,
+                            transparent calc(50% - 1px),
+                            #dee2e6,
+                            transparent calc(50% + 1px)
+                          );
+                        `
+                  }
                 />
               );
             })}
