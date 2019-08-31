@@ -1,9 +1,10 @@
 import React from 'react';
-import { Tabs, Tab, Accordion, Card, Alert } from 'react-bootstrap';
+import { Tabs, Tab, Accordion, Card, Alert, Table } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 
+import sortArrayAlphabetically from '../../utils/sortArrayAlphabetically';
 import Info from '../../shared/Info';
 import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
@@ -83,6 +84,48 @@ const SkillReviewAccordion = ({ data, accordionType }) => (
   </Accordion>
 );
 
+const SkillReviewAllTable = ({ usernames, skillNames }) => {
+  const keys = sortArrayAlphabetically(Object.keys(skillNames));
+  return (
+    <Table bordered>
+      <thead>
+        <tr>
+          <th>{/* Employee */}</th>
+          {keys.map(key => (
+            <th key={key}>{key}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {Object.entries(usernames).map(name => (
+          <tr key={name[0]}>
+            <td>{name[0]}</td>
+            {keys.map(key => {
+              const skill = name[1].find(
+                userData => userData.skillName === key,
+              );
+              if (skill) {
+                return (
+                  <td
+                    css={css`
+                      background-color: ${({ theme }) =>
+                        theme[`trafficRadio${skill.rating}`]};
+                    `}
+                    key={`${skill.itemId}-${skill.skillId}`}
+                  >
+                    {/* {`${skill.name}-${skill.skillName}-${skill.rating}`} */}
+                  </td>
+                );
+              }
+              return <td key={`${name[0]}-${key}`} />;
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
+};
+
 const SkillReview = () => {
   const [{ data, isLoading, isError }] = useFetch(
     'skillsMatrix',
@@ -127,7 +170,13 @@ const SkillReview = () => {
                       </p>
                     </Info>
                   ) : (
-                    <Tabs defaultActiveKey="bySkill" id="skill-tabs">
+                    <Tabs defaultActiveKey="all" id="skill-tabs">
+                      <Tab eventKey="all" title="All">
+                        <SkillReviewAllTable
+                          usernames={groupBy(reformatData(), 'name')}
+                          skillNames={groupBy(reformatData(), 'skillName')}
+                        />
+                      </Tab>
                       <Tab eventKey="bySkill" title="By Skill">
                         <SkillReviewAccordion
                           data={groupBy(reformatData(), 'skillName')}
@@ -156,6 +205,11 @@ const SkillReview = () => {
       )}
     </StyledMain>
   );
+};
+
+SkillReviewAllTable.propTypes = {
+  usernames: PropTypes.objectOf(PropTypes.array).isRequired,
+  skillNames: PropTypes.objectOf(PropTypes.array).isRequired,
 };
 
 MatrixItem.propTypes = {

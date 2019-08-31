@@ -18,7 +18,7 @@ exports[`App renders without throwing errors 1`] = `
             _css2="
         cursor: ,default,;
       "
-            class="SideBar__StyledSideBarLink-sc-1l67eb2-2 sc-kAzzGY YNxBF"
+            class="SideBar__StyledSideBarLink-sc-1l67eb2-2 sc-chPdSV bEUzyc"
             href="/"
           >
             <h3>
@@ -34,7 +34,7 @@ exports[`App renders without throwing errors 1`] = `
         cursor: ,pointer,;
       "
             aria-current="page"
-            class="SideBar__StyledSideBarLink-sc-1l67eb2-2 sc-kAzzGY hxAPCP active"
+            class="SideBar__StyledSideBarLink-sc-1l67eb2-2 sc-chPdSV NeBMz active"
             href="/login"
           >
             Login
