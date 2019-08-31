@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
+import { PropTypes } from 'prop-types';
 // eslint-disable-next-line no-unused-vars
-import styled, { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { API } from 'aws-amplify';
 
 import Info from '../../shared/Info';
@@ -11,14 +12,7 @@ import Error from '../../shared/Error';
 import Loading from '../../shared/Loading';
 import RequestTrainingModal from './RequestTrainingModal';
 
-const Training = () => {
-  const [{ data, isLoading, isError }, setData] = useFetch(
-    'skillsMatrix',
-    '/user/training',
-    { skillsList: { Items: [] }, trainingList: { Items: [] } },
-  );
-  const [requestModalOpen, setRequestModalOpen] = useState(false);
-  const [isDeleteError, setIsDeleteError] = useState(null);
+const TrainingListItem = ({ training, setData, setIsDeleteError }) => {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
   const handleDeleteTraining = async skillId => {
@@ -33,6 +27,34 @@ const Training = () => {
     }
     setIsDeleteLoading(false);
   };
+
+  return (
+    <ListGroup.Item key={training.skillId} as="div" action>
+      {training.skillName}
+      <Button
+        disabled={isDeleteLoading}
+        variant={isDeleteLoading ? 'warning' : 'outline-warning'}
+        onClick={() => handleDeleteTraining(training.skillId)}
+        css="float: right"
+      >
+        {isDeleteLoading ? (
+          <Loading button buttonLoadingText="Cancelling..." />
+        ) : (
+          'Cancel'
+        )}
+      </Button>
+    </ListGroup.Item>
+  );
+};
+
+const Training = () => {
+  const [{ data, isLoading, isError }, setData] = useFetch(
+    'skillsMatrix',
+    '/user/training',
+    { skillsList: { Items: [] }, trainingList: { Items: [] } },
+  );
+  const [requestModalOpen, setRequestModalOpen] = useState(false);
+  const [isDeleteError, setIsDeleteError] = useState(null);
 
   const reformatData = () => {
     const reformattedAttendingTraining = [];
@@ -106,30 +128,11 @@ const Training = () => {
                       {isDeleteError && <Error error={isDeleteError} />}
                       <ListGroup>
                         {reformattedAttendingTraining.map(training => (
-                          <ListGroup.Item
-                            key={training.skillId}
-                            as="div"
-                            action
-                          >
-                            {training.skillName}
-                            <Button
-                              disabled={isDeleteLoading}
-                              variant="outline-warning"
-                              onClick={() =>
-                                handleDeleteTraining(training.skillId)
-                              }
-                              css="float: right"
-                            >
-                              {isDeleteLoading ? (
-                                <Loading
-                                  button
-                                  buttonLoadingText="Cancelling..."
-                                />
-                              ) : (
-                                'Cancel'
-                              )}
-                            </Button>
-                          </ListGroup.Item>
+                          <TrainingListItem
+                            training={training}
+                            setData={setData}
+                            setIsDeleteError={setIsDeleteError}
+                          />
                         ))}
                       </ListGroup>
                     </>
@@ -151,6 +154,15 @@ const Training = () => {
       )}
     </StyledMain>
   );
+};
+
+TrainingListItem.propTypes = {
+  training: PropTypes.shape({
+    skillName: PropTypes.string,
+    skillId: PropTypes.string,
+  }).isRequired,
+  setData: PropTypes.func.isRequired,
+  setIsDeleteError: PropTypes.func.isRequired,
 };
 
 export default Training;
