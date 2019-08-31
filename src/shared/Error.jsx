@@ -14,7 +14,7 @@ const Error = ({ error, contentWidth, header }) => (
       {header && (
         <>
           <Alert.Heading>Something went wrong :(</Alert.Heading>
-          <br />
+          <hr />
         </>
       )}
       <strong>Error message:</strong> {error.message}
