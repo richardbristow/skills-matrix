@@ -87,12 +87,21 @@ const SkillReviewAccordion = ({ data, accordionType }) => (
 const SkillReviewAllTable = ({ usernames, skillNames }) => {
   const keys = sortArrayAlphabetically(Object.keys(skillNames));
   return (
-    <Table bordered>
+    <Table css="width: auto" bordered>
       <thead>
         <tr>
           <th>{/* Employee */}</th>
           {keys.map(key => (
-            <th key={key}>{key}</th>
+            <th key={key}>
+              <div
+                css={`
+                  writing-mode: vertical-rl;
+                  transform: rotate(180deg);
+                `}
+              >
+                {key}
+              </div>
+            </th>
           ))}
         </tr>
       </thead>
@@ -117,7 +126,19 @@ const SkillReviewAllTable = ({ usernames, skillNames }) => {
                   </td>
                 );
               }
-              return <td key={`${name[0]}-${key}`} />;
+              return (
+                <td
+                  key={`${name[0]}-${key}`}
+                  css={`
+                    background-image: linear-gradient(
+                      to bottom right,
+                      transparent calc(50% - 1px),
+                      #dee2e6,
+                      transparent calc(50% + 1px)
+                    );
+                  `}
+                />
+              );
             })}
           </tr>
         ))}
