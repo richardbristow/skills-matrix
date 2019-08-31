@@ -58,7 +58,7 @@ const EditSkills = () => {
         Add Skill
       </Button>
       {isError ? (
-        <Error error={isError} contentWidth header />
+        <Error error={isError} header />
       ) : (
         <>
           {isLoading ? (

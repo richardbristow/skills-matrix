@@ -236,7 +236,7 @@ const Skills = () => {
     <StyledMain>
       <h2>My Skills</h2>
       {isError ? (
-        <Error error={isError} contentWidth header />
+        <Error error={isError} header />
       ) : (
         <>
           {isLoading ? (
