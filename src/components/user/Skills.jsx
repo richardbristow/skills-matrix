@@ -11,6 +11,7 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../../shared/Loading';
 import Error from '../../shared/Error';
 import AuthenticatedUserContext from '../../AuthenticatedUserContext';
+import SkillRatingKey from '../../shared/SkillRatingKey';
 
 const StyledUserSkillsGrid = styled.div`
   display: grid;
@@ -234,7 +235,25 @@ const Skills = () => {
 
   return (
     <StyledMain>
-      <h2>My Skills</h2>
+      <div
+        css={`
+          display: flex;
+        `}
+      >
+        <div
+          css={`
+            flex-grow: 1;
+            padding-right: 40px;
+          `}
+        >
+          <h2 css="white-space: nowrap">My Skills</h2>
+          <p>
+            Use this page to rate how comfortable you feel supporting the below
+            services.
+          </p>
+        </div>
+        <SkillRatingKey />
+      </div>
       {isError ? (
         <Error error={isError} header />
       ) : (
@@ -243,10 +262,6 @@ const Skills = () => {
             <Loading />
           ) : (
             <>
-              <p>
-                Use this page to rate how comfortable you feel supporting the
-                below services.
-              </p>
               {reformattedData.length < 1 ? (
                 <Info heading="No skills to display">
                   <p>

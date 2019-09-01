@@ -10,6 +10,7 @@ import StyledMain from '../../shared/StyledMain';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../../shared/Loading';
 import Error from '../../shared/Error';
+import SkillRatingKey from '../../shared/SkillRatingKey';
 
 const groupBy = (objectArray, property) => {
   return objectArray.reduce((accumulator, currentObject) => {
@@ -160,7 +161,25 @@ const SkillReview = () => {
 
   return (
     <StyledMain>
-      <h2>Skill Review</h2>
+      <div
+        css={`
+          display: flex;
+        `}
+      >
+        <div
+          css={`
+            flex-grow: 1;
+            padding-right: 40px;
+          `}
+        >
+          <h2 css="white-space: nowrap">Skill Review</h2>
+          <p>
+            Only skills that have been rated by at least one user will be shown
+            in the tables below.
+          </p>
+        </div>
+        <SkillRatingKey />
+      </div>
       {isLoading ? (
         <Loading />
       ) : (
