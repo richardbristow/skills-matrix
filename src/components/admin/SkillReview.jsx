@@ -1,5 +1,14 @@
-import React from 'react';
-import { Tabs, Tab, Accordion, Card, Alert, Table } from 'react-bootstrap';
+import React, { useState } from 'react';
+import {
+  Tabs,
+  Tab,
+  Accordion,
+  Card,
+  Alert,
+  Table,
+  useAccordionToggle,
+} from 'react-bootstrap';
+import { ChevronRight, ChevronDown } from 'react-feather';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
@@ -47,43 +56,82 @@ const MatrixItem = ({ accordionType, matrixItem }) => (
   </div>
 );
 
-const SkillReviewAccordion = ({ data, accordionType }) => (
-  <Accordion defaultActiveKey="0">
-    {Object.entries(data).map((review, index) => (
-      <Card key={review[0]}>
-        <Accordion.Toggle as={Card.Header} eventKey={`${index}`}>
-          {review[0]}
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey={`${index}`}>
-          <StyledCardBody>
-            {(accordionType === 'byUser' || accordionType === 'bySkill') &&
-              review[1].map(matrixItem => (
-                <MatrixItem
-                  key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
-                  accordionType={accordionType}
-                  matrixItem={matrixItem}
-                />
-              ))}
+const CustomAccordionToggle = ({
+  children,
+  eventKey,
+  setOpenAccordionEventKey,
+  openAccordionEventKey,
+}) => {
+  const decoratedOnClick = useAccordionToggle(eventKey, () => {
+    if (openAccordionEventKey === eventKey) {
+      return setOpenAccordionEventKey('-1');
+    }
+    return setOpenAccordionEventKey(eventKey);
+  });
 
-            {accordionType === 'byRating' &&
-              Object.entries(groupBy(review[1], 'skillName')).map(skill => (
-                <React.Fragment key={skill[0]}>
-                  <span css="grid-column: 1/-1">{skill[0]}</span>
-                  {skill[1].map(matrixItem => (
-                    <MatrixItem
-                      key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
-                      accordionType={accordionType}
-                      matrixItem={matrixItem}
-                    />
-                  ))}
-                </React.Fragment>
-              ))}
-          </StyledCardBody>
-        </Accordion.Collapse>
-      </Card>
-    ))}
-  </Accordion>
-);
+  return (
+    <Card.Header style={{ cursor: 'pointer' }} onClick={decoratedOnClick}>
+      {children}
+    </Card.Header>
+  );
+};
+
+const SkillReviewAccordion = ({ data, accordionType }) => {
+  const [openAccordionEventKey, setOpenAccordionEventKey] = useState('0');
+  return (
+    <Accordion defaultActiveKey="0">
+      {Object.entries(data).map((review, index) => (
+        <Card key={review[0]}>
+          <CustomAccordionToggle
+            eventKey={`${index}`}
+            setOpenAccordionEventKey={setOpenAccordionEventKey}
+            openAccordionEventKey={openAccordionEventKey}
+          >
+            <div
+              css={`
+                display: flex;
+                align-items: center;
+              `}
+            >
+              {`${index}` === openAccordionEventKey ? (
+                <ChevronDown />
+              ) : (
+                <ChevronRight />
+              )}
+              <span css="margin-left: 10px">{review[0]}</span>
+            </div>
+          </CustomAccordionToggle>
+          <Accordion.Collapse eventKey={`${index}`}>
+            <StyledCardBody>
+              {(accordionType === 'byUser' || accordionType === 'bySkill') &&
+                review[1].map(matrixItem => (
+                  <MatrixItem
+                    key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
+                    accordionType={accordionType}
+                    matrixItem={matrixItem}
+                  />
+                ))}
+
+              {accordionType === 'byRating' &&
+                Object.entries(groupBy(review[1], 'skillName')).map(skill => (
+                  <React.Fragment key={skill[0]}>
+                    <span css="grid-column: 1/-1">{skill[0]}</span>
+                    {skill[1].map(matrixItem => (
+                      <MatrixItem
+                        key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
+                        accordionType={accordionType}
+                        matrixItem={matrixItem}
+                      />
+                    ))}
+                  </React.Fragment>
+                ))}
+            </StyledCardBody>
+          </Accordion.Collapse>
+        </Card>
+      ))}
+    </Accordion>
+  );
+};
 
 const SkillReviewAllTable = ({ usernames, skillNames }) => {
   const keys = sortArrayAlphabetically(Object.keys(skillNames));
@@ -243,6 +291,13 @@ const SkillReview = () => {
       )}
     </StyledMain>
   );
+};
+
+CustomAccordionToggle.propTypes = {
+  children: PropTypes.node.isRequired,
+  eventKey: PropTypes.string.isRequired,
+  setOpenAccordionEventKey: PropTypes.func.isRequired,
+  openAccordionEventKey: PropTypes.string.isRequired,
 };
 
 SkillReviewAllTable.propTypes = {
