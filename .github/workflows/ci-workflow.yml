@@ -4,11 +4,11 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Node ${{ matrix.node }} - lint, test
+    name: Node ${{ matrix.node }} - lint, test, build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['10', '12']
+        node: ['10', '12']
 
     steps:
       - uses: actions/checkout@master
@@ -16,7 +16,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v1.1.2
         with:
-          version: ${{ matrix.node }}
+          node-version: ${{ matrix.node }}
 
       - run: node --version
       - run: yarn --version
@@ -29,6 +29,8 @@ jobs:
         env:
           CI: true
         run: yarn test --coverage
+
+      - run: yarn build
 
   deploy_netlify:
     name: deploy to netlify
