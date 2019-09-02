@@ -212,6 +212,7 @@ const SkillReview = () => {
       <div
         css={`
           display: flex;
+          margin-bottom: 40px;
         `}
       >
         <div
