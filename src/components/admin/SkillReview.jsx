@@ -115,7 +115,9 @@ const SkillReviewAccordion = ({ data, accordionType }) => {
               {accordionType === 'byRating' &&
                 Object.entries(groupBy(review[1], 'skillName')).map(skill => (
                   <React.Fragment key={skill[0]}>
-                    <span css="grid-column: 1/-1">{skill[0]}</span>
+                    <span css="grid-column: 1/-1">
+                      <strong>{skill[0]}</strong>
+                    </span>
                     {skill[1].map(matrixItem => (
                       <MatrixItem
                         key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
@@ -136,7 +138,7 @@ const SkillReviewAccordion = ({ data, accordionType }) => {
 const SkillReviewAllTable = ({ usernames, skillNames }) => {
   const keys = sortArrayAlphabetically(Object.keys(skillNames));
   return (
-    <Table css="width: auto" bordered>
+    <Table bordered>
       <thead>
         <tr>
           <th>{/* Employee */}</th>
@@ -146,6 +148,7 @@ const SkillReviewAllTable = ({ usernames, skillNames }) => {
                 css={`
                   writing-mode: vertical-rl;
                   transform: rotate(180deg);
+                  white-space: nowrap;
                 `}
               >
                 {key}
