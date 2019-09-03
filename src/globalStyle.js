@@ -3,12 +3,12 @@ const globalTheme = {
   sidebarHover: '#303752',
   sidebarActiveLink: '#4d5672',
   sidebarText: '#ddd',
-  trafficRadioGood: '#77dd77',
-  trafficRadioOk: '#ffb347',
-  trafficRadioBad: '#ff6961',
-  trafficRadioBorderGood: '#32B032',
-  trafficRadioBorderOk: '#BB7109',
-  trafficRadioBorderBad: '#C02119',
+  trafficRadioConfident: '#77dd77',
+  'trafficRadioFairly Confident': '#ffb347',
+  'trafficRadioNot Confident': '#ff6961',
+  trafficRadioBorderConfident: '#32B032',
+  'trafficRadioBorderFairly Confident': '#BB7109',
+  'trafficRadioBorderNot Confident': '#C02119',
 };
 
 export default globalTheme;

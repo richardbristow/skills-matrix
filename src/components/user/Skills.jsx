@@ -182,20 +182,20 @@ const SkillsRatingCard = ({ skill, setData }) => {
           >
             <TrafficRadioButton
               skill={skill}
-              rating="Good"
-              checked={checkedRating === 'Good'}
+              rating="Confident"
+              checked={checkedRating === 'Confident'}
               handleChange={handleChange}
             />
             <TrafficRadioButton
               skill={skill}
-              rating="Ok"
-              checked={checkedRating === 'Ok'}
+              rating="Fairly Confident"
+              checked={checkedRating === 'Fairly Confident'}
               handleChange={handleChange}
             />
             <TrafficRadioButton
               skill={skill}
-              rating="Bad"
-              checked={checkedRating === 'Bad'}
+              rating="Not Confident"
+              checked={checkedRating === 'Not Confident'}
               handleChange={handleChange}
             />
           </div>
@@ -249,8 +249,8 @@ const Skills = () => {
         >
           <h2 css="white-space: nowrap">My Skills</h2>
           <p>
-            Use this page to rate how comfortable you feel supporting the below
-            services.
+            Use this page to rate how confident you feel supporting the services
+            below.
           </p>
         </div>
         <SkillRatingKey />
@@ -267,7 +267,7 @@ const Skills = () => {
                 <Info heading="No skills to display">
                   <p>
                     No skills have currently been added to the skills matrix,
-                    please come back later
+                    please come back later.
                   </p>
                 </Info>
               ) : (
