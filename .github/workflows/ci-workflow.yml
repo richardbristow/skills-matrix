@@ -4,19 +4,19 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Node ${{ matrix.node }} - lint, test, build
+    name: Node ${{ matrix.node-version }} - lint, test, build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: ['10', '12']
+        node-version: [14, 16]
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1.1.2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ matrix.node-version }}
 
       - run: node --version
       - run: yarn --version
@@ -38,24 +38,19 @@ jobs:
     needs: test
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1.1.0
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
         with:
-          version: 12.x
-
-      - name: install netlify-cli
-        run: npm install netlify-cli -g
-
+          node-version: 14.x
       - run: node --version
       - run: yarn --version
       - run: netlify --version
-
       - run: yarn install
 
       - name: 'PROD: yarn build:prod'
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           REACT_APP_COGNITO_IDENTITY_POOL_ID: ${{ secrets.REACT_APP_COGNITO_IDENTITY_POOL_ID }}
           REACT_APP_AWS_REGION: ${{ secrets.REACT_APP_AWS_REGION }}
@@ -68,7 +63,7 @@ jobs:
         run: yarn build:prod
 
       - name: 'DEV: yarn build'
-        if: github.event_name == 'push' && github.ref != 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
         env:
           REACT_APP_COGNITO_IDENTITY_POOL_ID: ${{ secrets.REACT_APP_COGNITO_IDENTITY_POOL_ID }}
           REACT_APP_AWS_REGION: ${{ secrets.REACT_APP_AWS_REGION }}
@@ -81,14 +76,14 @@ jobs:
         run: yarn build
 
       - name: 'PROD: deploy to netlify'
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: netlify deploy --prod
 
       - name: 'DEV: deploy to netlify'
-        if: github.event_name == 'push' && github.ref != 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -100,24 +95,22 @@ jobs:
     needs: test
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1.1.0
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
         with:
-          version: 12.x
+          node-version: 14.x
 
       - name: install serverless
         run: npm install serverless -g
-
       - run: node --version
       - run: yarn --version
       - run: serverless --version
-
       - run: yarn install
 
       - name: 'PROD: serverless deploy to AWS'
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -126,7 +119,7 @@ jobs:
           serverless deploy --stage prod -v --conceal
 
       - name: 'DEV: serverless deploy to AWS'
-        if: github.event_name == 'push' && github.ref != 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
