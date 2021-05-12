@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { v1 as uuid } from 'uuid';
+const { v1: uuidv1 } = require('uuid');
 
 const buildResponse = require('../utils/buildResponse');
 const dynamoDbCall = require('../utils/dynamoDbCall');
@@ -29,7 +29,7 @@ const skillsListAdd = async (event) => {
   const params = {
     TableName: process.env.TABLENAME,
     Item: {
-      skillId: uuid(),
+      skillId: uuidv1(),
       ...body,
       lastModified: Date.now(),
       createdAt: Date.now(),
