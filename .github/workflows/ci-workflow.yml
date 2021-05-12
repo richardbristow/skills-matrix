@@ -63,7 +63,7 @@ jobs:
         run: yarn build:prod
 
       - name: 'DEV: yarn build'
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         env:
           REACT_APP_COGNITO_IDENTITY_POOL_ID: ${{ secrets.REACT_APP_COGNITO_IDENTITY_POOL_ID }}
           REACT_APP_AWS_REGION: ${{ secrets.REACT_APP_AWS_REGION }}
@@ -83,7 +83,7 @@ jobs:
         run: netlify deploy --prod
 
       - name: 'DEV: deploy to netlify'
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -119,7 +119,7 @@ jobs:
           serverless deploy --stage prod -v --conceal
 
       - name: 'DEV: serverless deploy to AWS'
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
