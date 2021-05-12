@@ -104,7 +104,7 @@ const SkillReviewAccordion = ({ data, accordionType }) => {
           <Accordion.Collapse eventKey={`${index}`}>
             <StyledCardBody>
               {(accordionType === 'byUser' || accordionType === 'bySkill') &&
-                review[1].map(matrixItem => (
+                review[1].map((matrixItem) => (
                   <MatrixItem
                     key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
                     accordionType={accordionType}
@@ -113,12 +113,12 @@ const SkillReviewAccordion = ({ data, accordionType }) => {
                 ))}
 
               {accordionType === 'byRating' &&
-                Object.entries(groupBy(review[1], 'skillName')).map(skill => (
+                Object.entries(groupBy(review[1], 'skillName')).map((skill) => (
                   <React.Fragment key={skill[0]}>
                     <span css="grid-column: 1/-1">
                       <strong>{skill[0]}</strong>
                     </span>
-                    {skill[1].map(matrixItem => (
+                    {skill[1].map((matrixItem) => (
                       <MatrixItem
                         key={`${accordionType}-${matrixItem.itemId}-${matrixItem.skillId}`}
                         accordionType={accordionType}
@@ -142,7 +142,7 @@ const SkillReviewAllTable = ({ usernames, skillNames }) => {
       <thead>
         <tr>
           <th>{/* Employee */}</th>
-          {keys.map(key => (
+          {keys.map((key) => (
             <th key={key}>
               <div
                 css={`
@@ -158,12 +158,12 @@ const SkillReviewAllTable = ({ usernames, skillNames }) => {
         </tr>
       </thead>
       <tbody>
-        {Object.entries(usernames).map(name => (
+        {Object.entries(usernames).map((name) => (
           <tr key={name[0]}>
             <td>{name[0]}</td>
-            {keys.map(key => {
+            {keys.map((key) => {
               const skill = name[1].find(
-                userData => userData.skillName === key,
+                (userData) => userData.skillName === key,
               );
               return (
                 <td
@@ -205,8 +205,8 @@ const SkillReview = () => {
   );
 
   const reformatData = () =>
-    data.skillsReport.Items.map(user => ({
-      ...data.skillsList.Items.find(skill => skill.skillId === user.skillId),
+    data.skillsReport.Items.map((user) => ({
+      ...data.skillsList.Items.find((skill) => skill.skillId === user.skillId),
       ...user,
     }));
 

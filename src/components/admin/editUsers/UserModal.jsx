@@ -34,7 +34,7 @@ const UserModal = ({
     setClickedModalData(null);
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const { userName, email, group } = values;
     setIsError(null);

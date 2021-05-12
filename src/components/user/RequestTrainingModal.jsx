@@ -35,7 +35,7 @@ const RequestTrainingModal = ({
     setIsError(null);
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setIsError(null);
     setIsLoading(true);
@@ -79,7 +79,7 @@ const RequestTrainingModal = ({
               name="skillId"
               value={values.skillId}
             >
-              {reformattedSkillsList.map(skill => (
+              {reformattedSkillsList.map((skill) => (
                 <option key={`skill-${skill.skillId}`} value={skill.skillId}>
                   {skill.skillName}
                 </option>

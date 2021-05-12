@@ -34,7 +34,7 @@ const Login = ({ setAuthenticated, setAuthenticating, ...props }) => {
     setIsError(null);
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setIsError(null);
     setIsLoading(true);

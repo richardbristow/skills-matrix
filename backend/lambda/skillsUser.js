@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 
-const uuid = require('uuid/v1');
+import { v1 as uuid } from 'uuid';
+
 const buildResponse = require('../utils/buildResponse');
 const dynamoDbCall = require('../utils/dynamoDbCall');
 
-const skillsUserGet = async event => {
+const skillsUserGet = async (event) => {
   const skillsListParams = {
     TableName: process.env.TABLENAME,
     KeyConditionExpression: 'itemId = :id',
@@ -37,7 +38,7 @@ const skillsUserGet = async event => {
   }
 };
 
-const skillsUserAdd = async event => {
+const skillsUserAdd = async (event) => {
   const body = JSON.parse(event.body);
   const params = {
     TableName: process.env.TABLENAME,
@@ -65,7 +66,7 @@ const handlers = {
   POST: skillsUserAdd,
 };
 
-exports.skillsUser = event => {
+exports.skillsUser = (event) => {
   const { httpMethod } = event;
   return handlers[httpMethod](event);
 };

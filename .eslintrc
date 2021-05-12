@@ -7,7 +7,7 @@
     "react-app",
     "airbnb",
     "plugin:prettier/recommended",
-    "prettier/react"
+    "prettier"
   ],
   "rules": {
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],

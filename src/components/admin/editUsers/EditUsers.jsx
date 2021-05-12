@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Tabs, Tab, Button } from 'react-bootstrap';
@@ -51,13 +52,13 @@ const UserTable = ({
           ) : (
             <>
               {groupUsers.length > 0 ? (
-                groupUsers.map(user => {
+                groupUsers.map((user) => {
                   const { Username, Attributes, UserCreateDate } = user;
                   const { Value: name } = Attributes.find(
-                    attribute => attribute.Name === 'name',
+                    (attribute) => attribute.Name === 'name',
                   );
                   const { Value: email } = Attributes.find(
-                    attribute => attribute.Name === 'email',
+                    (attribute) => attribute.Name === 'email',
                   );
                   return (
                     <tr key={Username}>
@@ -105,7 +106,7 @@ const EditUsers = () => {
   const [clickedModalData, setClickedModalData] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  const getUsersInGroup = async group => {
+  const getUsersInGroup = async (group) => {
     setIsError(null);
     setIsLoading(true);
     const userPool = new AWS.CognitoIdentityServiceProvider();
@@ -148,7 +149,7 @@ const EditUsers = () => {
       <Tabs
         activeKey={tabKey}
         id="user-group-tabs"
-        onSelect={key => setTabKey(key)}
+        onSelect={(key) => setTabKey(key)}
       >
         <Tab eventKey="staffUsers" title="Support Staff">
           {tabKey === 'staffUsers' && (

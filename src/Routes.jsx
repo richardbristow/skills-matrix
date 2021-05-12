@@ -24,7 +24,7 @@ const Routes = ({ authenticated, setAuthenticating, setAuthenticated }) => (
     />
     <Route
       path="/login"
-      render={props => (
+      render={(props) => (
         <Login
           setAuthenticating={setAuthenticating}
           setAuthenticated={setAuthenticated}

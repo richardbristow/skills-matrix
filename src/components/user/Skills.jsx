@@ -221,9 +221,9 @@ const Skills = () => {
     { skillsList: { Items: [] }, skillsUser: { Items: [] } },
   );
 
-  const reformattedData = data.skillsList.Items.map(skill => {
+  const reformattedData = data.skillsList.Items.map((skill) => {
     const userRating = data.skillsUser.Items.find(
-      user => user.skillId === skill.skillId,
+      (user) => user.skillId === skill.skillId,
     );
     return {
       ...userRating,
@@ -272,7 +272,7 @@ const Skills = () => {
                 </Info>
               ) : (
                 <StyledUserSkillsGrid>
-                  {reformattedData.map(skill => {
+                  {reformattedData.map((skill) => {
                     const { skillId } = skill;
                     return (
                       <SkillsRatingCard

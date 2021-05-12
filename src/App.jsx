@@ -18,11 +18,11 @@ const App = () => {
   const [authenticating, setAuthenticating] = useState(true);
   const [authenticatedUser, setAuthenticatedUser] = useState({});
 
-  const handleLogout = async props => {
+  const handleLogout = async ({ history }) => {
     await Auth.signOut();
     setAuthenticated(false);
     setAuthenticatedUser({});
-    props.history.push('/login');
+    history.push('/login');
   };
 
   useEffect(() => {

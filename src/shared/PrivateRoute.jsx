@@ -14,7 +14,7 @@ const PrivateRoute = ({
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         authenticated ? (
           <>
             {!restrictToGroup || restrictToGroup === authenticatedUser.group ? (

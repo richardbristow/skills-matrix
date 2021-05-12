@@ -34,7 +34,7 @@ const SkillModal = ({
     setClickedModalData(null);
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const { skillName, skillDescription } = values;
     const params = {

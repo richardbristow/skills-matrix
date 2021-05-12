@@ -15,7 +15,7 @@ import RequestTrainingModal from './RequestTrainingModal';
 const TrainingListItem = ({ training, setData, setIsDeleteError }) => {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
-  const handleDeleteTraining = async skillId => {
+  const handleDeleteTraining = async (skillId) => {
     setIsDeleteError(null);
     setIsDeleteLoading(true);
     try {
@@ -60,9 +60,9 @@ const Training = () => {
     const reformattedAttendingTraining = [];
     const reformattedSkillsList = [];
 
-    data.skillsList.Items.forEach(skill => {
+    data.skillsList.Items.forEach((skill) => {
       const trainingSession = data.trainingList.Items.find(
-        training => training.skillId === skill.skillId,
+        (training) => training.skillId === skill.skillId,
       );
       if (trainingSession) {
         return reformattedAttendingTraining.push({
@@ -78,10 +78,8 @@ const Training = () => {
     return { reformattedAttendingTraining, reformattedSkillsList };
   };
 
-  const {
-    reformattedAttendingTraining,
-    reformattedSkillsList,
-  } = reformatData();
+  const { reformattedAttendingTraining, reformattedSkillsList } =
+    reformatData();
 
   return (
     <StyledMain>
@@ -127,7 +125,7 @@ const Training = () => {
                       <h5>My Scheduled Training</h5>
                       {isDeleteError && <Error error={isDeleteError} />}
                       <ListGroup>
-                        {reformattedAttendingTraining.map(training => (
+                        {reformattedAttendingTraining.map((training) => (
                           <TrainingListItem
                             training={training}
                             setData={setData}

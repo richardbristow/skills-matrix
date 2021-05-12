@@ -73,7 +73,7 @@ const getTrainingReport = async () => {
   }
 };
 
-const deleteUserItems = async event => {
+const deleteUserItems = async (event) => {
   const params = {
     TableName: process.env.TABLENAME,
     IndexName: 'userPoolUsername-index',
@@ -87,7 +87,7 @@ const deleteUserItems = async event => {
   try {
     const deleteRequests = [];
     const dynamoQueryResponse = await dynamoDbCall('query', params);
-    dynamoQueryResponse.Items.forEach(item => {
+    dynamoQueryResponse.Items.forEach((item) => {
       deleteRequests.push({ DeleteRequest: { Key: item } });
     });
 
@@ -109,7 +109,7 @@ const deleteUserItems = async event => {
   }
 };
 
-exports.admin = event => {
+exports.admin = (event) => {
   const {
     path,
     requestContext: { resourcePath },

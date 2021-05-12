@@ -1,4 +1,4 @@
-const sortArrayAlphabetically = array => {
+const sortArrayAlphabetically = (array) => {
   return array.sort((a, b) => {
     const aLower = a.toLowerCase();
     const bLower = b.toLowerCase();

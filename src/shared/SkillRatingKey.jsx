@@ -11,7 +11,7 @@ const SkillRatingKey = () => (
       `}
     >
       <h6 css="white-space: nowrap">User rating key:</h6>
-      {['Confident', 'Fairly Confident', 'Not Confident'].map(rating => (
+      {['Confident', 'Fairly Confident', 'Not Confident'].map((rating) => (
         <div
           key={rating}
           css={`

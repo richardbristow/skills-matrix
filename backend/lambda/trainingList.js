@@ -3,7 +3,7 @@
 const buildResponse = require('../utils/buildResponse');
 const dynamoDbCall = require('../utils/dynamoDbCall');
 
-const trainingListGet = async event => {
+const trainingListGet = async (event) => {
   const skillsListParams = {
     TableName: process.env.TABLENAME,
     KeyConditionExpression: 'itemId = :id',
@@ -36,7 +36,7 @@ const trainingListGet = async event => {
   }
 };
 
-const trainingListAdd = async event => {
+const trainingListAdd = async (event) => {
   const body = JSON.parse(event.body);
   const params = {
     TableName: process.env.TABLENAME,
@@ -60,7 +60,7 @@ const trainingListAdd = async event => {
   }
 };
 
-const trainingListDelete = async event => {
+const trainingListDelete = async (event) => {
   const params = {
     TableName: process.env.TABLENAME,
     Key: {
@@ -85,7 +85,7 @@ const handlers = {
   DELETE: trainingListDelete,
 };
 
-exports.trainingList = event => {
+exports.trainingList = (event) => {
   const { httpMethod } = event;
   return handlers[httpMethod](event);
 };

@@ -8,7 +8,7 @@ import Error from '../../shared/Error';
 import Info from '../../shared/Info';
 
 const TrainingRequestTable = ({ data }) =>
-  data.map(training =>
+  data.map((training) =>
     training.trainingSessions.map((requested, index) =>
       index === 0 ? (
         <tr key={`${training.skillId}-${requested.userPoolUsername}`}>
@@ -48,9 +48,9 @@ const TrainingRequests = () => {
     const reformattedTrainingReport = [];
     const reformattedSkillsList = [];
 
-    data.skillsList.Items.forEach(skill => {
+    data.skillsList.Items.forEach((skill) => {
       const trainingSessions = data.trainingReport.Items.filter(
-        training => training.skillId === skill.skillId,
+        (training) => training.skillId === skill.skillId,
       );
       if (trainingSessions.length > 0) {
         return reformattedTrainingReport.push({

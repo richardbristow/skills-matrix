@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
-const uuid = require('uuid/v1');
+import { v1 as uuid } from 'uuid';
+
 const buildResponse = require('../utils/buildResponse');
 const dynamoDbCall = require('../utils/dynamoDbCall');
 
@@ -23,7 +24,7 @@ const skillsListGet = async () => {
   }
 };
 
-const skillsListAdd = async event => {
+const skillsListAdd = async (event) => {
   const body = JSON.parse(event.body);
   const params = {
     TableName: process.env.TABLENAME,
@@ -45,7 +46,7 @@ const skillsListAdd = async event => {
   }
 };
 
-const skillsListEdit = async event => {
+const skillsListEdit = async (event) => {
   const body = JSON.parse(event.body);
   const params = {
     TableName: process.env.TABLENAME,
@@ -70,7 +71,7 @@ const skillsListEdit = async event => {
   }
 };
 
-const skillsListDelete = async event => {
+const skillsListDelete = async (event) => {
   const params = {
     TableName: process.env.TABLENAME,
     IndexName: 'skillId-index',
@@ -84,7 +85,7 @@ const skillsListDelete = async event => {
   try {
     const deleteRequests = [];
     const dynamoQueryResponse = await dynamoDbCall('query', params);
-    dynamoQueryResponse.Items.forEach(item => {
+    dynamoQueryResponse.Items.forEach((item) => {
       deleteRequests.push({ DeleteRequest: { Key: item } });
     });
 
@@ -108,7 +109,7 @@ const handlers = {
   DELETE: skillsListDelete,
 };
 
-exports.skillsList = event => {
+exports.skillsList = (event) => {
   const { httpMethod } = event;
   return handlers[httpMethod](event);
 };
