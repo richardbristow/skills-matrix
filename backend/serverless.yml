@@ -11,12 +11,14 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs14.x
   versionFunctions: false
   memorySize: 128
   region: us-east-1
   logRetentionInDays: 30
   stage: ${opt:stage, 'dev'}
+  apiGateway:
+    shouldStartNameWithService: true
   environment:
     TABLENAME: ${opt:stage, self:provider.stage}-SkillsTable
   iamRoleStatements:
