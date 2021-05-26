@@ -129,6 +129,12 @@ Build:
   yarn build:prod # production build
 ```
 
+## Demo site
+
+A deployed demo site is available at the link below:
+
+<https://skills-matrix.netlify.app>
+
 ## Other Info
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
